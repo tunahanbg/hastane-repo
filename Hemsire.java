@@ -9,5 +9,5 @@ public class Hemsire extends AbsractKisi {
         this.atamaDurumu = atamaDurumu;
         hemsireArrayList.add(this);
     }
-
+çbkjv
 }
