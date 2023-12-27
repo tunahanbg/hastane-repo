@@ -1,4 +1,4 @@
-public class Admin {
+public class HastaneYonetimi {
     public void doktorEkle(){}
     public void doktorCikar(){}
     public void hastaEkle(){}
