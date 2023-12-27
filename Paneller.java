@@ -47,4 +47,12 @@ public class Paneller {
         System.out.println("3-) Doktor Çıkar");
         System.out.println("|——————————————————————————————————————————————|");
     }
+
+    public static void adminHemsirePaneli(){
+        System.out.println("|——————————————————————————————————————————————|");
+        System.out.println("1-) Hemşireleri Görüntüle");
+        System.out.println("1-) Hemşireleri Görüntüle");
+        System.out.println("1-) Hemşireleri Görüntüle");
+        System.out.println("|——————————————————————————————————————————————|");
+    }
 }
