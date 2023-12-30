@@ -10,10 +10,10 @@ public class Hasta extends AbsractKisi{
     //Map değişkeni : Verileri ANAHTAR(derecelendirmenin katagorisi)--DEĞER(derecelendirmenin değeri)
     //çiftleri şeklinde depolamak için kullanılan bir veri yapısı
     public Map<DegerlendirmeKatagori, Integer> degerler = new HashMap<>();
-
-
     static Scanner tarayici = new Scanner(System.in);
     public static ArrayList<Hasta> hastaListesi=new ArrayList<Hasta>();
+
+
 
     public Hasta(String isim,String soyisim,String TC,String dogumTarihi,int id,int telefonNo,String dogumYeri) {
         this.isim=isim;
@@ -27,7 +27,8 @@ public class Hasta extends AbsractKisi{
     }
 
 
-    // Hasta silme fonksiyonu
+
+    // Hasta kayıt silme fonksiyonu
     public static void hastaSil(){
 
         System.out.println("Silmek istenen hastanın İD'sini giriniz ");
@@ -49,6 +50,7 @@ public class Hasta extends AbsractKisi{
         if (!flag){System.out.println("Aradığınız kullanıcı bulunmamaktadır.");}
 
     }
+
 
 
     // Hasta Ekleme Fonksiyonu

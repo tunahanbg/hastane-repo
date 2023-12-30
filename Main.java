@@ -16,13 +16,13 @@ public class Main {
         //d1.receteYaz();
         //d1.receteYaz();
 
-        Birim birim1=new Birim("Pediatri");
-        Birim birim2=new Birim("Üroloji");
-        Birim birim3=new Birim("Ortopedi");
-        Birim birim4=new Birim("Kardiyoloji");
-        Birim birim5=new Birim("Nöroloji");
-        Birim birim6=new Birim("Dahiliye");
-        Birim birim7=new Birim("Cerrahi");
+        Birim birim1=new Birim("Pediatri",50);
+        Birim birim2=new Birim("Üroloji",20);
+        Birim birim3=new Birim("Ortopedi",30);
+        Birim birim4=new Birim("Kardiyoloji",40);
+        Birim birim5=new Birim("Nöroloji",50);
+        Birim birim6=new Birim("Dahiliye",30);
+        Birim birim7=new Birim("Cerrahi",10);
         Birim.birimListesi.add(birim1);
         Birim.birimListesi.add(birim2);
         Birim.birimListesi.add(birim3);
