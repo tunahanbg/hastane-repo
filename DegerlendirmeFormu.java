@@ -1,7 +1,6 @@
 import java.util.*;
 //Yukardaki ifade ile gerekli tüm java.util paketleri alınır
 
-
 public class DegerlendirmeFormu {
 
     static Scanner tarayici = new Scanner(System.in);
@@ -18,7 +17,7 @@ public class DegerlendirmeFormu {
     }
 
 
-    // !!!!!!!Girilen değer yanlış olduğunda başa dnmüyor bunu düzeltttt !!!!!!!!!!!!!
+    // !!!!!!!Girilen değer yanlış olduğunda başa dönmüyor ve değer eklenmemiş oluyor bu yüzden hastaninFormunuYazdirma fonksiyonunda değeri boş katagori gösterilmiyor  bunu düzeltttt !!!!!!!!!!!!!
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //Değerlendirme formunun doldurulması sağlanır.Try Catch ile yanlış girilen değer bulunur ve hata döndürülür.Eğer uygun ise değerleri ait oldukları anahtarlara değer olarak ekler.
@@ -53,7 +52,7 @@ public class DegerlendirmeFormu {
 
     }
 
-    
+
     //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
     public static void hastaninFormunuYazdirma () {
         System.out.println("Formunu görmek istediğiniz hastanın İd numarsını giriniz : ");
