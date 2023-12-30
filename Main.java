@@ -45,11 +45,10 @@ public class Main {
 
 
         //Hasta değerlendirme formu :
-        DegerlendirmeFormu form = new DegerlendirmeFormu();
-        System.out.println("Değerlendirme için lütfen İD numaranızı giriniz : ");
-        int degerlendiriciId = tarayici.nextInt();
-        form.doldur(Hasta.hastaListesi.get(degerlendiriciId));
-        System.out.println("Değerlendirmeniz alındı. \n İyi günler dileriz :) ");
+        DegerlendirmeFormu.hastaDegerlendirmeFormu();
+
+        //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
+        DegerlendirmeFormu.hastaninFormunuYazdirma();
 
     }
 }
