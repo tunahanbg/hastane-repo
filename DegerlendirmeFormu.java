@@ -10,7 +10,7 @@ public class DegerlendirmeFormu {
     int[] skalalar = {1, 2, 3, 4, 5};
 
     // DegerlendirmeKatagori türünden bir List nesnesi olan katagoriler adlı değişkeni oluşturur
-    private List<DegerlendirmeKatagori> katagoriler;
+    private final List<DegerlendirmeKatagori> katagoriler;
 
     //DegerlendirmeFormu sınıfının yapıcı metodu
     public DegerlendirmeFormu() {
