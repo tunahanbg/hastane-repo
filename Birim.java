@@ -20,11 +20,13 @@ public class Birim {
         this.isim = isim;
     }
 
-    public int getHastaKapasite() {
+
+    //bunlar hasta doluluk oranı fonksiyonu açılınca tekrar açılacak
+    /*public int getHastaKapasite() {
         return hastaKapasite;
     }
 
     public void setHastaKapasite(int hastaKapasite) {
         this.hastaKapasite = hastaKapasite;
-    }
+    }*/
 }

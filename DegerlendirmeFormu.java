@@ -53,20 +53,5 @@ public class DegerlendirmeFormu {
     }
 
 
-    //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
-    public static void hastaninFormunuYazdirma () {
-        System.out.println("Formunu görmek istediğiniz hastanın İd numarsını giriniz : ");
-        int degerlemesiIstenenHastaId = tarayici.nextInt();
-
-
-        // Bu hastanın değerlendirme değerlerinin anahtarlarını bir `Set` olarak alır.
-        Set<DegerlendirmeKatagori> anahtarlar = Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.keySet();
-
-        //Alınan değerleri bir for döngüsü ile gezer.
-        for (DegerlendirmeKatagori anahtar : anahtarlar) {
-            System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri : " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
-        }
-
-    }
 }
 

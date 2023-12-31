@@ -47,8 +47,21 @@ public class Main {
         //Hasta değerlendirme formu :
         DegerlendirmeFormu.hastaDegerlendirmeFormu();
 
-        //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
-        DegerlendirmeFormu.hastaninFormunuYazdirma();
 
+        //Yönetici Paneli\\
+
+        //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
+        YoneticiPaneli.hastaninFormunuYazdirma();
+        //Muahsebe İşlemleri
+        YoneticiPaneli.muhasebeIslemleri();
+
+
+
+
+
+        //Birim hasta doluluk oranını yazdırma;
+        //Analizler.birimHastaDolulukOrani(); //-----> maalesef bitmedi ve devamını getiremedim
+        //yukardaki fonksiyon yüzünden yorum satırına eklenen yerler :
+        // Birim -> 24-31      Randevu sınıfında birkaç tane var
     }
 }

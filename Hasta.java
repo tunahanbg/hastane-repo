@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Scanner;
 
 
-
 public class Hasta extends AbsractKisi{
 
     //Map değişkeni : Verileri ANAHTAR(derecelendirmenin katagorisi)--DEĞER(derecelendirmenin değeri)

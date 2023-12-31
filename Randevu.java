@@ -12,6 +12,9 @@ public class Randevu {
     private Date randevuTarihi=new Date();
     private Doktor doktor;
     private  Hasta hasta;
+
+    //private  String birimAdi; // Bu değişken eklenerek her oluşturulan randevunun hangi birimie ait olduğu bilinebilecek bu sayede dolulluk oranı heasabı için kullanılabilecek
+
     public static ArrayList<Randevu> randevuListesi=new ArrayList<Randevu>();
 
     //Bu constructor'ı bizim önceden oluşturduğumuz veriler için oluşturdum.
@@ -56,6 +59,14 @@ public class Randevu {
         return hasta;
     }
 
+    /*public void setBirimAdi(String birimAdi) {
+        this.birimAdi = birimAdi;
+    }
+
+    public String getBirimAdi() {
+        return birimAdi;
+    }*/
+
     public void setHasta(Hasta hasta) {
         this.hasta = hasta;
     }
@@ -69,6 +80,9 @@ public class Randevu {
             boolean flag4=false;
             for(int i=0;i<Hasta.hastaListesi.size();i++){
                 if(Hasta.hastaListesi.get(i).TC.equals(TCNO)){
+                    //Randevu randevu = new Randevu();
+                    //randevu.setBirimAdi(birimAdi);
+                    //Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size()
                     yeniRandevu.setHasta(Hasta.hastaListesi.get(i));
                     flag4=true;
                 }
