@@ -57,9 +57,8 @@ public class Main {
 
 
         Ilaclar.ilaclariOlustur();
-        Ilaclar.ilaclariGoruntule();
-        Ilaclar.katagoriSec();
-        Ilaclar.ilaclariGoruntule();
+        Doktor.receteIslemleri();
+
 
         //Birim hasta doluluk oranını yazdırma;
         //Analizler.birimHastaDolulukOrani(); //-----> maalesef bitmedi ve devamını getiremedim

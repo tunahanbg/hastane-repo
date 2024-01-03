@@ -12,7 +12,9 @@ public class Hasta extends AbsractKisi{
     static Scanner tarayici = new Scanner(System.in);
     public static ArrayList<Hasta> hastaListesi=new ArrayList<Hasta>();
 
+    public ArrayList <String> recetedekiIlaclar = new ArrayList<>();
 
+    public Hasta(){}
 
     public Hasta(String isim,String soyisim,String TC,String dogumTarihi,int id,int telefonNo,String dogumYeri) {
         this.isim=isim;

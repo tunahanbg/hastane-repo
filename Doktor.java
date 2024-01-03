@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     Scanner tarayici=new Scanner(System.in);
+
+    static Hasta hasta = new Hasta();
     public static int farkliID=0;
 
     public static ArrayList<Doktor> doktorListesi=new ArrayList<Doktor>();
@@ -66,7 +68,196 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         catch (IOException e){
             e.printStackTrace();
         }
-
-
     }
+
+
+    public static void aIlaciEkle(String userChoice){
+
+        for (String a : Ilaclar.aKatagorisiIlaclariList) {
+            if (a.equals(userChoice)) {
+                hasta.recetedekiIlaclar.add(userChoice);
+            }
+        }
+    }
+
+    public static void bIlaciEkle(String userChoice){
+
+        for (String b : Ilaclar.bKatagorisiIlaclariList) {
+            if (b.equals(userChoice)) {
+                hasta.recetedekiIlaclar.add(userChoice);
+            }
+        }
+    }
+
+    public static void cIlaciEkle(String userChoice){
+
+        for (String c : Ilaclar.cKatagorisiIlaclariList) {
+            if (c.equals(userChoice)) {
+                hasta.recetedekiIlaclar.add(userChoice);
+            }
+        }
+    }
+
+    public static void dIlaciEkle(String userChoice){
+
+        for (String s : Ilaclar.dKatagorisiIlaclariList) {
+            if (s.equals(userChoice)) {
+                hasta.recetedekiIlaclar.add(userChoice);
+            }
+        }
+    }
+
+    public static void receteyeIlacYaz(){
+        Scanner userInput = new Scanner(System.in);
+
+        System.out.println("Hangi Katagorideki İlaçdan Seçim Yapmak istersiniz?");
+        System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+
+        int userChoice = userInput.nextInt();
+
+        boolean flag = true;
+
+        while (flag){
+            switch (userChoice){
+
+                case 1:
+                    System.out.println("İlaç ismini giriniz: ");
+                    String ilacSecimi = userInput.next();
+
+                    if (Ilaclar.aKatagorisiIlaclariList.contains(ilacSecimi)){
+                        aIlaciEkle(ilacSecimi);
+                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        flag = false;
+                        break;
+                    }
+
+                    else {
+                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        continue;
+                    }
+
+
+                case 2:
+                    System.out.println("İlaç ismini giriniz: ");
+                    String ilacSecimi1 = userInput.next();
+
+                    if (Ilaclar.bKatagorisiIlaclariList.contains(ilacSecimi1)){
+                        bIlaciEkle(ilacSecimi1);
+                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        flag = false;
+                        break;
+                    }
+
+                    else {
+                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        continue;
+                    }
+
+
+                case 3:
+                    System.out.println("İlaç ismini giriniz: ");
+                    String ilacSecimi2 = userInput.next();
+
+                    if (Ilaclar.cKatagorisiIlaclariList.contains(ilacSecimi2)){
+                        cIlaciEkle(ilacSecimi2);
+                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        flag = false;
+                        break;
+                    }
+
+                    else {
+                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        continue;
+                    }
+
+
+                case 4:
+                    System.out.println("İlaç ismini giriniz: ");
+                    String ilacSecimi3 = userInput.next();
+
+                    if (Ilaclar.dKatagorisiIlaclariList.contains(ilacSecimi3)){
+                        dIlaciEkle(ilacSecimi3);
+                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        flag = false;
+                        break;
+                    }
+
+                    else {
+                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        continue;
+                    }
+
+                default:
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyin.");
+                    break;
+            }
+        }
+    }
+
+    public static void receteIslemleri(){
+        Scanner userInput = new Scanner(System.in);
+
+        boolean flag = true;
+
+        while (flag){
+
+            System.out.println("|——————————————————————————————————————————————————|");
+            System.out.println("Yapmak İstediğiniz İşlemi Giriniz:");
+            System.out.println("1-) İlaçları Görüntüle");
+            System.out.println("2-) İlaç Yaz");
+            System.out.println("3-) Yazılan İlaçları Görüntüle");
+            System.out.println("4-) Çıkış");
+            System.out.println("|——————————————————————————————————————————————————|");
+
+            int userChoice = userInput.nextInt();
+
+            switch (userChoice){
+                case 1:
+                    Ilaclar.ilaclariGoruntule();
+                    continue;
+
+                case 2:
+                    System.out.println("|——————————————————————————————————————————————————|");
+                    receteyeIlacYaz();
+                    System.out.println("|——————————————————————————————————————————————————|");
+                    continue;
+
+                case 3:
+                    System.out.println("|==================================================|");
+                    for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
+                        System.out.println("—> " + hasta.recetedekiIlaclar.get(i));
+                    }
+                    System.out.println("|==================================================|");
+                    continue;
+
+                case 4:
+                    yanEtkiKontrolu();
+                    continue;
+
+                case 5:
+                    flag = false;
+                    break;
+
+                default:
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    break;
+            }
+        }
+    }
+
+    public static void yanEtkiKontrolu(){
+        for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
+
+            for (int j = 1; j < 16; j++){
+                // A ve B varsa yan etki kontrolü
+                if (hasta.recetedekiIlaclar.contains("aIlaci" + (j)) && hasta.recetedekiIlaclar.contains(("bIlaci" + (j)))){
+                    System.out.println("A ve B ilaçları birlikte kullanılırsa yan etkiye sahiptir.");
+                    break;
+                }
+
+            }
+        }
+    }
+
+
 }
