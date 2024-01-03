@@ -10,7 +10,7 @@ public class Randevu {
     static Scanner tarayici=new Scanner(System.in);
     private int ID;
     public static int farkliID=0;//Oluşturulan her Randevunun ID'sinin farklı olması için bu değişkeni oluşturdum.Her oluşturulan randevuda değer önce o an oluşturulan randevu nesnesine aktarılacak sonrasında ise değer arttırılacak.Static tanımladığım için de tekrar sıfırlanmadan ya da sabit kalmadan değerini arttırabileceğim.
-    private Date randevuTarihi;
+    private String randevuTarihi;
     private Doktor doktor;
     private  Hasta hasta;
     public static ArrayList<Randevu> randevuListesi=new ArrayList<Randevu>();
@@ -44,6 +44,14 @@ public class Randevu {
         this.doktor = doktor;
     }
 
+    public String getRandevuTarihi() {
+        return randevuTarihi;
+    }
+
+    public void setRandevuTarihi(String randevuTarihi) {
+        this.randevuTarihi=randevuTarihi;
+    }
+
     public Hasta getHasta() {
         return hasta;
     }
@@ -52,7 +60,7 @@ public class Randevu {
         this.hasta = hasta;
     }
 
-    public void randevuOlustur(){
+    public static void randevuOlustur(){
         Randevu yeniRandevu=new Randevu();
         //Randevuya hastanın atanması:
         while(true){
@@ -75,8 +83,8 @@ public class Randevu {
         }
 
         //Randevu Tarihinin kullanıcı tarafından belirlenmesi:
-        randevuTarihi=new Date();
-        int gun,ay,yil;
+        int gun=0,ay=0,yil=0;
+        String tarih="";
         boolean tarihDogruMu=true;
         while(tarihDogruMu){
             System.out.print("Randevu tarihini giriniz (gün ay yıl):");
@@ -92,18 +100,26 @@ public class Randevu {
             else if(yil<2024){
                 System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
             }
-            else{
-                randevuTarihi.setYear(yil);
-                randevuTarihi.setMonth(ay);
-                randevuTarihi.setDate(gun);
+            else if{
 
-                tarihDogruMu=false;
             }
-
-            System.out.println(randevuTarihi.getMonth());
-            System.out.println(randevuTarihi.getDate());
-            System.out.println(randevuTarihi.getYear());
         }
+
+        boolean tarihAyniMi=true;
+        while (tarihAyniMi){
+            for(int i=0;i<Randevu.randevuListesi.size();i++){
+                if(tarih.equals(Randevu.randevuListesi.get(i).getRandevuTarihi())){
+                    System.out.println("Aynı tarihte başka bir randevu zaten var lütfen başka bir tarihe randevu oluşturun.");
+                }
+                else {
+                    yeniRandevu.setRandevuTarihi(tarih);
+                    tarihAyniMi=false;
+                }
+            }
+        }
+
+
+
 
 
 

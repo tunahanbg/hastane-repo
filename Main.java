@@ -33,11 +33,15 @@ public class Main {
 
 
         Randevu r1=new Randevu();
-        r1.randevuOlustur();
+        r1.setRandevuTarihi("10 03 2024");
+        Randevu.randevuListesi.add(r1);
+
+       Randevu.randevuOlustur();
+       Randevu.randevuOlustur();
+       Randevu.randevuOlustur();
 
 
 
-        Randevu.randevuListesi.get(0).randevuBilgileriYazdir();
 
 
     }
