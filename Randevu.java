@@ -82,47 +82,6 @@ public class Randevu {
             }
         }
 
-        //Randevu Tarihinin kullanıcı tarafından belirlenmesi:
-        int gun=0,ay=0,yil=0;
-        String tarih="";
-        boolean tarihDogruMu=true;
-        while(tarihDogruMu){
-            System.out.print("Randevu tarihini giriniz (gün ay yıl):");
-            gun= tarayici.nextInt();
-            ay= tarayici.nextInt();
-            yil= tarayici.nextInt();
-            if(gun<1 || gun>31){
-                System.out.println("Gün bilgisi 1-31 arasında olmalı.");
-            }
-            else if(ay<0 || ay>12){
-                System.out.println("Ay bilgisi 1-12 arasında olmalı.");
-            }
-            else if(yil<2024){
-                System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
-            }
-            else if{
-
-            }
-        }
-
-        boolean tarihAyniMi=true;
-        while (tarihAyniMi){
-            for(int i=0;i<Randevu.randevuListesi.size();i++){
-                if(tarih.equals(Randevu.randevuListesi.get(i).getRandevuTarihi())){
-                    System.out.println("Aynı tarihte başka bir randevu zaten var lütfen başka bir tarihe randevu oluşturun.");
-                }
-                else {
-                    yeniRandevu.setRandevuTarihi(tarih);
-                    tarihAyniMi=false;
-                }
-            }
-        }
-
-
-
-
-
-
         //Hastanın istediği doktoru seçmesi:
 
         boolean flag=true;
@@ -180,10 +139,53 @@ public class Randevu {
             }
         }
 
+        tarihBelirle(yeniRandevu);
+
         randevuListesi.add(yeniRandevu);
     }
 
     public void randevuBilgileriYazdir(){
         System.out.println("Randevu ID:"+ID+"\nRandevu Tarihi ve Saati:"+randevuTarihi+"\nDoktor:"+doktor.isim+" "+doktor.soyisim+"\nHasta:"+hasta.isim+" "+hasta.soyisim);
+    }
+
+    public static void tarihBelirle(Randevu yeniRandevu){
+        //Randevu Tarihinin kullanıcı tarafından belirlenmesi:
+        int gun=0,ay=0,yil=0;
+        String tarih="";
+        boolean tarihDogruMu=true;
+        while(tarihDogruMu){
+            System.out.print("Randevu tarihini giriniz (gün ay yıl):");
+            gun= tarayici.nextInt();
+            ay= tarayici.nextInt();
+            yil= tarayici.nextInt();
+            if(gun<1 || gun>31){
+                System.out.println("Gün bilgisi 1-31 arasında olmalı.");
+            }
+            else if(ay<0 || ay>12){
+                System.out.println("Ay bilgisi 1-12 arasında olmalı.");
+            }
+            else if(yil<2024){
+                System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
+            }
+            tarih=(gun+" "+ay+" "+yil);
+
+            boolean ayniTarihVarMi=false;
+            for(int i=0;i<randevuListesi.size();i++){
+                if(randevuListesi.get(i).randevuTarihi.equals(tarih)){
+                    System.out.println("Aynı tarihte zaten bir randevu tanımlanmış, lütfen başka bir tarihe randevu alınız.");
+                    ayniTarihVarMi=true;
+                }
+            }
+
+            if (!ayniTarihVarMi){
+                yeniRandevu.setRandevuTarihi(tarih);
+                System.out.println("Tarih ataması yapıldı.");
+                randevuListesi.add(yeniRandevu);
+                tarihDogruMu=false;
+            }
+
+        }
+
+
     }
 }

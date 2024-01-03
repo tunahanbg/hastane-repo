@@ -36,9 +36,26 @@ public class Main {
         r1.setRandevuTarihi("10 03 2024");
         Randevu.randevuListesi.add(r1);
 
-       Randevu.randevuOlustur();
-       Randevu.randevuOlustur();
-       Randevu.randevuOlustur();
+        Randevu r2=new Randevu();
+        r2.setRandevuTarihi("11 3 2024");
+        Randevu.randevuListesi.add(r2);
+
+        Randevu r3=new Randevu();
+        r3.setRandevuTarihi("12 3 2024");
+        Randevu.randevuListesi.add(r3);
+
+        Randevu r4=new Randevu();
+        r4.setRandevuTarihi("13 3 2024");
+        Randevu.randevuListesi.add(r4);
+
+        System.out.println(Randevu.randevuListesi.get(0).getRandevuTarihi());
+        System.out.println(Randevu.randevuListesi.get(1).getRandevuTarihi());
+        System.out.println(Randevu.randevuListesi.get(2).getRandevuTarihi());
+        System.out.println(Randevu.randevuListesi.get(3).getRandevuTarihi());
+
+        Randevu.randevuOlustur();
+
+
 
 
 
