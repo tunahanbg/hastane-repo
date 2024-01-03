@@ -6,4 +6,5 @@ public abstract class AbsractKisi {
     public int id;
     public int telefonNo;
     public String dogumYeri;
+    public int maas;
 }
