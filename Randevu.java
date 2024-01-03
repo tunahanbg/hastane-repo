@@ -2,6 +2,7 @@ import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -9,17 +10,16 @@ public class Randevu {
     static Scanner tarayici=new Scanner(System.in);
     private int ID;
     public static int farkliID=0;//Oluşturulan her Randevunun ID'sinin farklı olması için bu değişkeni oluşturdum.Her oluşturulan randevuda değer önce o an oluşturulan randevu nesnesine aktarılacak sonrasında ise değer arttırılacak.Static tanımladığım için de tekrar sıfırlanmadan ya da sabit kalmadan değerini arttırabileceğim.
-    private Date randevuTarihi=new Date();
+    private Date randevuTarihi;
     private Doktor doktor;
     private  Hasta hasta;
     public static ArrayList<Randevu> randevuListesi=new ArrayList<Randevu>();
 
     //Bu constructor'ı bizim önceden oluşturduğumuz veriler için oluşturdum.
-    public Randevu(Date randevuTarihi,Doktor doktor, Hasta hasta) {
-        this.randevuTarihi=randevuTarihi;
+    public Randevu(Doktor doktor, Hasta hasta) {
         this.doktor = doktor;
         this.hasta = hasta;
-        this.ID=farkliID;
+        this.ID=farkliID;//veya farkliID++
         farkliID++;
     }
 
@@ -34,14 +34,6 @@ public class Randevu {
 
     public void setID(int ID) {
         this.ID = ID;
-    }
-
-    public Date getRandevuTarihi() {
-        return randevuTarihi;
-    }
-
-    public void setRandevuTarihi(Date randevuTarihi) {
-        this.randevuTarihi = randevuTarihi;
     }
 
     public Doktor getDoktor() {
@@ -83,15 +75,37 @@ public class Randevu {
         }
 
         //Randevu Tarihinin kullanıcı tarafından belirlenmesi:
-        System.out.print("Randevu almak istediğiniz tarihi giriniz (gg aa yyyy):");
-        int gun=tarayici.nextInt();
-        int ay=tarayici.nextInt();
-        int yil=tarayici.nextInt();
-        System.out.print("Randevu almak istediğiniz saati giriniz (ss dd):");
-        int saat=tarayici.nextInt();
-        int dakika=tarayici.nextInt();
-        yeniRandevu.randevuTarihi.setTime(new Date(yil,ay,gun,saat,dakika).getTime());
-        yeniRandevu.randevuTarihi.setYear(yeniRandevu.randevuTarihi.getYear()-1900);//SimpleDateFormat sınıfının format() yöntemi, tarih değerini yazdırırken, tarih değerinin yıl bölümünü 1900'den itibaren saymaya başladığı için 1900 çıkarıyorum.
+        randevuTarihi=new Date();
+        int gun,ay,yil;
+        boolean tarihDogruMu=true;
+        while(tarihDogruMu){
+            System.out.print("Randevu tarihini giriniz (gün ay yıl):");
+            gun= tarayici.nextInt();
+            ay= tarayici.nextInt();
+            yil= tarayici.nextInt();
+            if(gun<1 || gun>31){
+                System.out.println("Gün bilgisi 1-31 arasında olmalı.");
+            }
+            else if(ay<0 || ay>12){
+                System.out.println("Ay bilgisi 1-12 arasında olmalı.");
+            }
+            else if(yil<2024){
+                System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
+            }
+            else{
+                randevuTarihi.setYear(yil);
+                randevuTarihi.setMonth(ay);
+                randevuTarihi.setDate(gun);
+
+                tarihDogruMu=false;
+            }
+
+            System.out.println(randevuTarihi.getMonth());
+            System.out.println(randevuTarihi.getDate());
+            System.out.println(randevuTarihi.getYear());
+        }
+
+
 
         //Hastanın istediği doktoru seçmesi:
 
