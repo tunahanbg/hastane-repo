@@ -4,6 +4,7 @@ public class Birim {
     private int hastaKapasite;
     protected ArrayList<Doktor> birimdekiDoktorlarinListesi=new ArrayList<Doktor>();
     public static ArrayList<Birim> birimListesi=new ArrayList<Birim>();
+    public ArrayList<Hasta> birimeAitHastaListesi=new ArrayList<Hasta>();
 
     public Birim(String isim,int hastaKapasite) {
         this.isim = isim;
