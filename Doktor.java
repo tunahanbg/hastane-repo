@@ -12,7 +12,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     public static ArrayList<Doktor> doktorListesi=new ArrayList<Doktor>();
     //Her nesnenin bir doktor listesine sahip olması saçma olurdu.Doktor listesi nesneden bağımsız sınıfa ait yani static olarak tanımlandığında her değişikliği yansıtacaktır.public tanımlamamın nedeni ise Yönetim sınıfının da operasyonlarında bu listeye erişimini sağlayabilmek.
 
-    public Doktor(String isim,String soyisim,String TC,String dogumTarihi,int telefonNo,String dogumYeri) {
+    public Doktor(String isim,String soyisim,String TC,String dogumTarihi,String telefonNo,String dogumYeri) {
         this.isim=isim;
         this.soyisim=soyisim;
         this.TC=TC;
@@ -38,14 +38,14 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         System.out.print("Reçete yazmak istediğiniz hastanın id'si:");
         int hastaID=tarayici.nextInt();
         System.out.print("Reçete:");
-        String recete=tarayici.nextLine();
+        String recete=tarayici.next();
         String metinDosyasiAdi="";
         for(int i=0;i<Hasta.hastaListesi.size();i++){
             if(Hasta.hastaListesi.get(i).id==hastaID){
                 metinDosyasiAdi=Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+".txt";
             }
         }
-        String dosyaYolu="C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out\\"+metinDosyasiAdi;
+        String dosyaYolu="C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\"+metinDosyasiAdi;
         try{
             File dosya=new File(dosyaYolu);
             if(!dosya.exists()){

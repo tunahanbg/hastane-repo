@@ -2,12 +2,12 @@ import java.text.SimpleDateFormat;
 
 public class Main {
     public static void main(String[] args) {
-        Hasta h1=new Hasta("aaaaa","aaaaa","123","10.10.1974",1,123,"Ankara");
-        Hasta h2=new Hasta("bbbbb","bbbbb","456","10.10.1974",2,456,"İstanbul");
+        Hasta h1=new Hasta("aaaaa","aaaaa","123","10.10.1974",1,"123","Ankara");
+        Hasta h2=new Hasta("bbbbb","bbbbb","456","10.10.1974",2,"456","İstanbul");
 
-        Doktor d1=new Doktor("YAprak","Gök","123","10.10.1974",123,"Ankara");
-        Doktor d2=new Doktor("Baran","Bilal","123","10.10.1974",123,"Ankara");
-        Doktor d3=new Doktor("Tuna","KB","123","10.10.1974",123,"Ankara");
+        Doktor d1=new Doktor("YAprak","Gök","123","10.10.1974","123","Ankara");
+        Doktor d2=new Doktor("Baran","Bilal","123","10.10.1974","123","Ankara");
+        Doktor d3=new Doktor("Tuna","KB","123","10.10.1974","123","Ankara");
 
         //d1.receteYaz();
         //d1.receteYaz();
@@ -54,13 +54,13 @@ public class Main {
         System.out.println(Randevu.randevuListesi.get(2).getRandevuTarihi());
         System.out.println(Randevu.randevuListesi.get(3).getRandevuTarihi());
 
-        Randevu.randevuOlustur();
+        /*Randevu.randevuOlustur();
         System.out.println(Randevu.randevuListesi.get(Randevu.randevuListesi.size()-1).getRandevuTarihi());
 
-        System.out.println(birim1.birimeAitHastaListesi.get(0).isim+" "+birim1.birimeAitHastaListesi.get(0).soyisim);
+        System.out.println(birim1.birimeAitHastaListesi.get(0).isim+" "+birim1.birimeAitHastaListesi.get(0).soyisim);*/
 
-
-
+        d1.receteYaz();
+        h1.receteGoruntule();
 
 
 
