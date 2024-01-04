@@ -1,6 +1,3 @@
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -18,11 +15,12 @@ public class Randevu {
     public static ArrayList<Randevu> randevuListesi=new ArrayList<Randevu>();
 
     //Bu constructor'ı bizim önceden oluşturduğumuz veriler için oluşturdum.
-    public Randevu(Date randevuTarihi,Doktor doktor, Hasta hasta) {
+    public Randevu(Date randevuTarihi,Doktor doktor, Hasta hasta , String birimAdi) {
         this.randevuTarihi=randevuTarihi;
         this.doktor = doktor;
         this.hasta = hasta;
         this.ID=farkliID;
+        //this.birimAdi = birimAdi;
         farkliID++;
     }
 
@@ -170,4 +168,6 @@ public class Randevu {
     public void randevuBilgileriYazdir(){
         System.out.println("Randevu ID:"+ID+"\nRandevu Tarihi ve Saati:"+randevuTarihi+"\nDoktor:"+doktor.isim+" "+doktor.soyisim+"\nHasta:"+hasta.isim+" "+hasta.soyisim);
     }
+
+
 }
