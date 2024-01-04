@@ -16,7 +16,7 @@ public class Hasta extends AbsractKisi{
 
     public Hasta(){}
 
-    public Hasta(String isim,String soyisim,String TC,String dogumTarihi,int id,int telefonNo,String dogumYeri) {
+    public Hasta(String isim,String soyisim,String TC,String dogumTarihi,int id,String telefonNo,String dogumYeri) {
         this.isim=isim;
         this.soyisim=soyisim;
         this.TC=TC;
@@ -73,7 +73,7 @@ public class Hasta extends AbsractKisi{
         String dogumTarihi = tarayici.nextLine();
 
         System.out.println(" Hasta telefon numarası : ");
-        int telefonNumarasi = tarayici.nextInt();
+        String telefonNumarasi = tarayici.next();
 
         System.out.println(" Hasta doğum yeri : ");
         String dogumYeri = tarayici.nextLine();

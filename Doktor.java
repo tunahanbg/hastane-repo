@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     Scanner tarayici=new Scanner(System.in);
 
-    static Hasta hasta = new Hasta();
+    Hasta hasta = new Hasta();
     public static int farkliID=0;
 
     public static ArrayList<Doktor> doktorListesi=new ArrayList<Doktor>();
     //Her nesnenin bir doktor listesine sahip olması saçma olurdu.Doktor listesi nesneden bağımsız sınıfa ait yani static olarak tanımlandığında her değişikliği yansıtacaktır.public tanımlamamın nedeni ise Yönetim sınıfının da operasyonlarında bu listeye erişimini sağlayabilmek.
 
-    public Doktor(String isim,String soyisim,String TC,String dogumTarihi,int telefonNo,String dogumYeri) {
+    public Doktor(String isim,String soyisim,String TC,String dogumTarihi,String telefonNo,String dogumYeri) {
         this.isim=isim;
         this.soyisim=soyisim;
         this.TC=TC;
@@ -36,18 +36,22 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     //Reçeteyi hangi hastaya yazacağını hasta id'si ile karar versin, Randeveu görüntüle kısmından veya tüm hastaları görüntüleyerek hasta id'sine ulaşabiliriz.
     public void receteYaz(){
         System.out.print("Reçete yazmak istediğiniz hastanın id'si:");
-        int hastaID=tarayici.nextInt();
+        int hastaID = tarayici.nextInt();
+
         System.out.print("Reçete:");
-        String recete=tarayici.nextLine();
-        String metinDosyasiAdi="";
-        for(int i=0;i<Hasta.hastaListesi.size();i++){
-            if(Hasta.hastaListesi.get(i).id==hastaID){
-                metinDosyasiAdi=Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+".txt";
+        String recete = tarayici.nextLine();
+        String metinDosyasiAdi = "";
+
+        for(int i = 0; i < Hasta.hastaListesi.size(); i++){
+            if(Hasta.hastaListesi.get(i).id == hastaID){
+                metinDosyasiAdi = Hasta.hastaListesi.get(i).isim + " " + Hasta.hastaListesi.get(i).soyisim + ".txt";
             }
         }
-        String dosyaYolu="C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out\\"+metinDosyasiAdi;
+
+        String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out\\" + metinDosyasiAdi;
+
         try{
-            File dosya=new File(dosyaYolu);
+            File dosya = new File(dosyaYolu);
             if(!dosya.exists()){
                 dosya.createNewFile();
             }
@@ -56,9 +60,10 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
             e.printStackTrace();
         }
 
-        PrintWriter yazici=null;
+        PrintWriter yazici = null;
+
         try{
-            yazici=new PrintWriter(new FileWriter(dosyaYolu,true));
+            yazici = new PrintWriter(new FileWriter(dosyaYolu,true));
             yazici.println(recete);
             yazici.close();
         }
@@ -71,7 +76,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     }
 
 
-    public static void aIlaciEkle(String userChoice){
+    public void aIlaciEkle(String userChoice){
 
         for (String a : Ilaclar.aKatagorisiIlaclariList) {
             if (a.equals(userChoice)) {
@@ -80,7 +85,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public static void bIlaciEkle(String userChoice){
+    public void bIlaciEkle(String userChoice){
 
         for (String b : Ilaclar.bKatagorisiIlaclariList) {
             if (b.equals(userChoice)) {
@@ -89,7 +94,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public static void cIlaciEkle(String userChoice){
+    public void cIlaciEkle(String userChoice){
 
         for (String c : Ilaclar.cKatagorisiIlaclariList) {
             if (c.equals(userChoice)) {
@@ -98,7 +103,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public static void dIlaciEkle(String userChoice){
+    public void dIlaciEkle(String userChoice){
 
         for (String s : Ilaclar.dKatagorisiIlaclariList) {
             if (s.equals(userChoice)) {
@@ -107,7 +112,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public static void receteyeIlacYaz(){
+    public void receteyeIlacYaz(){
         Scanner userInput = new Scanner(System.in);
 
         System.out.println("Hangi Katagorideki İlaçdan Seçim Yapmak istersiniz?");
@@ -194,8 +199,10 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public static void receteIslemleri(){
+    public void receteIslemleri(){
         Scanner userInput = new Scanner(System.in);
+
+        hastaSecimIslemi();
 
         boolean flag = true;
 
@@ -245,7 +252,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public static void yanEtkiKontrolu(){
+    public void yanEtkiKontrolu(){
 
         int sayacA = 0;
         int sayacB = 0;
@@ -259,24 +266,42 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
                 sayacA++;
             }
 
-            else if (hasta.recetedekiIlaclar.contains("bIlaci" + j )) {
+            if (hasta.recetedekiIlaclar.contains("bIlaci" + j )) {
                 sayacB++;
             }
 
-            else if (hasta.recetedekiIlaclar.contains("cIlaci" + j )) {
+            if (hasta.recetedekiIlaclar.contains("cIlaci" + j )) {
                 sayacC++;
             }
 
-            else if (hasta.recetedekiIlaclar.contains("dIlaci" + j )) {
+            if (hasta.recetedekiIlaclar.contains("dIlaci" + j )) {
                 sayacD++;
             }
         }
 
         if (sayacA != 0 && sayacB != 0){
-            System.out.println("A ve B ilaçları birlikte kullanılırsa yan etkiye sahiptir.");
+            System.out.println("A ve B ilaçları birlikte kullanılırsa ciltte kızarıklık yapabilir. ");
         }
 
+        if (sayacA != 0 && sayacD != 0){
+            System.out.println("A ve D ilaçları birlikte kullanılırsa uyku düzeninizi kötü etkileyebilir. ");
+        }
+
+        if (sayacC != 0 && sayacD != 0){
+            System.out.println("C ve D ilaçları birlikte kullanılırsa mide bulantısı yapabilir. ");
+        }
     }
 
+    public void hastaSecimIslemi(){
+        Scanner userInput = new Scanner(System.in);
 
+        System.out.println("İşlem yapmak istediğiniz hastanın ID'sini giriniz.");
+        int secilenHastaId = userInput.nextInt();
+
+        for(int i = 0; i < Hasta.hastaListesi.size(); i++){
+            if(Hasta.hastaListesi.get(i).id == secilenHastaId){
+                this.hasta = Hasta.hastaListesi.get(i);
+            }
+        }
+    }
 }
