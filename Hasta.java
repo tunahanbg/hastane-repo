@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -73,7 +74,7 @@ public class Hasta extends AbsractKisi{
         String dogumTarihi = tarayici.nextLine();
 
         System.out.println(" Hasta telefon numarası : ");
-        String telefonNumarasi = tarayici.next();
+        String telefonNumarasi = tarayici.nextLine();
 
         System.out.println(" Hasta doğum yeri : ");
         String dogumYeri = tarayici.nextLine();
@@ -84,7 +85,34 @@ public class Hasta extends AbsractKisi{
 
         // Yapıcı metot listeye ekler
         Hasta h = new Hasta(isim,soyisim,tc,dogumTarihi,id,telefonNumarasi,dogumYeri);
+    }
 
+    //Hastanın reçetesini görüntülemesi MBB
+    public void receteGoruntule(){
+        System.out.print("TC Kimlik Numaranız:");
+        String tcKimlik=tarayici.nextLine();
 
+        String dosyaIsmi="";
+        for (int i=0;i<hastaListesi.size();i++){
+            if(hastaListesi.get(i).TC.equals(tcKimlik)){
+                dosyaIsmi=(hastaListesi.get(i).isim+" "+hastaListesi.get(i).soyisim+".txt");
+            }
+        }
+
+        File dosya=new File(dosyaIsmi);
+        String dosyaYolu=dosya.getAbsolutePath();
+        try {
+            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
+            String satir;
+            while((satir= okuyucu.readLine()) != null){
+                System.out.println(satir);
+            }
+            okuyucu.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
