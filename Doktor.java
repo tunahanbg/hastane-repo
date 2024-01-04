@@ -246,17 +246,36 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     }
 
     public static void yanEtkiKontrolu(){
-        for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
 
-            for (int j = 1; j < 16; j++){
-                // A ve B varsa yan etki kontrolü
-                if (hasta.recetedekiIlaclar.contains("aIlaci" + (j)) && hasta.recetedekiIlaclar.contains(("bIlaci" + (j)))){
-                    System.out.println("A ve B ilaçları birlikte kullanılırsa yan etkiye sahiptir.");
-                    break;
-                }
+        int sayacA = 0;
+        int sayacB = 0;
+        int sayacC = 0;
+        int sayacD = 0;
 
+        for (int j = 1; j < 16; j++){
+
+            // A ve B varsa yan etki kontrolü
+            if (hasta.recetedekiIlaclar.contains("aIlaci" + j)){
+                sayacA++;
+            }
+
+            else if (hasta.recetedekiIlaclar.contains("bIlaci" + j )) {
+                sayacB++;
+            }
+
+            else if (hasta.recetedekiIlaclar.contains("cIlaci" + j )) {
+                sayacC++;
+            }
+
+            else if (hasta.recetedekiIlaclar.contains("dIlaci" + j )) {
+                sayacD++;
             }
         }
+
+        if (sayacA != 0 && sayacB != 0){
+            System.out.println("A ve B ilaçları birlikte kullanılırsa yan etkiye sahiptir.");
+        }
+
     }
 
 
