@@ -3,7 +3,6 @@ public class Birim {
     private String isim;
     protected ArrayList<Doktor> birimdekiDoktorlarinListesi=new ArrayList<Doktor>();
     public static ArrayList<Birim> birimListesi=new ArrayList<Birim>();
-
     public ArrayList<Hasta> birimeAitHastaListesi=new ArrayList<Hasta>();
 
     public Birim(String isim) {

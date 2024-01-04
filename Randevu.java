@@ -84,6 +84,7 @@ public class Randevu {
 
         //Hastanın istediği doktoru seçmesi:
 
+        String birimSecim="";
         boolean flag=true;
         while(flag){
             System.out.println("Doktorları görüntüleme seçenekleri:");
@@ -96,7 +97,7 @@ public class Randevu {
                     System.out.println("Birimler:");
                     System.out.println("1-Pediatri\n2-Üroloji\n3-Ortopedi\n4-Kardiyoloji\n5-Nöroloji\n6-Dahiliye\n7-Cerrahi");
                     System.out.print("Seçtiğiniz birimin ismi:");
-                    String birimSecim=tarayici.next();
+                    birimSecim=tarayici.next();
                     for(int i=0;i<Birim.birimListesi.size();i++){
                         if(Birim.birimListesi.get(i).getIsim().equals(birimSecim)){
                             for(int j=0;j<Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size();j++){
@@ -127,6 +128,11 @@ public class Randevu {
             for (int i=0;i<Doktor.doktorListesi.size();i++){
                 if (Doktor.doktorListesi.get(i).id==doktorID){
                     yeniRandevu.setDoktor(Doktor.doktorListesi.get(i));
+                    for(int j=0;j<Birim.birimListesi.size();j++){
+                        if(birimSecim.equals(Birim.birimListesi.get(j).getIsim())){
+                            Birim.birimListesi.get(j).birimeAitHastaListesi.add(yeniRandevu.getHasta());
+                        }
+                    }
                     flag2=false;
                     flag3=true;
                 }
