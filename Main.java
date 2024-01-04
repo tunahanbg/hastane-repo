@@ -33,7 +33,7 @@ public class Main {
 
 
         Randevu r1=new Randevu();
-        r1.setRandevuTarihi("10 03 2024");
+        r1.setRandevuTarihi("10 3 2024");
         Randevu.randevuListesi.add(r1);
 
         Randevu r2=new Randevu();
@@ -54,6 +54,8 @@ public class Main {
         System.out.println(Randevu.randevuListesi.get(3).getRandevuTarihi());
 
         Randevu.randevuOlustur();
+        System.out.println(Randevu.randevuListesi.get(Randevu.randevuListesi.size()-1).getRandevuTarihi());
+
 
 
 

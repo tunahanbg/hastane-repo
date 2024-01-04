@@ -153,27 +153,34 @@ public class Randevu {
         int gun=0,ay=0,yil=0;
         String tarih="";
         boolean tarihDogruMu=true;
+        boolean formatDogruMu=true;
         while(tarihDogruMu){
-            System.out.print("Randevu tarihini giriniz (gün ay yıl):");
-            gun= tarayici.nextInt();
-            ay= tarayici.nextInt();
-            yil= tarayici.nextInt();
-            if(gun<1 || gun>31){
-                System.out.println("Gün bilgisi 1-31 arasında olmalı.");
+            while(formatDogruMu){
+                System.out.print("Randevu tarihini giriniz (gün ay yıl):");
+                gun= tarayici.nextInt();
+                ay= tarayici.nextInt();
+                yil= tarayici.nextInt();
+                if(gun<1 || gun>31){
+                    System.out.println("Gün bilgisi 1-31 arasında olmalı.");
+                }
+                else if(ay<0 || ay>12){
+                    System.out.println("Ay bilgisi 1-12 arasında olmalı.");
+                }
+                else if(yil<2024){
+                    System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
+                }
+                else{
+                    tarih=(gun+" "+ay+" "+yil);
+                    formatDogruMu=false;
+                }
             }
-            else if(ay<0 || ay>12){
-                System.out.println("Ay bilgisi 1-12 arasında olmalı.");
-            }
-            else if(yil<2024){
-                System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
-            }
-            tarih=(gun+" "+ay+" "+yil);
 
             boolean ayniTarihVarMi=false;
             for(int i=0;i<randevuListesi.size();i++){
                 if(randevuListesi.get(i).randevuTarihi.equals(tarih)){
                     System.out.println("Aynı tarihte zaten bir randevu tanımlanmış, lütfen başka bir tarihe randevu alınız.");
                     ayniTarihVarMi=true;
+                    formatDogruMu=true;
                 }
             }
 
@@ -185,6 +192,7 @@ public class Randevu {
             }
 
         }
+
 
 
     }
