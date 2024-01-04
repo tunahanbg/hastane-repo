@@ -213,7 +213,8 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
             System.out.println("1-) İlaçları Görüntüle");
             System.out.println("2-) İlaç Yaz");
             System.out.println("3-) Yazılan İlaçları Görüntüle");
-            System.out.println("4-) Çıkış");
+            System.out.println("4-) Yan Etkileri Kontrol Et");
+            System.out.println("5-) Çıkış");
             System.out.println("|——————————————————————————————————————————————————|");
 
             int userChoice = userInput.nextInt();
@@ -289,6 +290,10 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
 
         if (sayacC != 0 && sayacD != 0){
             System.out.println("C ve D ilaçları birlikte kullanılırsa mide bulantısı yapabilir. ");
+        }
+
+        else {
+            System.out.println("Yan etki oluşturacak herhangi bir durum yoktur.");
         }
     }
 
