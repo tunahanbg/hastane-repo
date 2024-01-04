@@ -19,6 +19,7 @@ public class Main {
         Birim birim5=new Birim("Nöroloji");
         Birim birim6=new Birim("Dahiliye");
         Birim birim7=new Birim("Cerrahi");
+        
         Birim.birimListesi.add(birim1);
         Birim.birimListesi.add(birim2);
         Birim.birimListesi.add(birim3);
