@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         Hasta h1=new Hasta("aaaaa","aaaaa","123","10.10.1974",1,123,"Ankara");
         Hasta h2=new Hasta("bbbbb","bbbbb","456","10.10.1974",2,456,"İstanbul");
+        Hasta h3=new Hasta("bbbbb","bbbbb","456","10.10.1974",3,456,"İstanbul");
+
 
         Doktor d1=new Doktor("YAprak","Gök","123","10.10.1974",123,"Ankara");
         Doktor d2=new Doktor("Baran","Bilal","123","10.10.1974",123,"Ankara");
@@ -44,24 +45,38 @@ public class Main {
         Randevu.randevuListesi.get(0).randevuBilgileriYazdir();
 
 
-        //Hasta değerlendirme formu :
-        DegerlendirmeFormu.hastaDegerlendirmeFormu();
+
+
+
+
+        //Hasta değerlendirme formu (formlar doldurulmuş olmsı için for içinde dönüyoruz):
+        for (int i = 0; i < 3; i++) {
+            DegerlendirmeFormu.hastaDegerlendirmeFormu();
+
+        }
+
+
+        //Değerlendirme katagorilerinin aldıkları değerlerin toplamı
+        DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
 
 
         //Yönetici Paneli\\
 
         //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
         YoneticiPaneli.hastaninFormunuYazdirma();
+
         //Muahsebe İşlemleri
         YoneticiPaneli.muhasebeIslemleri();
 
+        //Hasta ekleme
+        YoneticiPaneli.hastaEkle();
+        //Hasta silme
+        YoneticiPaneli.hastaEkle();
 
 
 
 
         //Birim hasta doluluk oranını yazdırma;
         //Analizler.birimHastaDolulukOrani(); //-----> maalesef bitmedi ve devamını getiremedim
-        //yukardaki fonksiyon yüzünden yorum satırına eklenen yerler :
-        // Birim -> 24-31      Randevu sınıfında birkaç tane var
     }
 }
