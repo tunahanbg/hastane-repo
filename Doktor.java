@@ -35,6 +35,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
 
     //Reçeteyi hangi hastaya yazacağını hasta id'si ile karar versin, Randeveu görüntüle kısmından veya tüm hastaları görüntüleyerek hasta id'sine ulaşabiliriz.
     public void receteYaz(){
+
         System.out.print("Reçete yazmak istediğiniz hastanın id'si:");
         int hastaID = tarayici.nextInt();
 
@@ -47,6 +48,13 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
                 metinDosyasiAdi = Hasta.hastaListesi.get(i).isim + " " + Hasta.hastaListesi.get(i).soyisim + ".txt";
             }
         }
+
+        ArrayList<String> hastaninIlaclari=receteIslemleri(hastaID);
+        String yazilanIlaclar="";
+        for (int i=0;i<hastaninIlaclari.size();i++){
+            yazilanIlaclar=(yazilanIlaclar+" "+hastaninIlaclari.get(i)+" ");
+        }
+        recete=(recete+" Yazılan İlaçlar: "+yazilanIlaclar);
 
         String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out\\" + metinDosyasiAdi;
 
@@ -199,10 +207,10 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public void receteIslemleri(){
+    public ArrayList<String> receteIslemleri(int hastaID){
         Scanner userInput = new Scanner(System.in);
 
-        hastaSecimIslemi();
+        hastaSecimIslemi(hastaID);
 
         boolean flag = true;
 
@@ -212,7 +220,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
             System.out.println("Yapmak İstediğiniz İşlemi Giriniz:");
             System.out.println("1-) İlaçları Görüntüle");
             System.out.println("2-) İlaç Yaz");
-            System.out.println("3-) Yazılan İlaçları Görüntüle");
+            System.out.println("3-) Reçeteye Yazılan İlaçları Görüntüle");
             System.out.println("4-) Yan Etkileri Kontrol Et");
             System.out.println("5-) Çıkış");
             System.out.println("|——————————————————————————————————————————————————|");
@@ -251,6 +259,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
                     break;
             }
         }
+        return hasta.recetedekiIlaclar;
     }
 
     public void yanEtkiKontrolu(){
@@ -297,11 +306,8 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
-    public void hastaSecimIslemi(){
-        Scanner userInput = new Scanner(System.in);
-
-        System.out.println("İşlem yapmak istediğiniz hastanın ID'sini giriniz.");
-        int secilenHastaId = userInput.nextInt();
+    public void hastaSecimIslemi(int hastaID){
+        int secilenHastaId = hastaID;
 
         for(int i = 0; i < Hasta.hastaListesi.size(); i++){
             if(Hasta.hastaListesi.get(i).id == secilenHastaId){
