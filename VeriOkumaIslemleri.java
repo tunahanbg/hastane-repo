@@ -42,7 +42,7 @@ public class VeriOkumaIslemleri {
     public static void doktorVerileriniCekme() {
 
         File dosya = new File("DoktorListesi.txt");
-        String dosyaYolu=dosya.getAbsolutePath();
+        String dosyaYolu = dosya.getAbsolutePath();
         String isim, soyisim, TC, telefonNo;
 
         try {
@@ -77,7 +77,35 @@ public class VeriOkumaIslemleri {
         }
     }
 
-    public void ilacVerileriniCekme() {
-        
-    }
+//    public void ilacVerileriniCekme() {
+//        File dosya = new File("a_Ilaclari.txt");
+//        String dosyaYolu = dosya.getAbsolutePath();
+//        String ilacIsmi;
+//
+//        try {
+//            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
+//            String satir;
+//
+//            while((satir = okuyucu.readLine()) != null){
+//                ilacIsmi = satir;
+//
+//                boolean flag = false;
+//
+//                for(int i = 0; i < Doktor.doktorListesi.size(); i++){
+//                    if(d.id == Doktor.doktorListesi.get(i).id){
+//                        flag=true;
+//                    }
+//                }
+//                if(!flag){
+//                    Doktor.doktorListesi.add(d);
+//                }
+//            }
+//            okuyucu.close();
+//        } catch (FileNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        catch (IOException e){
+//            e.printStackTrace();
+//        }
+//    }
 }
