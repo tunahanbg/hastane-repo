@@ -1,5 +1,50 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+
+        //Doktorların txt dosyasından alınması (MBB):
+        VeriOkumaIslemleri.doktorVerileriniCekme();
+
+        //Hastaların txt dosyasından alınması (MBB):
+        VeriOkumaIslemleri.hastaVerileriniCekme();
+
+        //İlaçların txt dosyasından alınması (Tuna):
+        VeriOkumaIslemleri.ilaciVerileriniCekme();
+
+        Paneller.girisPaneli();
+
+
+        boolean flag1 = true;
+        while(flag1){
+
+            String userChoice = userInput.next();
+            switch (userChoice){
+                case "1":
+                    flag1 = false;
+                    break;
+
+                case "2":
+                    flag1 = false;
+                    break;
+
+                case "3":
+                    flag1 = false;
+                    break;
+                default:
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    break;
+            }
+
+        }
+
+
+
+
+
+
+
 
 
         Birim birim1=new Birim("Pediatri", 1);
@@ -10,15 +55,6 @@ public class Main {
         Birim birim6=new Birim("Dahiliye", 0);
         Birim birim7=new Birim("Cerrahi", 0);
 
-
-        //Doktorların txt dosyasından alınması (MBB):
-        VeriOkumaIslemleri.doktorVerileriniCekme();
-
-        //Hastaların txt dosyasından alınması (MBB):
-        VeriOkumaIslemleri.hastaVerileriniCekme();
-
-        //İlaçların txt dosyasından alınması (Tuna):
-        VeriOkumaIslemleri.ilaciVerileriniCekme();
 
 
 

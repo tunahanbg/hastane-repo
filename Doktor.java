@@ -71,7 +71,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
             }
         }
 
-        ArrayList<String> hastaninIlaclari=receteIslemleri(hastaID);
+        ArrayList<String> hastaninIlaclari = receteIslemleri(hastaID);
         String yazilanIlaclar="";
         for (int i=0;i<hastaninIlaclari.size();i++){
             yazilanIlaclar=(yazilanIlaclar+" "+hastaninIlaclari.get(i)+" ");
