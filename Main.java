@@ -3,18 +3,7 @@ import java.text.SimpleDateFormat;
 
 public class Main {
     public static void main(String[] args) {
-        Hasta h1=new Hasta("aaaaa","aaaaa","12312312312","10.10.1974",1,"123","Ankara");
-        Hasta h2=new Hasta("bbbbb","bbbbb","45645645645","10.10.1974",2,"456","İstanbul");
 
-
-
-        //Doktorların birimlere dağıtılması:
-
-
-
-
-        //d1.receteYaz();
-        //d1.receteYaz();
 
         Birim birim1=new Birim("Pediatri", 1);
         Birim birim2=new Birim("Üroloji",2);
@@ -60,7 +49,6 @@ public class Main {
         }
 
         //Birimlere doktor atanması(MBB):
-
         int sayac=0;
         for (int i=0;i<Birim.birimListesi.size();i++){
             for(int k=0;k<Doktor.doktorListesi.size();k++){
@@ -72,6 +60,39 @@ public class Main {
             }
         }
 
+        //Hastaların txt dosyasından alınması (MBB):
+        File dosya2=new File("HastaListesi.txt");
+        String dosyaYolu2=dosya.getAbsolutePath();
+        String isim2,soyisim2,TC2,telefonNo2,dogumYeri;
+        try {
+            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
+            String satir;
+            while((satir= okuyucu.readLine()) != null){
+                String[] veri = satir.split(",");
+                isim2=veri[0];
+                soyisim2=veri[1];
+                TC2=veri[2];
+                telefonNo2=veri[3];
+                Hasta h=new Hasta(isim2,soyisim2,TC2,telefonNo2);
+            }
+            okuyucu.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        //Hastaların birimlere atanması
+        int sayac2=0;
+        for (int i=0;i<Birim.birimListesi.size();i++){
+            for(int k=0;k<Hasta.hastaListesi.size();k++){
+                Birim.birimListesi.get(i).birimeAitHastaListesi.add(Hasta.hastaListesi.get(k));
+                sayac2++;
+                if(sayac2%3==0){
+                    break;
+                }
+            }
+        }
 
 
 
@@ -102,12 +123,17 @@ public class Main {
 
         System.out.println(birim1.birimeAitHastaListesi.get(0).isim+" "+birim1.birimeAitHastaListesi.get(0).soyisim);*/
 
-        Randevu.randevuOlustur();
+        //Randevu.randevuOlustur();
         //d1.receteYaz();
         //h1.receteGoruntule();
 
         //System.out.println(Birim.birimListesi.get(0).birimdekiDoktorlarinListesi.size());
-
+        for(int i=0;i<Hasta.hastaListesi.size();i++){
+            System.out.println(Hasta.hastaListesi.get(i).id+" "+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim);
+        }
+        for(int i=0;i<birim1.birimeAitHastaListesi.size();i++){
+            System.out.println(birim1.birimeAitHastaListesi.get(i).isim);
+        }
 
 
 
