@@ -117,7 +117,7 @@ public class YoneticiPaneli {
             // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır ve bu sayede herbir randevunun hangi birime ait olduğunu kontrol eder
             for (Randevu randevu : Randevu.randevuListesi) {
                 // randevu değişkeninin içindeki birim adını, Birim sınıfındaki birimListesi ArrayListinde i. indeksteki birimin ismine eşit olup olmadığını kontrol eder.
-                if (randevu.birim.equals(Birim.birimListesi.get(i).getIsim())) {
+                if (randevu.equals(Birim.birimListesi.get(i).getIsim())) {
                     randevuSayisi++;
                 }
             }

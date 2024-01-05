@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Birim {
     private int hastaKapasite;
-    private String isim;
+    private static String isim;
     //private int hastaKapasite;
 
     //Protected olan değer public olarak değiştirildi çünkü yönetici panlinde kullanılacak--TNG
