@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ilaclar {
@@ -7,6 +8,7 @@ public class Ilaclar {
     public static ArrayList <String> bKatagorisiIlaclariList = new ArrayList<>();
     public static ArrayList <String> cKatagorisiIlaclariList = new ArrayList<>();
     public static ArrayList <String> dKatagorisiIlaclariList = new ArrayList<>();
+    public static ArrayList[] tumKatagorilerIlaclariList = {aKatagorisiIlaclariList, bKatagorisiIlaclariList, cKatagorisiIlaclariList, dKatagorisiIlaclariList};
 
     public  static void ilaclariGoruntule(){
         Scanner userInput = new Scanner(System.in);

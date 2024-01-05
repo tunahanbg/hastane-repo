@@ -47,20 +47,25 @@ public class Main {
 
         System.out.println(birim1.birimeAitHastaListesi.get(0).isim+" "+birim1.birimeAitHastaListesi.get(0).soyisim);*/
 
-        //Randevu.randevuOlustur();
-        //d1.receteYaz();
-        //h1.receteGoruntule();
+//        Randevu.randevuOlustur();
+
+        
 
         //System.out.println(Birim.birimListesi.get(0).birimdekiDoktorlarinListesi.size());
-        for(int i=0;i<Hasta.hastaListesi.size();i++){
-            System.out.println(Hasta.hastaListesi.get(i).id+" "+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim);
-        }
-        for(int i=0;i<birim1.birimeAitHastaListesi.size();i++){
-            System.out.println(birim1.birimeAitHastaListesi.get(i).isim);
-        }
+//        for(int i=0;i<Hasta.hastaListesi.size();i++){
+//            System.out.println(Hasta.hastaListesi.get(i).id+" "+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim);
+//        }
+//        for(int i=0;i<birim1.birimeAitHastaListesi.size();i++){
+//            System.out.println(birim1.birimeAitHastaListesi.get(i).isim);
+//        }
+//
+//        for (int i = 0; i < Doktor.doktorListesi.size(); i++){
+//            System.out.println(Doktor.doktorListesi.get(i).isim + " " + Doktor.doktorListesi.get(i).soyisim);
+//        }
 
-        for (int i = 0; i < Doktor.doktorListesi.size(); i++){
-            System.out.println(Doktor.doktorListesi.get(i).isim + " " + Doktor.doktorListesi.get(i).soyisim);
-        }
+//        VeriOkumaIslemleri.ilacıVerileriniCekme();
+//        Ilaclar.ilaclariGoruntule();
+
+
     }
 }

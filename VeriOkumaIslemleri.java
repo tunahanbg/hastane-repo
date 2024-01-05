@@ -77,35 +77,32 @@ public class VeriOkumaIslemleri {
         }
     }
 
-//    public void ilacVerileriniCekme() {
-//        File dosya = new File("a_Ilaclari.txt");
-//        String dosyaYolu = dosya.getAbsolutePath();
-//        String ilacIsmi;
+//    public static void ilacıVerileriniCekme() {
 //
-//        try {
-//            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
-//            String satir;
+//        String[] pathnames = {"a_Ilaclari.txt", "b_Ilaclari.txt", "c_Ilaclari.txt", "d_Ilaclari.txt",};
 //
-//            while((satir = okuyucu.readLine()) != null){
-//                ilacIsmi = satir;
+//        for (int i = 0; i < pathnames.length; i++){
+//            File dosya = new File(pathnames[i]);
+//            String dosyaYolu = dosya.getAbsolutePath();
+//            String ilacIsmi;
 //
-//                boolean flag = false;
+//            try {
+//                BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
+//                String satir;
 //
-//                for(int i = 0; i < Doktor.doktorListesi.size(); i++){
-//                    if(d.id == Doktor.doktorListesi.get(i).id){
-//                        flag=true;
-//                    }
+//                while((satir = okuyucu.readLine()) != null){
+//                    ilacIsmi = satir;
+//
+//                    Ilaclar.aKatagorisiIlaclariList.add(ilacIsmi);
 //                }
-//                if(!flag){
-//                    Doktor.doktorListesi.add(d);
-//                }
+//                okuyucu.close();
+//            } catch (FileNotFoundException e) {
+//                throw new RuntimeException(e);
 //            }
-//            okuyucu.close();
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
+//            catch (IOException e){
+//                e.printStackTrace();
+//            }
 //        }
-//        catch (IOException e){
-//            e.printStackTrace();
-//        }
+//
 //    }
 }
