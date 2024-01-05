@@ -95,8 +95,6 @@ public class Main {
         }
 
 
-
-
         Randevu r1=new Randevu();
         r1.setRandevuTarihi("10 3 2024");
         Randevu.randevuListesi.add(r1);

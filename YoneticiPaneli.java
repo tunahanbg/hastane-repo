@@ -25,15 +25,12 @@ public class YoneticiPaneli {
         System.out.println(" Hasta telefon numarası : ");
         String telefonNumarasi = tarayici.nextLine();
 
-        System.out.println(" Hasta doğum yeri : ");
-        String dogumYeri = tarayici.nextLine();
-
         //id numarası liste boyutuna göre belirlenir
         int id = Hasta.hastaListesi.size();
         id++;
 
         // Yapıcı metot listeye ekler
-        Hasta h = new Hasta(isim,soyisim,tc,dogumTarihi,id,telefonNumarasi,dogumYeri);
+        Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
 
 
     }
