@@ -104,25 +104,27 @@ public class YoneticiPaneli {
 
 
     //TNG daha bitmedi yapım aşamasındaaa
-    /*public static void birimHastaDolulukOrani(){
+    public static void birimHastaDolulukOrani(){
+        //Birimleri dolaşır
         for (int i = 0; i < Birim.birimListesi.size(); i++) {
-            int randevuSayisi = 0;       // Her bir birim için randevu sayısını sıfırla
-            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();       // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
 
-            for (Randevu randevu : Randevu.randevuListesi) {                               // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır.
-                if (randevu.getBirimAdi().equals(Birim.birimListesi.get(i).getIsim())) {   // randevu değişkeninin içindeki birim adını, Birim sınıfındaki birimListesi ArrayListinde i. indeksteki birimin ismine eşit olup olmadığını kontrol eder.
-                    randevuSayisi++;
-                }
-            }
-            float dolulukOrani = ((float) randevuSayisi / birimHastaKapasitesi) * 100;     // Yüzdelik çevirme işlemi yapılır
+            // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
+            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();
 
-            String formatliDolulukOrani = String.format("%.2f", dolulukOrani);              // String.format kullanarak float değeri istenen formata çevirir
+            // Yüzdelik çevirme işlemi yapılır
+            float dolulukOrani = ((float) Birim.birimeAitHastaListesi.size() / birimHastaKapasitesi) * 100;
 
-            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + randevuSayisi);
+            // String.format kullanarak float değeri istenen formata çevirir
+            String formatliDolulukOrani = String.format("%.2f", dolulukOrani);
+
+            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimeAitHastaListesi.size());
             System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
             System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
-        }*/
+
+        }
     }
+}
+
 
 
 
