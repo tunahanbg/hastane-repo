@@ -207,6 +207,35 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
+    public void recetedenIlacSil(String silinecekIlac){
+        if(hasta.recetedekiIlaclar.contains(silinecekIlac)){
+            for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
+                if(silinecekIlac.equals(hasta.recetedekiIlaclar.get(i))){
+                    hasta.recetedekiIlaclar.remove(i);
+                }
+            }
+            System.out.println("İlaç başarıyla silinmiştir.");
+        }
+
+        else {
+            System.out.println("Yazdığınız ilaç reçetede bulunmuyor.");
+        }
+
+    }
+
+    public void recetedekiIlaclariGoruntule(){
+
+        if (hasta.recetedekiIlaclar.isEmpty()){
+            System.out.println("Reçetede herhangi bir ilaç bulunmamaktadır.");
+        }
+
+        else {
+            for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
+                System.out.println("—> " + hasta.recetedekiIlaclar.get(i));
+            }
+        }
+    }
+
     public ArrayList<String> receteIslemleri(int hastaID){
         Scanner userInput = new Scanner(System.in);
 
@@ -222,7 +251,8 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
             System.out.println("2-) İlaç Yaz");
             System.out.println("3-) Reçeteye Yazılan İlaçları Görüntüle");
             System.out.println("4-) Yan Etkileri Kontrol Et");
-            System.out.println("5-) Çıkış");
+            System.out.println("5-) Reçeteden İlaç Sil");
+            System.out.println("6-) Çıkış");
             System.out.println("|——————————————————————————————————————————————————|");
 
             int userChoice = userInput.nextInt();
@@ -240,9 +270,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
 
                 case 3:
                     System.out.println("|==================================================|");
-                    for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
-                        System.out.println("—> " + hasta.recetedekiIlaclar.get(i));
-                    }
+                    recetedekiIlaclariGoruntule();
                     System.out.println("|==================================================|");
                     continue;
 
@@ -251,6 +279,12 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
                     continue;
 
                 case 5:
+                    System.out.println("Reçeteden silmek istediğiniz ilacın ismini giriniz.");
+                    String silinecekIlac = userInput.next();
+                    recetedenIlacSil(silinecekIlac);
+                    continue;
+
+                case 6:
                     flag = false;
                     break;
 
