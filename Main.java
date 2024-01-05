@@ -48,6 +48,11 @@ public class Main {
             e.printStackTrace();
         }
 
+
+
+
+
+
         //Birimlere doktor atanması(MBB):
         int sayac=0;
         for (int i=0;i<Birim.birimListesi.size();i++){
@@ -60,10 +65,14 @@ public class Main {
             }
         }
 
+
+
+
+
         //Hastaların txt dosyasından alınması (MBB):
         File dosya2=new File("HastaListesi.txt");
         String dosyaYolu2=dosya.getAbsolutePath();
-        String isim2,soyisim2,TC2,telefonNo2,dogumYeri;
+        String isim2,soyisim2,TC2,telefonNo2;
         try {
             BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
             String satir;
@@ -137,6 +146,9 @@ public class Main {
 
 
 
+
+
+       // YoneticiPaneli.birimHastaDolulukOrani();
 
 
 
