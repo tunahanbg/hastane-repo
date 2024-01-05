@@ -1,6 +1,8 @@
 import java.io.*;
 
 public class VeriOkumaIslemleri {
+
+    // txt dosyalarından hasta verilerini çekme
     public static void hastaVerileriniCekme() {
         File dosya = new File("HastaListesi.txt");
         String dosyaYolu = dosya.getAbsolutePath();
@@ -39,6 +41,7 @@ public class VeriOkumaIslemleri {
         }
     }
 
+    // txt dosyalarından doktor bilgilerini çekme
     public static void doktorVerileriniCekme() {
 
         File dosya = new File("DoktorListesi.txt");
@@ -77,32 +80,35 @@ public class VeriOkumaIslemleri {
         }
     }
 
-//    public static void ilacıVerileriniCekme() {
-//
-//        String[] pathnames = {"a_Ilaclari.txt", "b_Ilaclari.txt", "c_Ilaclari.txt", "d_Ilaclari.txt",};
-//
-//        for (int i = 0; i < pathnames.length; i++){
-//            File dosya = new File(pathnames[i]);
-//            String dosyaYolu = dosya.getAbsolutePath();
-//            String ilacIsmi;
-//
-//            try {
-//                BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
-//                String satir;
-//
-//                while((satir = okuyucu.readLine()) != null){
-//                    ilacIsmi = satir;
-//
-//                    Ilaclar.aKatagorisiIlaclariList.add(ilacIsmi);
-//                }
-//                okuyucu.close();
-//            } catch (FileNotFoundException e) {
-//                throw new RuntimeException(e);
-//            }
-//            catch (IOException e){
-//                e.printStackTrace();
-//            }
-//        }
-//
-//    }
+
+    // txt dosyalarından ilaç isimlerini çekme işlemi
+    public static void ilaciVerileriniCekme() {
+
+        int i = 0;
+        String[] pathnames = {"a_Ilaclari.txt", "b_Ilaclari.txt", "c_Ilaclari.txt", "d_Ilaclari.txt",};
+
+        for (String pathname : pathnames) {
+            File dosya = new File(pathname);
+            String dosyaYolu = dosya.getAbsolutePath();
+            String ilacIsmi;
+
+            try {
+
+                BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
+                String satir;
+
+                while ((satir = okuyucu.readLine()) != null) {
+                    ilacIsmi = satir;
+                    Ilaclar.tumKatagorilerIlaclariList[i].add(ilacIsmi);
+                }
+                okuyucu.close();
+
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            i++;
+        }
+    }
 }

@@ -14,9 +14,11 @@ public class Main {
         //Doktorların txt dosyasından alınması (MBB):
         VeriOkumaIslemleri.doktorVerileriniCekme();
 
-
         //Hastaların txt dosyasından alınması (MBB):
         VeriOkumaIslemleri.hastaVerileriniCekme();
+
+        //İlaçların txt dosyasından alınması (Tuna):
+        VeriOkumaIslemleri.ilaciVerileriniCekme();
 
 
 
@@ -51,7 +53,7 @@ public class Main {
 
         
 
-        //System.out.println(Birim.birimListesi.get(0).birimdekiDoktorlarinListesi.size());
+//        System.out.println(Birim.birimListesi.get(0).birimdekiDoktorlarinListesi.size());
 //        for(int i=0;i<Hasta.hastaListesi.size();i++){
 //            System.out.println(Hasta.hastaListesi.get(i).id+" "+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim);
 //        }
@@ -63,8 +65,11 @@ public class Main {
 //            System.out.println(Doktor.doktorListesi.get(i).isim + " " + Doktor.doktorListesi.get(i).soyisim);
 //        }
 
-//        VeriOkumaIslemleri.ilacıVerileriniCekme();
-//        Ilaclar.ilaclariGoruntule();
+
+
+
+
+
 
 
     }
