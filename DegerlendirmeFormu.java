@@ -45,7 +45,7 @@ public class DegerlendirmeFormu {
                     if (!derecelendirmeler.contains(derecelendirme)) {
                         throw new IllegalArgumentException("Lütfen belirlenen değer aralığından bir sayı giriniz.\n");
                     }
-                    hasta.degerler.put(katagori, derecelendirme);
+                    Hasta.degerler.put(katagori, derecelendirme);
 
                 }
                 catch (IllegalArgumentException e) {
