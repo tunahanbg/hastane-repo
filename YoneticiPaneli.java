@@ -109,10 +109,30 @@ public class YoneticiPaneli {
         //Birimleri dolaşır
         for (int i = 0; i < Birim.birimListesi.size(); i++) {
 
-            // Her bir birim için randevu sayısını sıfırla
+            // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
+            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();
+
+            // Yüzdelik çevirme işlemi yapılır
+            float dolulukOrani = ((float) Birim.birimeAitHastaListesi.size() / birimHastaKapasitesi) * 100;
+
+            // String.format kullanarak float değeri istenen formata çevirir
+            String formatliDolulukOrani = String.format("%.2f", dolulukOrani);
+
+            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimeAitHastaListesi.size());
+            System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
+            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
+
+
+
+
+
+
+
+            /*// Her bir birim için randevu sayısını sıfırla
             int randevuSayisi = 0;
             // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
             int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();
+
 
             // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır ve bu sayede herbir randevunun hangi birime ait olduğunu kontrol eder
             for (Randevu randevu : Randevu.randevuListesi) {
@@ -128,7 +148,10 @@ public class YoneticiPaneli {
             System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + randevuSayisi);
             System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
             System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
+        */
+
         }
+
     }
 }
 

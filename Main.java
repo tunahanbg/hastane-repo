@@ -65,14 +65,12 @@ public class Main {
 
 
 
+
+
+
         //TOPRAK MAİN
 
-
-
-
-
-
-
+        YoneticiPaneli.birimHastaDolulukOrani();
 
         //Yönetici Paneli\\
 
