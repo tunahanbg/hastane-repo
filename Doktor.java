@@ -255,7 +255,6 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         else {
             System.out.println("Yazdığınız ilaç reçetede bulunmuyor.");
         }
-
     }
 
     public void recetedekiIlaclariGoruntule(){

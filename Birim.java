@@ -14,8 +14,6 @@ public class Birim {
         birimListesi.add(this);
     }
 
-
-
     // privat değişkenler için gerekli olan encapsulation işlemleri yapılır.
     public String getIsim() {
         return isim;
