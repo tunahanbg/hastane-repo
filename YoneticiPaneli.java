@@ -23,7 +23,7 @@ public class YoneticiPaneli {
         String dogumTarihi = tarayici.nextLine();
 
         System.out.println(" Hasta telefon numarası : ");
-        int telefonNumarasi = tarayici.nextInt();
+        String telefonNumarasi = tarayici.next();
 
         System.out.println(" Hasta doğum yeri : ");
         String dogumYeri = tarayici.nextLine();
