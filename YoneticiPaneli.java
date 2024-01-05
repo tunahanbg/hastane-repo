@@ -33,7 +33,7 @@ public class YoneticiPaneli {
         id++;
 
         // Yapıcı metot listeye ekler
-        Hasta h = new Hasta(isim,soyisim,tc,dogumTarihi,id,telefonNumarasi,dogumYeri);
+        Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
 
 
     }

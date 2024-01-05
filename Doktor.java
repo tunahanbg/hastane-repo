@@ -11,7 +11,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     public static ArrayList<Doktor> doktorListesi=new ArrayList<Doktor>();
     //Her nesnenin bir doktor listesine sahip olması saçma olurdu.Doktor listesi nesneden bağımsız sınıfa ait yani static olarak tanımlandığında her değişikliği yansıtacaktır.public tanımlamamın nedeni ise Yönetim sınıfının da operasyonlarında bu listeye erişimini sağlayabilmek.
 
-    public Doktor(String isim,String soyisim,String TC,String dogumTarihi,String telefonNo,String dogumYeri) {
+    public Doktor(String isim,String soyisim,String TC,String telefonNo) {
         this.isim=isim;
         this.soyisim=soyisim;
         this.TC=TC;
