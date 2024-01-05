@@ -14,14 +14,13 @@ public class Hasta extends AbsractKisi{
 
     public Hasta(){}
 
-    public Hasta(String isim,String soyisim,String TC,String dogumTarihi,int id,String telefonNo,String dogumYeri) {
+    public static int farkliID=1;
+    public Hasta(String isim,String soyisim,String TC,String telefonNo) {
         this.isim=isim;
         this.soyisim=soyisim;
         this.TC=TC;
-        this.dogumTarihi=dogumTarihi;
-        this.id=id;
+        this.id=farkliID++;
         this.telefonNo=telefonNo;
-        this.dogumYeri=dogumYeri;
         hastaListesi.add(this);
     }
 
@@ -94,7 +93,7 @@ public class Hasta extends AbsractKisi{
         id++;
 
         // Yapıcı metot listeye ekler
-        Hasta h = new Hasta(isim,soyisim,tc,dogumTarihi,id,telefonNumarasi,dogumYeri);
+        Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
     }
 
     //Hastanın reçetesini görüntülemesi MBB
