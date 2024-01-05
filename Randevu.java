@@ -1,4 +1,8 @@
+import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -6,7 +10,7 @@ public class Randevu {
     static Scanner tarayici=new Scanner(System.in);
     private int ID;
     public static int farkliID=0;//Oluşturulan her Randevunun ID'sinin farklı olması için bu değişkeni oluşturdum.Her oluşturulan randevuda değer önce o an oluşturulan randevu nesnesine aktarılacak sonrasında ise değer arttırılacak.Static tanımladığım için de tekrar sıfırlanmadan ya da sabit kalmadan değerini arttırabileceğim.
-    private Date randevuTarihi=new Date();
+    private String randevuTarihi;
     private Doktor doktor;
     private  Hasta hasta;
 
@@ -15,12 +19,10 @@ public class Randevu {
     public static ArrayList<Randevu> randevuListesi=new ArrayList<Randevu>();
 
     //Bu constructor'ı bizim önceden oluşturduğumuz veriler için oluşturdum.
-    public Randevu(Date randevuTarihi,Doktor doktor, Hasta hasta , String birimAdi) {
-        this.randevuTarihi=randevuTarihi;
+    public Randevu(Doktor doktor, Hasta hasta) {
         this.doktor = doktor;
         this.hasta = hasta;
-        this.ID=farkliID;
-        //this.birimAdi = birimAdi;
+        this.ID=farkliID;//veya farkliID++
         farkliID++;
     }
 
@@ -37,20 +39,20 @@ public class Randevu {
         this.ID = ID;
     }
 
-    public Date getRandevuTarihi() {
-        return randevuTarihi;
-    }
-
-    public void setRandevuTarihi(Date randevuTarihi) {
-        this.randevuTarihi = randevuTarihi;
-    }
-
     public Doktor getDoktor() {
         return doktor;
     }
 
     public void setDoktor(Doktor doktor) {
         this.doktor = doktor;
+    }
+
+    public String getRandevuTarihi() {
+        return randevuTarihi;
+    }
+
+    public void setRandevuTarihi(String randevuTarihi) {
+        this.randevuTarihi=randevuTarihi;
     }
 
     public Hasta getHasta() {
@@ -69,7 +71,7 @@ public class Randevu {
         this.hasta = hasta;
     }
 
-    public void randevuOlustur(){
+    public static void randevuOlustur(){
         Randevu yeniRandevu=new Randevu();
         //Randevuya hastanın atanması:
         while(true){
@@ -94,19 +96,9 @@ public class Randevu {
             }
         }
 
-        //Randevu Tarihinin kullanıcı tarafından belirlenmesi:
-        System.out.print("Randevu almak istediğiniz tarihi giriniz (gg aa yyyy):");
-        int gun=tarayici.nextInt();
-        int ay=tarayici.nextInt();
-        int yil=tarayici.nextInt();
-        System.out.print("Randevu almak istediğiniz saati giriniz (ss dd):");
-        int saat=tarayici.nextInt();
-        int dakika=tarayici.nextInt();
-        yeniRandevu.randevuTarihi.setTime(new Date(yil,ay,gun,saat,dakika).getTime());
-        yeniRandevu.randevuTarihi.setYear(yeniRandevu.randevuTarihi.getYear()-1900);//SimpleDateFormat sınıfının format() yöntemi, tarih değerini yazdırırken, tarih değerinin yıl bölümünü 1900'den itibaren saymaya başladığı için 1900 çıkarıyorum.
-
         //Hastanın istediği doktoru seçmesi:
 
+        String birimSecim="";
         boolean flag=true;
         while(flag){
             System.out.println("Doktorları görüntüleme seçenekleri:");
@@ -119,7 +111,7 @@ public class Randevu {
                     System.out.println("Birimler:");
                     System.out.println("1-Pediatri\n2-Üroloji\n3-Ortopedi\n4-Kardiyoloji\n5-Nöroloji\n6-Dahiliye\n7-Cerrahi");
                     System.out.print("Seçtiğiniz birimin ismi:");
-                    String birimSecim=tarayici.next();
+                    birimSecim=tarayici.next();
                     for(int i=0;i<Birim.birimListesi.size();i++){
                         if(Birim.birimListesi.get(i).getIsim().equals(birimSecim)){
                             for(int j=0;j<Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size();j++){
@@ -150,6 +142,11 @@ public class Randevu {
             for (int i=0;i<Doktor.doktorListesi.size();i++){
                 if (Doktor.doktorListesi.get(i).id==doktorID){
                     yeniRandevu.setDoktor(Doktor.doktorListesi.get(i));
+                    for(int j=0;j<Birim.birimListesi.size();j++){
+                        if(birimSecim.equals(Birim.birimListesi.get(j).getIsim())){
+                            Birim.birimListesi.get(j).birimeAitHastaListesi.add(yeniRandevu.getHasta());
+                        }
+                    }
                     flag2=false;
                     flag3=true;
                 }
@@ -162,6 +159,8 @@ public class Randevu {
             }
         }
 
+        tarihBelirle(yeniRandevu);
+
         randevuListesi.add(yeniRandevu);
     }
 
@@ -169,5 +168,52 @@ public class Randevu {
         System.out.println("Randevu ID:"+ID+"\nRandevu Tarihi ve Saati:"+randevuTarihi+"\nDoktor:"+doktor.isim+" "+doktor.soyisim+"\nHasta:"+hasta.isim+" "+hasta.soyisim);
     }
 
+    public static void tarihBelirle(Randevu yeniRandevu){
+        //Randevu Tarihinin kullanıcı tarafından belirlenmesi:
+        int gun=0,ay=0,yil=0;
+        String tarih="";
+        boolean tarihDogruMu=true;
+        boolean formatDogruMu=true;
+        while(tarihDogruMu){
+            while(formatDogruMu){
+                System.out.print("Randevu tarihini giriniz (gün ay yıl):");
+                gun= tarayici.nextInt();
+                ay= tarayici.nextInt();
+                yil= tarayici.nextInt();
+                if(gun<1 || gun>31){
+                    System.out.println("Gün bilgisi 1-31 arasında olmalı.");
+                }
+                else if(ay<0 || ay>12){
+                    System.out.println("Ay bilgisi 1-12 arasında olmalı.");
+                }
+                else if(yil<2024){
+                    System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
+                }
+                else{
+                    tarih=(gun+" "+ay+" "+yil);
+                    formatDogruMu=false;
+                }
+            }
 
+            boolean ayniTarihVarMi=false;
+            for(int i=0;i<randevuListesi.size();i++){
+                if(randevuListesi.get(i).randevuTarihi.equals(tarih)){
+                    System.out.println("Aynı tarihte zaten bir randevu tanımlanmış, lütfen başka bir tarihe randevu alınız.");
+                    ayniTarihVarMi=true;
+                    formatDogruMu=true;
+                }
+            }
+
+            if (!ayniTarihVarMi){
+                yeniRandevu.setRandevuTarihi(tarih);
+                System.out.println("Tarih ataması yapıldı.");
+                randevuListesi.add(yeniRandevu);
+                tarihDogruMu=false;
+            }
+
+        }
+
+
+
+    }
 }
