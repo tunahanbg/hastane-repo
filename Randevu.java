@@ -224,8 +224,5 @@ public class Randevu {
             }
 
         }
-
-
-
     }
 }
