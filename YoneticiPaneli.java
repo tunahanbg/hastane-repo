@@ -39,7 +39,6 @@ public class YoneticiPaneli {
     }
 
 
-
     // Hasta silme fonksiyonu
     public static void hastaSil(){
 
@@ -62,8 +61,6 @@ public class YoneticiPaneli {
         if (!flag){System.out.println("Aradığınız kullanıcı bulunmamaktadır.");}
 
     }
-
-
 
 
     public static void muhasebeIslemleri() {

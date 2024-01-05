@@ -3,7 +3,10 @@ import java.util.*;
 
 public class DegerlendirmeFormu {
 
+
     static int sayici = 0;
+    static int degerledirmeyeKatilanHastaSayisi = 0;
+
 
     static Scanner tarayici = new Scanner(System.in);
 
@@ -23,49 +26,66 @@ public class DegerlendirmeFormu {
     //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //Değerlendirme formunun doldurulması sağlanır.Try Catch ile yanlış girilen değer bulunur ve hata döndürülür.Eğer uygun ise değerleri ait oldukları anahtarlara değer olarak ekler.
-    public void doldur(Hasta hasta) {
+    public void hastaninDerelecelendirmesiniDoldur(Hasta hasta) {
+
 
         System.out.println("Derecelendirme sıkalası: '1,2,3,4,5' . Lütfen bu aralıkta bir değer giriniz.");
 
         sayici++;
 
-        //Hastanın  derecelendirmeleri doldurulur
+        //Katagoriler arasında gezer
         for (DegerlendirmeKatagori katagori : katagoriler) {
-            System.out.println("Lütfen " + katagori + " için bir derecenlirme verin.");
-            try {
-                int derecelendirme = tarayici.nextInt();
-                if (!derecelendirmeler.contains(derecelendirme)) {
-                    throw new IllegalArgumentException("Lütfen belirlenen değer aralığından bir sayı giriniz.\n");
-                }
-                hasta.degerler.put(katagori, derecelendirme);
 
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            //Hastanıngirdiği değerin doğru olup olmadığı kontrol edilir değilse hata fırlatılır ve tekrar girmesi istenir
+            boolean girilenderecelendirmeHataKontrolu;
+            do {
+
+                girilenderecelendirmeHataKontrolu = false;
+                System.out.println("Lütfen " + katagori + " için bir derecenlirme verin.");
+                try {
+
+                    int derecelendirme = tarayici.nextInt();
+                    if (!derecelendirmeler.contains(derecelendirme)) {
+                        throw new IllegalArgumentException("Lütfen belirlenen değer aralığından bir sayı giriniz.\n");
+                    }
+                    hasta.degerler.put(katagori, derecelendirme);
+
+                }
+                catch (IllegalArgumentException e) {
+                    girilenderecelendirmeHataKontrolu = true;
+                    System.out.println(e.getMessage());
+                }
+
+            } while (girilenderecelendirmeHataKontrolu);
+
         }
     }
+
+
 
     public static void hastaDegerlendirmeFormu () {
 
         DegerlendirmeFormu form = new DegerlendirmeFormu();
         System.out.println("Değerlendirme için lütfen İD numaranızı giriniz : ");
         int degerlendiriciId = tarayici.nextInt();
-        form.doldur(Hasta.hastaListesi.get(degerlendiriciId));
+        degerledirmeyeKatilanHastaSayisi++;
+        form.hastaninDerelecelendirmesiniDoldur(Hasta.hastaListesi.get(degerlendiriciId));
         System.out.println("Değerlendirmeniz alındı. \n İyi günler dileriz :) ");
 
     }
 
 
 
-    //Her katagorinin toplam puanlarını bulan fonksiyon
-    public static double katagoriOrtalamaDegerlendirmeleri() {
+    //Her katagorinin toplam puanlarını, ve katagorilerin değerlendirme ortalamalarını bulur bulan fonksiyon
+    public static void katagoriOrtalamaDegerlendirmeleri() {
 
 
         if (katagoriler == null) {
             // Eğer katagoriler null ise, hata oluşturur, bu durum kontrol edilir
-            throw new IllegalStateException("Katagoriler listesi henüz başlatılmamış.");
+            throw new IllegalStateException("Katagoriler değerlendirilmemiş lütfen değerlendiriniz.");
         }
 
+        int katagoriSecimSayaci =0;
         double toplam = 0;
         double katagoriOrtalama;
 
@@ -75,24 +95,22 @@ public class DegerlendirmeFormu {
         // Tüm kategorileri tarar . Her bir kategorinin değerini toplam değişkenine ekler ve ortalama hesaplar
         for (DegerlendirmeKatagori katagori : katagoriler) {
 
-            int i =0;
-
+            toplam = 0;
 
             //degerler haritasında katagori var mı diye kontrol eder eğer varsa o katagoriye ait değer alınır ve toplam değişkenine ekler
             if (Hasta.degerler.containsKey(katagori)) {
-                int derece = Hasta.degerler.get(katagori);
-                toplam += derece;
-
-                System.out.println("\n\n\n\n"+katagori + "değerlendirme katagorisinin toplam  değerleri : " + toplam+"\n\n");
+                for (int i = 0; i < degerledirmeyeKatilanHastaSayisi; i++) {
+                    int derece = Hasta.degerler.get(katagori);
+                    toplam += derece;
+                }
 
                 //İlgili katagorinin ortalama puan değerleri bulunur ve düşük olan katagori puanaı üzerinden katagorinin geliştirilmesi gerekteiğine karar verilir
 
                 katagoriOrtalama = toplam / sayici ;
 
-                switch (i){
+                switch (katagoriSecimSayaci){
                     case 0:
                         DegerlendirmeKatagori.setDerece(0,katagoriOrtalama );
-                        System.out.println("\n\n\n\n\n\n\n\n\n"+katagori + "değerlendirme katagorisinin ortalama  değerleri : " + katagoriOrtalama+"\n\n\n\n\n\n\n\n\n");
                         break;
                     case 1:
                         DegerlendirmeKatagori.setDerece(1,katagoriOrtalama );
@@ -103,37 +121,43 @@ public class DegerlendirmeFormu {
                     case 3:
                         DegerlendirmeKatagori.setDerece(3,katagoriOrtalama );
                         break;
-
+                    default:
+                        break;
                 }
 
-                i++;
+                katagoriSecimSayaci++;
                 //Ortalamayı listeye ekler
                 ortalamalar.add(katagoriOrtalama);
 
-                System.out.println("\n\n"+katagori + " değerlendirme katagorisinin ortalama  değerleri : " + katagoriOrtalama+"\n\n");
+                System.out.println("\n"+katagori + " değerlendirme katagorisinin ortalama  değerleri : " + katagoriOrtalama+"\n");
 
             }
-
-
         }
+
         //Katagorilerin  toplam ortalamalarını bulur
         double toplamOrtalamalar = 0;
         for (double ortalama : ortalamalar) {
 
             toplamOrtalamalar += ortalama;
         }
+
+        //ortalama değerlerinin ortalamasını hesaplar
         double ortalamalarinOrtalamasi = toplamOrtalamalar / katagoriler.size();
-        System.out.println("\n\n\n\n tüm katagorilerin toplam ortalaması : " + ortalamalarinOrtalamasi +  "\n\n\n\n");
+        System.out.println("\n\n Tüm katagorilerin ortalamalarının ortalaması : " + ortalamalarinOrtalamasi +  "\n\n");
 
-
+        //katagori ortalmasının olması gereken minimum değer hesaplanır
         double sinirOrtalamalarinOrtalamasi = ortalamalarinOrtalamasi * 0.3 ;
 
-        for (DegerlendirmeKatagori katagori : katagoriler){
+        //DegerlendirmeKatagori sınıfının dereceler dizisi erişilmek için kopyalanır
+        double[] dereceler = DegerlendirmeKatagori.dereceler;
 
 
+        //İstenen sınır değerinden düşük olan ortalamaya uyarı verir
+        for (int i = 0; i < dereceler.length; i++){
+            if (dereceler[i] < sinirOrtalamalarinOrtalamasi){
+                System.out.println("\n\n" +DegerlendirmeKatagori.values()[i] +" Katagorisinin " +  dereceler[i] +" puanlı derecelendirmesi yetersizdir.Alanın geliştirilmesi gerekiyor\n\n");}
         }
 
-        return toplam;
     }
 
 }
