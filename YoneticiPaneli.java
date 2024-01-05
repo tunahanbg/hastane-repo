@@ -104,13 +104,20 @@ public class YoneticiPaneli {
 
 
     //TNG daha bitmedi yapım aşamasındaaa
-    /*public static void birimHastaDolulukOrani(){
-        for (int i = 0; i < Birim.birimListesi.size(); i++) {
-            int randevuSayisi = 0;       // Her bir birim için randevu sayısını sıfırla
-            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();       // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
+    public static void birimHastaDolulukOrani(){
 
-            for (Randevu randevu : Randevu.randevuListesi) {                               // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır.
-                if (randevu.getBirimAdi().equals(Birim.birimListesi.get(i).getIsim())) {   // randevu değişkeninin içindeki birim adını, Birim sınıfındaki birimListesi ArrayListinde i. indeksteki birimin ismine eşit olup olmadığını kontrol eder.
+        //Birimleri dolaşır
+        for (int i = 0; i < Birim.birimListesi.size(); i++) {
+
+            // Her bir birim için randevu sayısını sıfırla
+            int randevuSayisi = 0;
+            // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
+            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();
+
+            // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır ve bu sayede herbir randevunun hangi birime ait olduğunu kontrol eder
+            for (Randevu randevu : Randevu.randevuListesi) {
+                // randevu değişkeninin içindeki birim adını, Birim sınıfındaki birimListesi ArrayListinde i. indeksteki birimin ismine eşit olup olmadığını kontrol eder.
+                if (randevu.birim.equals(Birim.birimListesi.get(i).getIsim())) {
                     randevuSayisi++;
                 }
             }
@@ -121,8 +128,9 @@ public class YoneticiPaneli {
             System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + randevuSayisi);
             System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
             System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
-        }*/
+        }
     }
+}
 
 
 

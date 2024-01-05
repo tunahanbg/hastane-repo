@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 public class Birim {
+    private int hastaKapasite;
     private String isim;
     //private int hastaKapasite;
 
@@ -10,14 +11,14 @@ public class Birim {
 
     public Birim(String isim,int hastaKapasite) {
         this.isim = isim;
-        //this.hastaKapasite = hastaKapasite;
+        this.hastaKapasite = hastaKapasite;
         birimListesi.add(this);
     }
 
 
 
     // privat değişkenler için gerekli olan encapsulation işlemleri yapılır.
-    public String getIsim() {
+    public static String getIsim() {
         return isim;
     }
 
@@ -25,11 +26,11 @@ public class Birim {
         this.isim = isim;
     }
 
-    /*public int getHastaKapasite() {
+    public int getHastaKapasite() {
         return hastaKapasite;
     }
 
     public void setHastaKapasite(int hastaKapasite) {
         this.hastaKapasite = hastaKapasite;
-    }*/
+    }
 }
