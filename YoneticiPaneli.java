@@ -23,7 +23,7 @@ public class YoneticiPaneli {
         String dogumTarihi = tarayici.nextLine();
 
         System.out.println(" Hasta telefon numarası : ");
-        String telefonNumarasi = tarayici.next();
+        String telefonNumarasi = tarayici.nextLine();
 
         System.out.println(" Hasta doğum yeri : ");
         String dogumYeri = tarayici.nextLine();
@@ -37,6 +37,7 @@ public class YoneticiPaneli {
 
 
     }
+
 
 
     // Hasta silme fonksiyonu
@@ -61,6 +62,8 @@ public class YoneticiPaneli {
         if (!flag){System.out.println("Aradığınız kullanıcı bulunmamaktadır.");}
 
     }
+
+
 
 
     public static void muhasebeIslemleri() {
@@ -95,8 +98,31 @@ public class YoneticiPaneli {
         for (DegerlendirmeKatagori anahtar : anahtarlar) {
             System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri : " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
         }
+
     }
-}
+
+
+
+    //TNG daha bitmedi yapım aşamasındaaa
+    /*public static void birimHastaDolulukOrani(){
+        for (int i = 0; i < Birim.birimListesi.size(); i++) {
+            int randevuSayisi = 0;       // Her bir birim için randevu sayısını sıfırla
+            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();       // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
+
+            for (Randevu randevu : Randevu.randevuListesi) {                               // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır.
+                if (randevu.getBirimAdi().equals(Birim.birimListesi.get(i).getIsim())) {   // randevu değişkeninin içindeki birim adını, Birim sınıfındaki birimListesi ArrayListinde i. indeksteki birimin ismine eşit olup olmadığını kontrol eder.
+                    randevuSayisi++;
+                }
+            }
+            float dolulukOrani = ((float) randevuSayisi / birimHastaKapasitesi) * 100;     // Yüzdelik çevirme işlemi yapılır
+
+            String formatliDolulukOrani = String.format("%.2f", dolulukOrani);              // String.format kullanarak float değeri istenen formata çevirir
+
+            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + randevuSayisi);
+            System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
+            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
+        }*/
+    }
 
 
 

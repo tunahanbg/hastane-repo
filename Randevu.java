@@ -1,10 +1,7 @@
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class Randevu {
     static Scanner tarayici=new Scanner(System.in);
@@ -74,9 +71,19 @@ public class Randevu {
     public static void randevuOlustur(){
         Randevu yeniRandevu=new Randevu();
         //Randevuya hastanın atanması:
+        String TCNO;
         while(true){
-            System.out.print("TC Kimlik Numaranızı giriniz:");
-            String TCNO=tarayici.nextLine();
+            while(true){
+                System.out.print("TC Kimlik Numaranızı giriniz:");
+                TCNO=tarayici.nextLine();
+                if(TCNO.length() != 11){
+                    System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                }
+                else{
+                    break;
+                }
+            }
+
             boolean flag4=false;
             for(int i=0;i<Hasta.hastaListesi.size();i++){
                 if(Hasta.hastaListesi.get(i).TC.equals(TCNO)){
@@ -92,7 +99,7 @@ public class Randevu {
                 break;
             }
             else{
-                System.out.println("TC Kimlik Numaranızı yanlış girdiniz.");
+                System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla kayıtlı hasta bulunmamaktadır.");
             }
         }
 
@@ -160,12 +167,16 @@ public class Randevu {
         }
 
         tarihBelirle(yeniRandevu);
-
+        yeniRandevu.randevuBilgileriYazdir();
         randevuListesi.add(yeniRandevu);
     }
 
     public void randevuBilgileriYazdir(){
+        System.out.println("==============================================");
+        System.out.println("Randevu bilgileriniz aşağıdaki gibidir:");
         System.out.println("Randevu ID:"+ID+"\nRandevu Tarihi ve Saati:"+randevuTarihi+"\nDoktor:"+doktor.isim+" "+doktor.soyisim+"\nHasta:"+hasta.isim+" "+hasta.soyisim);
+        System.out.println("==============================================");
+
     }
 
     public static void tarihBelirle(Randevu yeniRandevu){
@@ -174,6 +185,7 @@ public class Randevu {
         String tarih="";
         boolean tarihDogruMu=true;
         boolean formatDogruMu=true;
+        Calendar bugun=new GregorianCalendar();
         while(tarihDogruMu){
             while(formatDogruMu){
                 System.out.print("Randevu tarihini giriniz (gün ay yıl):");
@@ -186,7 +198,7 @@ public class Randevu {
                 else if(ay<0 || ay>12){
                     System.out.println("Ay bilgisi 1-12 arasında olmalı.");
                 }
-                else if(yil<2024){
+                else if(yil<bugun.getTime().getYear()+1900){
                     System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
                 }
                 else{

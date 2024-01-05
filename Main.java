@@ -65,6 +65,40 @@ public class Main {
 
 
 
+        //TOPRAK MAİN
+
+        //Hasta değerlendirme formu (formlar doldurulmuş olmsı için for içinde dönüyoruz):
+        for (int i = 0; i < 2; i++) {
+            DegerlendirmeFormu.hastaDegerlendirmeFormu();
+
+        }
+
+
+        //Değerlendirme katagorilerinin aldıkları değerlerin toplamı
+        DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
+
+
+
+        //Yönetici Paneli\\
+
+        //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
+        YoneticiPaneli.hastaninFormunuYazdirma();
+
+        //Muahsebe İşlemleri
+        YoneticiPaneli.muhasebeIslemleri();
+
+        //Hasta ekleme
+        YoneticiPaneli.hastaEkle();
+        //Hasta silme
+        YoneticiPaneli.hastaEkle();
+
+
+
+
+
+        //Birim hasta doluluk oranını yazdırma;
+        //Analizler.birimHastaDolulukOrani(); //-----> maalesef bitmedi ve devamını getiremedim
+
 
 
     }
