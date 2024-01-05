@@ -1,15 +1,12 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Hasta extends AbsractKisi{
 
     //Map değişkeni : Verileri ANAHTAR(derecelendirmenin katagorisi)--DEĞER(derecelendirmenin değeri)
     //çiftleri şeklinde depolamak için kullanılan bir veri yapısı
-    public Map<DegerlendirmeKatagori, Integer> degerler = new HashMap<>();
+    public static Map<DegerlendirmeKatagori, Integer> degerler = new HashMap<>();
     static Scanner tarayici = new Scanner(System.in);
     public static ArrayList<Hasta> hastaListesi=new ArrayList<Hasta>();
 
@@ -17,14 +14,13 @@ public class Hasta extends AbsractKisi{
 
     public Hasta(){}
 
-    public Hasta(String isim,String soyisim,String TC,String dogumTarihi,int id,String telefonNo,String dogumYeri) {
+    public static int farkliID=1;
+    public Hasta(String isim,String soyisim,String TC,String telefonNo) {
         this.isim=isim;
         this.soyisim=soyisim;
         this.TC=TC;
-        this.dogumTarihi=dogumTarihi;
-        this.id=id;
+        this.id=farkliID++;
         this.telefonNo=telefonNo;
-        this.dogumYeri=dogumYeri;
         hastaListesi.add(this);
     }
 
@@ -33,8 +29,22 @@ public class Hasta extends AbsractKisi{
     // Hasta kayıt silme fonksiyonu
     public static void hastaSil(){
 
-        System.out.println("Silmek istenen hastanın İD'sini giriniz ");
-        int silinenHastaId = tarayici.nextInt();
+        int silinenHastaId;
+
+        while(true){
+            System.out.println("Silmek istenen hastanın İD'sini giriniz ");
+
+            try {
+                silinenHastaId = tarayici.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                tarayici.nextLine();
+                continue;
+            }
+            break;
+
+        }
 
         //Hastanın olup olmama furmuna göre flag ile kontrol edilir.
         boolean flag= false;
@@ -52,7 +62,6 @@ public class Hasta extends AbsractKisi{
         if (!flag){System.out.println("Aradığınız kullanıcı bulunmamaktadır.");}
 
     }
-
 
 
     // Hasta Ekleme Fonksiyonu
@@ -84,7 +93,7 @@ public class Hasta extends AbsractKisi{
         id++;
 
         // Yapıcı metot listeye ekler
-        Hasta h = new Hasta(isim,soyisim,tc,dogumTarihi,id,telefonNumarasi,dogumYeri);
+        Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
     }
 
     //Hastanın reçetesini görüntülemesi MBB

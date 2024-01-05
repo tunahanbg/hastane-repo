@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Muhasebe {
 
     private final static int toplamButce = 100000;
@@ -9,13 +11,10 @@ public class Muhasebe {
     public static double toplamKar ;
 
 
-
-
     public static void gelirleriHesapla() {
         gelirler = toplamHastaSayisi*(hastaMuayeneUcreti+devletDestegi);
         System.out.println("Toplam "+ toplamHastaSayisi + "tane hastadan \n"+"Hastane toplam geliri :  " + gelirler);
     }
-
 
     public static void giderHesaplama() {
         double receteGiderleri = Randevu.randevuListesi.size() * 0.2;
@@ -28,7 +27,6 @@ public class Muhasebe {
 
     }
 
-
     public static void toplamKarHesapla() {
         toplamKar = toplamButce + gelirler - giderler;
         System.out.println("Hastanenin toplam başlangıç bütçesi : " + toplamButce +
@@ -36,5 +34,4 @@ public class Muhasebe {
                 "\n toplam gideri : " + giderler +
                 "\n toplam kâr : " + toplamKar);
     }
-
 }

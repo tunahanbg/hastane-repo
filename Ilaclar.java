@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Ilaclar {
@@ -10,10 +11,22 @@ public class Ilaclar {
     public  static void ilaclariGoruntule(){
         Scanner userInput = new Scanner(System.in);
 
-        System.out.println("Hangi Katagorideki İlaçları Görüntülemek İstersiniz?");
-        System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+        int userChoice;
 
-        int userChoice = userInput.nextInt();
+        while(true){
+            System.out.println("Hangi Katagorideki İlaçları Görüntülemek İstersiniz?");
+            System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+
+            try {
+                userChoice = userInput.nextInt();
+
+            }catch (InputMismatchException e){
+                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                userInput.nextLine();
+                continue;
+            }
+            break;
+        }
 
         boolean flag = true;
 

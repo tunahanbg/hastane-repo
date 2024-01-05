@@ -1,13 +1,12 @@
-import javax.imageio.IIOException;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     Scanner tarayici=new Scanner(System.in);
-
     Hasta hasta = new Hasta();
-    public static int farkliID=0;
+    public static int farkliID = 0;
 
     public static ArrayList<Doktor> doktorListesi=new ArrayList<Doktor>();
     //Her nesnenin bir doktor listesine sahip olması saçma olurdu.Doktor listesi nesneden bağımsız sınıfa ait yani static olarak tanımlandığında her değişikliği yansıtacaktır.public tanımlamamın nedeni ise Yönetim sınıfının da operasyonlarında bu listeye erişimini sağlayabilmek.
@@ -33,11 +32,34 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
+    public void hastaSecimIslemi(int hastaID){
+
+        for(int i = 0; i < Hasta.hastaListesi.size(); i++){
+            if(Hasta.hastaListesi.get(i).id == hastaID){
+                this.hasta = Hasta.hastaListesi.get(i);
+            }
+        }
+    }
+
     //Reçeteyi hangi hastaya yazacağını hasta id'si ile karar versin, Randeveu görüntüle kısmından veya tüm hastaları görüntüleyerek hasta id'sine ulaşabiliriz.
     public void receteYaz(){
 
-        System.out.print("Reçete yazmak istediğiniz hastanın id'si:");
-        int hastaID = tarayici.nextInt();
+        int hastaID;
+
+        while(true){
+
+            System.out.print("Reçete yazmak istediğiniz hastanın id'si:");
+
+            try {
+                hastaID = tarayici.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                tarayici.nextLine();
+                continue;
+            }
+            break;
+        }
 
         System.out.print("Reçete:");
         String recete = tarayici.nextLine();
@@ -123,10 +145,23 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
     public void receteyeIlacYaz(){
         Scanner userInput = new Scanner(System.in);
 
-        System.out.println("Hangi Katagorideki İlaçdan Seçim Yapmak istersiniz?");
-        System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+        int userChoice;
 
-        int userChoice = userInput.nextInt();
+        while (true){
+
+            System.out.println("Hangi Katagorideki İlaçdan Seçim Yapmak istersiniz?");
+            System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+
+            try {
+                userChoice = userInput.nextInt();
+
+            } catch (InputMismatchException e) {
+                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                userInput.nextLine();
+                continue;
+            }
+            break;
+        }
 
         boolean flag = true;
 
@@ -207,25 +242,67 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
         }
     }
 
+    public void recetedenIlacSil(String silinecekIlac){
+        if(hasta.recetedekiIlaclar.contains(silinecekIlac)){
+            for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
+                if(silinecekIlac.equals(hasta.recetedekiIlaclar.get(i))){
+                    hasta.recetedekiIlaclar.remove(i);
+                }
+            }
+            System.out.println("İlaç başarıyla silinmiştir.");
+        }
+
+        else {
+            System.out.println("Yazdığınız ilaç reçetede bulunmuyor.");
+        }
+
+    }
+
+    public void recetedekiIlaclariGoruntule(){
+
+        if (hasta.recetedekiIlaclar.isEmpty()){
+            System.out.println("Reçetede herhangi bir ilaç bulunmamaktadır.");
+        }
+
+        else {
+            for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
+                System.out.println("—> " + hasta.recetedekiIlaclar.get(i));
+            }
+        }
+    }
+
     public ArrayList<String> receteIslemleri(int hastaID){
         Scanner userInput = new Scanner(System.in);
 
         hastaSecimIslemi(hastaID);
 
+        int userChoice;
         boolean flag = true;
 
         while (flag){
 
-            System.out.println("|——————————————————————————————————————————————————|");
-            System.out.println("Yapmak İstediğiniz İşlemi Giriniz:");
-            System.out.println("1-) İlaçları Görüntüle");
-            System.out.println("2-) İlaç Yaz");
-            System.out.println("3-) Reçeteye Yazılan İlaçları Görüntüle");
-            System.out.println("4-) Yan Etkileri Kontrol Et");
-            System.out.println("5-) Çıkış");
-            System.out.println("|——————————————————————————————————————————————————|");
+            while (true){
+                System.out.println("|——————————————————————————————————————————————————|");
+                System.out.println("Yapmak İstediğiniz İşlemi Giriniz:");
+                System.out.println("1-) İlaçları Görüntüle");
+                System.out.println("2-) İlaç Yaz");
+                System.out.println("3-) Reçeteye Yazılan İlaçları Görüntüle");
+                System.out.println("4-) Yan Etkileri Kontrol Et");
+                System.out.println("5-) Reçeteden İlaç Sil");
+                System.out.println("6-) Çıkış");
+                System.out.println("|——————————————————————————————————————————————————|");
 
-            int userChoice = userInput.nextInt();
+                try {
+                    userChoice = userInput.nextInt();
+                }
+
+                catch (InputMismatchException e) {
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    userInput.nextLine();
+                    continue;
+                }
+                break;
+            }
 
             switch (userChoice){
                 case 1:
@@ -240,9 +317,7 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
 
                 case 3:
                     System.out.println("|==================================================|");
-                    for (int i = 0; i < hasta.recetedekiIlaclar.size(); i++){
-                        System.out.println("—> " + hasta.recetedekiIlaclar.get(i));
-                    }
+                    recetedekiIlaclariGoruntule();
                     System.out.println("|==================================================|");
                     continue;
 
@@ -251,6 +326,12 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
                     continue;
 
                 case 5:
+                    System.out.println("Reçeteden silmek istediğiniz ilacın ismini giriniz.");
+                    String silinecekIlac = userInput.next();
+                    recetedenIlacSil(silinecekIlac);
+                    continue;
+
+                case 6:
                     flag = false;
                     break;
 
@@ -303,16 +384,6 @@ public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
 
         else {
             System.out.println("Yan etki oluşturacak herhangi bir durum yoktur.");
-        }
-    }
-
-    public void hastaSecimIslemi(int hastaID){
-        int secilenHastaId = hastaID;
-
-        for(int i = 0; i < Hasta.hastaListesi.size(); i++){
-            if(Hasta.hastaListesi.get(i).id == secilenHastaId){
-                this.hasta = Hasta.hastaListesi.get(i);
-            }
         }
     }
 }
