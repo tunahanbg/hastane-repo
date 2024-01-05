@@ -65,7 +65,7 @@ public class YoneticiPaneli {
 
 
 
-
+//Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
     public static void muhasebeIslemleri() {
         System.out.println("Muhasebe İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
         System.out.println(" 1: Toplam Kâr");

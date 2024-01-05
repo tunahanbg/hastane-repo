@@ -22,9 +22,6 @@ public class DegerlendirmeFormu {
     }
 
 
-    // !!!!!!!Girilen değer yanlış olduğunda başa dnmüyor bunu düzeltttt !!!!!!!!!!!!!
-    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
     //Değerlendirme formunun doldurulması sağlanır.Try Catch ile yanlış girilen değer bulunur ve hata döndürülür.Eğer uygun ise değerleri ait oldukları anahtarlara değer olarak ekler.
     public void hastaninDerelecelendirmesiniDoldur(Hasta hasta) {
 
