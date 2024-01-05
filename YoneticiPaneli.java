@@ -37,6 +37,5 @@ public class YoneticiPaneli {
         for (DegerlendirmeKatagori anahtar : anahtarlar) {
             System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri : " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
         }
-
     }
 }

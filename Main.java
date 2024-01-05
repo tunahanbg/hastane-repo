@@ -54,10 +54,10 @@ public class Main {
         System.out.println(Randevu.randevuListesi.get(2).getRandevuTarihi());
         System.out.println(Randevu.randevuListesi.get(3).getRandevuTarihi());
 
-        /*Randevu.randevuOlustur();
+        Randevu.randevuOlustur();
         System.out.println(Randevu.randevuListesi.get(Randevu.randevuListesi.size()-1).getRandevuTarihi());
 
-        System.out.println(birim1.birimeAitHastaListesi.get(0).isim+" "+birim1.birimeAitHastaListesi.get(0).soyisim);*/
+        System.out.println(birim1.birimeAitHastaListesi.get(0).isim+" "+birim1.birimeAitHastaListesi.get(0).soyisim);
 
         Ilaclar.ilaclariOlustur();
         d1.receteYaz();
