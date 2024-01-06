@@ -13,6 +13,12 @@ public class Main {
         //İlaçların txt dosyasından alınması (Tuna):
         VeriOkumaIslemleri.ilaciVerileriniCekme();
 
+        VeriOkumaIslemleri.hemsireVerileriniCekme();
+
+        for (int i = 0; i < Hemsire.hemsireArrayList.size(); i++){
+            System.out.println(Hemsire.hemsireArrayList.get(i).isim);
+        }
+
         Paneller.girisPaneli();
 
 

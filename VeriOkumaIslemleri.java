@@ -111,4 +111,30 @@ public class VeriOkumaIslemleri {
             i++;
         }
     }
+
+    public static void hemsireVerileriniCekme(){
+        File dosya = new File("HemsireListesi.txt");
+        String dosyaYolu = dosya.getAbsolutePath();
+        String isim, soyisim;
+
+        try {
+            BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
+            String satir;
+
+            while((satir = okuyucu.readLine()) != null){
+                String[] veri = satir.split(",");
+                isim = veri[0];
+                soyisim = veri[1];
+
+                Hemsire h = new Hemsire(isim, soyisim);
+                Hemsire.hemsireArrayList.add(h);
+            }
+            okuyucu.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 }
