@@ -168,9 +168,8 @@ public class Main {
                     break;
 
 
-                // Yönetici Girişi  DÜZELTİLMESİ GEREKİYOR
+                // Yönetici Girişi  ---------DÜZELTİLMESİ GEREKİYOR------------
                 case "3":
-                    flag1 = false;
                     Admin admin = new Admin();
                     System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
                     System.out.println(" 1: Maliye işlemleri");

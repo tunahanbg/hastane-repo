@@ -141,7 +141,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
             System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimeAitHastaListesi.size());
             System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
-            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
+            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani+ "\n");
 
         }
 
