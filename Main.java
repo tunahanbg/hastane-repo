@@ -16,36 +16,40 @@ public class Main {
         //Hemşirelerin txt dosyasından çekilmesi
         VeriOkumaIslemleri.hemsireVerileriniCekme();
 
-        for (int i = 0; i < Doktor.doktorListesi.size(); i++){
-            System.out.println(Doktor.doktorListesi.get(i).maas);
-        }
 
         Paneller.girisPaneli();
 
-//        boolean flag1 = true;
-//        while(flag1){
-//
-//            String userChoice = userInput.next();
-//            switch (userChoice){
-//                case "1":
-//
-//
-//                    flag1 = false;
-//                    break;
-//
-//                case "2":
-//                    flag1 = false;
-//                    break;
-//
-//                case "3":
-//                    flag1 = false;
-//                    break;
-//                default:
-//                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
-//                    break;
-//            }
-//
-//        }
+        boolean flag1 = true;
+        while(flag1){
+
+            String userChoice = userInput.next();
+            switch (userChoice){
+
+                // Hasta/Kullanıcı Girişi
+                case "1":
+
+
+                    flag1 = false;
+                    break;
+
+                //Doktor Girişi
+                case "2":
+                    flag1 = false;
+                    break;
+
+
+                // Admin Girişi
+                case "3":
+                    Admin admin = new Admin();
+
+                    flag1 = false;
+                    break;
+                default:
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    break;
+            }
+
+        }
 
 
 

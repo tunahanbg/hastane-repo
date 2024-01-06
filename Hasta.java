@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Hasta extends AbsractKisi{
+public class Hasta extends AbsractKisi implements GoruntulemeIslemleri{
 
     //Map değişkeni : Verileri ANAHTAR(derecelendirmenin katagorisi)--DEĞER(derecelendirmenin değeri)
     //çiftleri şeklinde depolamak için kullanılan bir veri yapısı
@@ -25,6 +25,7 @@ public class Hasta extends AbsractKisi{
     }
 
     //Hastanın reçetesini görüntülemesi MBB
+    @Override
     public void receteGoruntule(){
         System.out.print("TC Kimlik Numaranız:");
         String tcKimlik=tarayici.nextLine();
@@ -50,6 +51,13 @@ public class Hasta extends AbsractKisi{
         }
         catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void doktorGoruntule() {
+        for (int i=0;i<Doktor.doktorListesi.size();i++){
+            System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
         }
     }
 }

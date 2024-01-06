@@ -1,6 +1,7 @@
+import java.io.*;
 import java.util.*;
 
-public class YoneticiPaneli {
+public class YoneticiPaneli implements GoruntulemeIslemleri{
     static Scanner tarayici = new Scanner(System.in);
 
 
@@ -101,6 +102,41 @@ public class YoneticiPaneli {
 
     }
 
+    @Override
+    public void receteGoruntule(){
+        System.out.print("Hastanın TC Kimlik Numarası:");
+        String tcKimlik=tarayici.nextLine();
+
+        String dosyaIsmi="";
+        for (int i=0;i<Hasta.hastaListesi.size();i++){
+            if(Hasta.hastaListesi.get(i).TC.equals(tcKimlik)){
+                dosyaIsmi=(Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+".txt");
+            }
+        }
+
+        File dosya = new File(dosyaIsmi);
+        String dosyaYolu=dosya.getAbsolutePath();
+        try {
+            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
+            String satir;
+            while((satir= okuyucu.readLine()) != null){
+                System.out.println(satir);
+            }
+            okuyucu.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void doktorGoruntule() {
+        for (int i=0;i<Doktor.doktorListesi.size();i++){
+            System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
+        }
+    }
 
 
     //TNG daha bitmedi yapım aşamasındaaa
