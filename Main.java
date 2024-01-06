@@ -16,49 +16,6 @@ public class Main {
         //Hemşirelerin txt dosyasından çekilmesi
         VeriOkumaIslemleri.hemsireVerileriniCekme();
 
-
-        Paneller.girisPaneli();
-
-        boolean flag1 = true;
-        while(flag1){
-
-            String userChoice = userInput.next();
-            switch (userChoice){
-
-                // Hasta/Kullanıcı Girişi
-                case "1":
-
-
-                    flag1 = false;
-                    break;
-
-                //Doktor Girişi
-                case "2":
-                    flag1 = false;
-                    break;
-
-
-                // Admin Girişi
-                case "3":
-                    Admin admin = new Admin();
-
-                    flag1 = false;
-                    break;
-                default:
-                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
-                    break;
-            }
-
-        }
-
-
-
-
-
-
-
-
-
         Birim birim1=new Birim("Pediatri", 1);
         Birim birim2=new Birim("Üroloji",2);
         Birim birim3=new Birim("Ortopedi",2);
@@ -71,7 +28,166 @@ public class Main {
 
 
 
-        Randevu r1=new Randevu();
+        // HASTANE PANELİ
+        boolean flag1 = true;
+        while(flag1){
+            Paneller.girisPaneli();
+            System.out.print("Seçiminizi giriniz:");
+            String userChoice = userInput.next();
+            switch (userChoice){
+                // Hasta/Kullanıcı Girişi
+                case "1":
+                    Paneller.kullaniciGirisEkrani();
+                    String tcNo;
+                    while(true){
+                        tcNo=userInput.next();
+                        if(tcNo.length() != 11){
+                            System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                        }
+                        else{
+                            break;
+                        }
+                    }
+
+                    boolean hastaBulunmuyor=true;
+                    for(int i=0;i<Hasta.hastaListesi.size();i++){
+                        if(tcNo.equals(Hasta.hastaListesi.get(i).TC)){
+                            System.out.println("Sisteme giriş başarılı.Hoşgeldiniz Sayın"+" "+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+" .");
+                            hastaBulunmuyor=false;
+                        }
+                    }
+                    if (hastaBulunmuyor){
+                        System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla sisteme kayıtlı hasta bulunmamaktadır.");
+                        System.out.println("Tekrar Ana Menüye yönlendiriliyorsunuz.");
+                        break;
+                    }
+
+                    boolean kullaniciPaneliKontrol=true;
+                    while(kullaniciPaneliKontrol){
+                        Paneller.kullaniciPaneli();
+                        System.out.println("Seçiminiz:");
+                        String kullaniciPaneliSecim=userInput.next();
+                        switch (kullaniciPaneliSecim){
+                            case "1":
+                                for(int i=0;i<Birim.birimListesi.size();i++){
+                                    System.out.println(Birim.birimListesi.get(i).getIsim());
+                                }
+                                break;
+                            case "2":
+                                for (int i=0;i<Doktor.doktorListesi.size();i++){
+                                    System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
+                                }
+                                break;
+                            case "3":
+                                Randevu.randevuOlustur();
+                                break;
+                            case "4":
+                                //BURASI GERİ DÖNÜŞ BİLDİR KISMI
+                                break;
+                            case"5":
+                                System.out.println("Kullanıcı panelinden çıkış yapılıyor...");
+                                kullaniciPaneliKontrol=false;
+                                break;
+                            default:
+                                System.out.println("Yanlış seçim yaptınız.");
+                                break;
+                        }
+
+                    }
+                    break;
+
+
+                //Doktor Girişi
+                case "2":
+                    Paneller.kullaniciGirisEkrani();
+                    String tcNoDoktor;
+                    while(true){
+                        tcNoDoktor=userInput.next();
+                        if(tcNoDoktor.length() != 11){
+                            System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                        }
+                        else{
+                            break;
+                        }
+                    }
+
+                    boolean doktorBulunmuyor=true;
+                    for(int i=0;i<Doktor.doktorListesi.size();i++){
+                        if(tcNoDoktor.equals(Doktor.doktorListesi.get(i).TC)){
+                            System.out.println("Sisteme giriş başarılı.Hoşgeldiniz Sayın"+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim+" .");
+                            doktorBulunmuyor=false;
+                        }
+                    }
+                    if (doktorBulunmuyor){
+                        System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla sisteme kayıtlı doktor bulunmamaktadır.");
+                        System.out.println("Tekrar Ana Menüye yönlendiriliyorsunuz.");
+                        break;
+                    }
+
+                    boolean doktorPaneliKontrol=true;
+                    while(doktorPaneliKontrol){
+                        Paneller.doktorPaneli();
+                        System.out.print("Seçiminiz:");
+                        String doktorPaneliSecimi=userInput.next();
+                        switch (doktorPaneliSecimi){
+                            case "1":
+                                if(Randevu.randevuListesi.isEmpty()){
+                                    System.out.println("Şuanda herhangi bir doktora atanmış randevu bulunmamaktadır.");
+                                    break;
+                                }
+                                boolean randevuVarMi=true;
+                                for(int i=0;i<Randevu.randevuListesi.size();i++){
+                                    if(tcNoDoktor.equals(Randevu.randevuListesi.get(i).getDoktor().TC)){
+                                        System.out.println("Randevu ID:"+Randevu.randevuListesi.get(i).getID());
+                                        System.out.println("Randevu Tarihi:"+Randevu.randevuListesi.get(i).getRandevuTarihi());
+                                        System.out.println("Doktor:"+Randevu.randevuListesi.get(i).getDoktor().isim+" "+Randevu.randevuListesi.get(i).getDoktor().soyisim);
+                                        System.out.println("Hasta:"+Randevu.randevuListesi.get(i).getHasta().isim+" "+Randevu.randevuListesi.get(i).getHasta().soyisim);
+                                    }
+                                    else{
+                                        randevuVarMi=false;
+                                    }
+                                }
+                                if (!randevuVarMi){
+                                    System.out.println("Atanmış randevunuz bulunmamaktadır.");
+                                }
+                                break;
+                            case "2":
+                                for (int i=0;i<Doktor.doktorListesi.size();i++){
+                                    if(Doktor.doktorListesi.get(i).TC.equals(tcNoDoktor)){
+                                        Doktor.doktorListesi.get(i).hastaGoruntule();
+                                    }
+                                }
+                                break;
+                            case "3":
+                                System.out.println("Doktor Panelinden çıkış yapılıyor.");
+                                doktorPaneliKontrol=false;
+                                break;
+                        }
+                    }
+                    break;
+
+
+                // Admin Girişi
+                case "3":
+                    Admin admin = new Admin();
+                    System.out.println("3");
+
+                    break;
+                case "4":
+                    System.out.println("Çıkış yapılıyor...");
+                    flag1 = false;
+                    break;
+                default:
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    break;
+            }
+
+        }
+
+
+
+
+        /*Randevu r1=new Randevu();
         r1.setRandevuTarihi("10 3 2024");
         Randevu.randevuListesi.add(r1);
 
@@ -90,7 +206,7 @@ public class Main {
         System.out.println(Randevu.randevuListesi.get(0).getRandevuTarihi());
         System.out.println(Randevu.randevuListesi.get(1).getRandevuTarihi());
         System.out.println(Randevu.randevuListesi.get(2).getRandevuTarihi());
-        System.out.println(Randevu.randevuListesi.get(3).getRandevuTarihi());
+        System.out.println(Randevu.randevuListesi.get(3).getRandevuTarihi());*/
 
         /*Randevu.randevuOlustur();
         System.out.println(Randevu.randevuListesi.get(Randevu.randevuListesi.size()-1).getRandevuTarihi());

@@ -4,6 +4,7 @@ public class Paneller {
         System.out.println("1-) Kullanıcı Girişi");
         System.out.println("2-) Doktor Girişi");
         System.out.println("3-) Yönetici Girişi");
+        System.out.println("4-) Çıkış");
     }
     public static void kullaniciPaneli(){
         System.out.println("|——————————————————————————————————————————————|");
@@ -11,6 +12,7 @@ public class Paneller {
         System.out.println("2-) Doktorları Görüntüle");
         System.out.println("3-) Randevu Alma Talebi Oluştur");
         System.out.println("4-) Geri Dönüş Bildir");
+        System.out.println("5-) Çıkış");
         System.out.println("|——————————————————————————————————————————————|");
     }
     public static void kullaniciGirisEkrani(){
@@ -31,7 +33,8 @@ public class Paneller {
         System.out.println("|——————————————————————————————————————————————|");
         System.out.println("Yapmak İstediğiniz İşlemi Seçiniz:");
         System.out.println("1-) Randevu Takvimini Görüntüle");
-        System.out.println("2-) Hasta ");
+        System.out.println("2-) Hasta Görüntüle");
+        System.out.println("3-) Çıkış");
         System.out.println("|——————————————————————————————————————————————|");
     }
     public static void adminPaneli(){
