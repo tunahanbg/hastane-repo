@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Doktor extends AbsractKisi implements IHemsireAlabilenler{
+public class Doktor extends AbsractKisi {
     Scanner tarayici=new Scanner(System.in);
     Hasta hasta = new Hasta();
     public static int farkliID = 0;
