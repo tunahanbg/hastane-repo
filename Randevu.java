@@ -68,8 +68,11 @@ public class Randevu {
         this.hasta = hasta;
     }
 
+
     public static void randevuOlustur(){
         Randevu yeniRandevu=new Randevu();
+        int doktorID = 0;
+
         //Randevuya hastanın atanması:
         String TCNO;
         while(true){
@@ -112,9 +115,9 @@ public class Randevu {
             System.out.println("1-Belirli birime ait doktorları görüntüle");
             System.out.println("2-Tüm doktorları görüntüle");
             System.out.print("Seçiminiz:");
-            int secim=tarayici.nextInt();
+            String secim = tarayici.next();
             switch (secim){
-                case 1:
+                case "1":
                     System.out.println("Birimler:");
                     System.out.println("1-Pediatri\n2-Üroloji\n3-Ortopedi\n4-Kardiyoloji\n5-Nöroloji\n6-Dahiliye\n7-Cerrahi");
                     System.out.print("Seçtiğiniz birimin ismi:");
@@ -129,7 +132,7 @@ public class Randevu {
                     }
                     flag=false;
                     break;
-                case 2:
+                case "2":
                     for (int i=0;i<Doktor.doktorListesi.size();i++){
                         System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
                     }
@@ -145,7 +148,20 @@ public class Randevu {
         boolean flag3=false;//id'lerin eşleştiğini kontrol etmek için koyduğum flag
         while(flag2){
             System.out.println("Randevuyu almak istediğiniz doktorun ID bilgisini giriniz:");
-            int doktorID= tarayici.nextInt();
+
+            // Hatalı giriş kontrolü (Tuna)
+            while (true){
+                try {
+                    doktorID = tarayici.nextInt();
+
+                } catch (InputMismatchException e) {
+                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    tarayici.nextLine();
+                    continue;
+                }
+                break;
+            }
+
             for (int i=0;i<Doktor.doktorListesi.size();i++){
                 if (Doktor.doktorListesi.get(i).id==doktorID){
                     yeniRandevu.setDoktor(Doktor.doktorListesi.get(i));
@@ -189,9 +205,40 @@ public class Randevu {
         while(tarihDogruMu){
             while(formatDogruMu){
                 System.out.print("Randevu tarihini giriniz (gün ay yıl):");
-                gun= tarayici.nextInt();
-                ay= tarayici.nextInt();
-                yil= tarayici.nextInt();
+
+                while (true){
+                    try{
+                        gun= tarayici.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                        tarayici.nextLine();
+                        continue;
+                    }
+                    break;
+                }
+
+                while (true){
+                    try{
+                        ay= tarayici.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                        tarayici.nextLine();
+                        continue;
+                    }
+                    break;
+                }
+
+                while (true){
+                    try{
+                        yil= tarayici.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                        tarayici.nextLine();
+                        continue;
+                    }
+                    break;
+                }
+
                 if(gun<1 || gun>31){
                     System.out.println("Gün bilgisi 1-31 arasında olmalı.");
                 }

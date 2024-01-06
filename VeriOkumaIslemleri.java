@@ -46,10 +46,11 @@ public class VeriOkumaIslemleri {
 
         File dosya = new File("DoktorListesi.txt");
         String dosyaYolu = dosya.getAbsolutePath();
-        String isim, soyisim, TC, telefonNo;
+        String isim, soyisim, TC;
+        int maas;
 
         try {
-            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
+            BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
             String satir;
 
             while((satir = okuyucu.readLine()) != null){
@@ -57,9 +58,9 @@ public class VeriOkumaIslemleri {
                 isim = veri[0];
                 soyisim = veri[1];
                 TC = veri[2];
-                telefonNo = veri[3];
+                maas = Integer.parseInt(veri[3]);
 
-                Doktor d = new Doktor(isim, soyisim, TC, telefonNo);
+                Doktor d = new Doktor(isim, soyisim, TC, maas);
                 boolean flag = false;
 
                 for(int i = 0; i < Doktor.doktorListesi.size(); i++){
@@ -116,6 +117,7 @@ public class VeriOkumaIslemleri {
         File dosya = new File("HemsireListesi.txt");
         String dosyaYolu = dosya.getAbsolutePath();
         String isim, soyisim;
+        int maas;
 
         try {
             BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
@@ -125,9 +127,9 @@ public class VeriOkumaIslemleri {
                 String[] veri = satir.split(",");
                 isim = veri[0];
                 soyisim = veri[1];
+                maas = Integer.parseInt(veri[2]);
 
-                Hemsire h = new Hemsire(isim, soyisim);
-                Hemsire.hemsireArrayList.add(h);
+                Hemsire h = new Hemsire(isim, soyisim, maas);
             }
             okuyucu.close();
         } catch (FileNotFoundException e) {

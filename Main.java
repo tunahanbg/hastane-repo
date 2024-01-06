@@ -13,37 +13,39 @@ public class Main {
         //İlaçların txt dosyasından alınması (Tuna):
         VeriOkumaIslemleri.ilaciVerileriniCekme();
 
+        //Hemşirelerin txt dosyasından çekilmesi
         VeriOkumaIslemleri.hemsireVerileriniCekme();
 
-        for (int i = 0; i < Hemsire.hemsireArrayList.size(); i++){
-            System.out.println(Hemsire.hemsireArrayList.get(i).isim);
+        for (int i = 0; i < Doktor.doktorListesi.size(); i++){
+            System.out.println(Doktor.doktorListesi.get(i).maas);
         }
 
         Paneller.girisPaneli();
 
-
-        boolean flag1 = true;
-        while(flag1){
-
-            String userChoice = userInput.next();
-            switch (userChoice){
-                case "1":
-                    flag1 = false;
-                    break;
-
-                case "2":
-                    flag1 = false;
-                    break;
-
-                case "3":
-                    flag1 = false;
-                    break;
-                default:
-                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
-                    break;
-            }
-
-        }
+//        boolean flag1 = true;
+//        while(flag1){
+//
+//            String userChoice = userInput.next();
+//            switch (userChoice){
+//                case "1":
+//
+//
+//                    flag1 = false;
+//                    break;
+//
+//                case "2":
+//                    flag1 = false;
+//                    break;
+//
+//                case "3":
+//                    flag1 = false;
+//                    break;
+//                default:
+//                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+//                    break;
+//            }
+//
+//        }
 
 
 

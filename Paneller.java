@@ -10,8 +10,12 @@ public class Paneller {
         System.out.println("1-) Poliklinikleri Görüntüle");
         System.out.println("2-) Doktorları Görüntüle");
         System.out.println("3-) Randevu Alma Talebi Oluştur");
-        System.out.println("4-) Hemşire'ye Not Bırak");
-        System.out.println("5-) Geri Dönüş Bildir");
+        System.out.println("4-) Geri Dönüş Bildir");
+        System.out.println("|——————————————————————————————————————————————|");
+    }
+    public static void kullaniciGirisEkrani(){
+        System.out.println("|——————————————————————————————————————————————|");
+        System.out.println("TC Kimlik Numaranızı giriniz: ");
         System.out.println("|——————————————————————————————————————————————|");
     }
 
