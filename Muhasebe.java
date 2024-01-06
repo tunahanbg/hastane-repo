@@ -6,14 +6,14 @@ public class Muhasebe {
     public static int gelirler;
     public static double giderler;
     public static int toplamHastaSayisi = Hasta.hastaListesi.size();
-    public static int hastaMuayeneUcreti = 10;
-    public static int devletDestegi = 3;
+    public static int hastaMuayeneUcreti = 1000;
+    public static int devletDestegi = 300;
     public static double toplamKar ;
 
 
     public static void gelirleriHesapla() {
         gelirler = toplamHastaSayisi*(hastaMuayeneUcreti+devletDestegi);
-        System.out.println("Toplam "+ toplamHastaSayisi + "tane hastadan \n"+"Hastane toplam geliri :  " + gelirler);
+        System.out.println("Toplam "+ toplamHastaSayisi + " tane hastadan \n"+"Hastane toplam geliri :  " + gelirler +"$");
     }
 
     public static void giderHesaplama() {
@@ -23,7 +23,7 @@ public class Muhasebe {
         int temizlikGiderleri = Birim.birimListesi.size() * 3;
 
         giderler = receteGiderleri + toplamCalisanMaaslari + hastaBasiMaaliyet + temizlikGiderleri;
-        System.out.println("Toplam "+ toplamHastaSayisi + "tane hasta ,\n"+"Toplam "+ Birim.birimListesi.size() + "tane birim. \n"  +"Hastane Toplam Giderleri :  " + giderler);
+        System.out.println("Toplam "+ toplamHastaSayisi + " tane hasta ,\n"+"Toplam "+ Birim.birimListesi.size() + " tane birim. \n"  +"Hastane Toplam Giderleri :  " + giderler +"$");
 
     }
 

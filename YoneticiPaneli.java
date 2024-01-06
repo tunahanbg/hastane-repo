@@ -4,6 +4,28 @@ import java.util.*;
 public class YoneticiPaneli implements GoruntulemeIslemleri{
     static Scanner tarayici = new Scanner(System.in);
 
+    public static void hastaFonksiyonlariYonetimi() {
+
+
+        System.out.println("Hasta Yönetim İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
+        System.out.println(" 1: Hasta Ekle");
+        System.out.println(" 2: Hasta Sil");
+        System.out.println(" 3: Hastanın Değerlendirme Formunu Yazdırma");
+
+        String yapilmakIstenenI = tarayici.next();
+        switch (yapilmakIstenenI){
+            case "1":YoneticiPaneli.hastaEkle();
+                break;
+            case "2":YoneticiPaneli.hastaSil();
+                break;
+            case "3":YoneticiPaneli.hastaninFormunuYazdirma();
+                break;
+            default:
+                break;
+        }
+
+    }
+
 
     // Hasta Ekleme Fonksiyonu
 
@@ -20,14 +42,8 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         System.out.println(" Hasta Tc : ");
         String tc = tarayici.nextLine();
 
-        System.out.println(" Hasta doğum tarihi : ");
-        String dogumTarihi = tarayici.nextLine();
-
         System.out.println(" Hasta telefon numarası : ");
         String telefonNumarasi = tarayici.nextLine();
-
-        System.out.println(" Hasta doğum yeri : ");
-        String dogumYeri = tarayici.nextLine();
 
         //id numarası liste boyutuna göre belirlenir
         int id = Hasta.hastaListesi.size();
@@ -35,8 +51,6 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
         // Yapıcı metot listeye ekler
         Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
-
-
     }
 
 
@@ -61,33 +75,40 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             }
         }
         if (!flag){System.out.println("Aradığınız kullanıcı bulunmamaktadır.");}
-
     }
 
 
 
-//Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
+    //Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
     public static void muhasebeIslemleri() {
         System.out.println("Muhasebe İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
         System.out.println(" 1: Toplam Kâr");
         System.out.println(" 2: Toplam Gelirler");
         System.out.println(" 3: Toplam Giderler");
-        int secim=tarayici.nextInt();
+
+        String secim=tarayici.next();
 
         switch (secim){
-            case 1:Muhasebe.toplamKarHesapla();
+            case "1":
+                Muhasebe.toplamKarHesapla();
                 break;
-            case 2:Muhasebe.gelirleriHesapla();
+            case "2":
+                Muhasebe.gelirleriHesapla();
                 break;
-            case 3:Muhasebe.giderHesaplama();
+            case "3":
+                Muhasebe.giderHesaplama();
+                break;
             default:
                 System.out.println("Yanlış değer girdiniz , lütfen verilen seçeneklere uygun değer giriniz.");
                 break;
         }
     }
 
+
+
     //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
     public static void hastaninFormunuYazdirma () {
+
         System.out.println("Formunu görmek istediğiniz hastanın İd numarsını giriniz : ");
         int degerlemesiIstenenHastaId = tarayici.nextInt();
 
@@ -101,6 +122,33 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         }
 
     }
+
+
+
+    public static void birimHastaDolulukOrani(){
+
+        //Birimleri dolaşır
+        for (int i = 0; i < Birim.birimListesi.size(); i++) {
+
+            // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
+            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();
+
+            // Yüzdelik çevirme işlemi yapılır
+            float dolulukOrani = ((float) Birim.birimeAitHastaListesi.size() / birimHastaKapasitesi) * 100;
+
+            // String.format kullanarak float değeri istenen formata çevirir
+            String formatliDolulukOrani = String.format("%.2f", dolulukOrani);
+
+            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimeAitHastaListesi.size());
+            System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
+            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
+
+        }
+
+    }
+
+
+
 
     @Override
     public void receteGoruntule(){
@@ -139,25 +187,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
     }
 
 
-    //TNG daha bitmedi yapım aşamasındaaa
-    /*public static void birimHastaDolulukOrani(){
-        for (int i = 0; i < Birim.birimListesi.size(); i++) {
-            int randevuSayisi = 0;       // Her bir birim için randevu sayısını sıfırla
-            int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();       // i indeksi gelen birimin kapasitesini birimHastaKapasitesi'e atar
 
-            for (Randevu randevu : Randevu.randevuListesi) {                               // Randevu sınıfındaki randevuListesi ArrayList'ini dolaşılır.
-                if (randevu.getBirimAdi().equals(Birim.birimListesi.get(i).getIsim())) {   // randevu değişkeninin içindeki birim adını, Birim sınıfındaki birimListesi ArrayListinde i. indeksteki birimin ismine eşit olup olmadığını kontrol eder.
-                    randevuSayisi++;
-                }
-            }
-            float dolulukOrani = ((float) randevuSayisi / birimHastaKapasitesi) * 100;     // Yüzdelik çevirme işlemi yapılır
-
-            String formatliDolulukOrani = String.format("%.2f", dolulukOrani);              // String.format kullanarak float değeri istenen formata çevirir
-
-            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + randevuSayisi);
-            System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
-            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani);
-        }*/
     }
 
 

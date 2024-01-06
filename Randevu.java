@@ -184,7 +184,6 @@ public class Randevu {
 
         tarihBelirle(yeniRandevu);
         yeniRandevu.randevuBilgileriYazdir();
-        randevuListesi.add(yeniRandevu);
     }
 
     public void randevuBilgileriYazdir(){

@@ -7,6 +7,18 @@ public class Hasta extends AbsractKisi implements GoruntulemeIslemleri{
     //Map değişkeni : Verileri ANAHTAR(derecelendirmenin katagorisi)--DEĞER(derecelendirmenin değeri)
     //çiftleri şeklinde depolamak için kullanılan bir veri yapısı
     public static Map<DegerlendirmeKatagori, Integer> degerler = new HashMap<>();
+
+    //Verilen kullanıcı değerlendirmelerini kaydetmek için eklenen dizi.Her değerlendirmede tekrar oluşturulacak ve sonunda her hastanın ilgili değerlendirmesi toplanacak
+    private int[] toplamKategoriDegerleri = new int[4];
+
+    public int[] getToplamKategoriDegerleri() {
+        return toplamKategoriDegerleri;
+    }
+    public void setToplamKategoriDegerleri(int[] toplamKategoriDegerleri) {
+        this.toplamKategoriDegerleri = toplamKategoriDegerleri;
+    }
+
+
     static Scanner tarayici = new Scanner(System.in);
     public static ArrayList<Hasta> hastaListesi=new ArrayList<Hasta>();
 

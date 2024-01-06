@@ -80,6 +80,7 @@ public class Main {
                                 break;
                             case "3":
                                 Randevu.randevuOlustur();
+                                DegerlendirmeFormu.hastaDegerlendirmeFormu();
                                 break;
                             case "4":
                                 //BURASI GERİ DÖNÜŞ BİLDİR KISMI
@@ -167,10 +168,33 @@ public class Main {
                     break;
 
 
-                // Admin Girişi
+                // Yönetici Girişi  DÜZELTİLMESİ GEREKİYOR
                 case "3":
+                    flag1 = false;
                     Admin admin = new Admin();
-                    System.out.println("3");
+                    System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
+                    System.out.println(" 1: Maliye işlemleri");
+                    System.out.println(" 2: Hasta işlemleri");
+                    System.out.println(" 3: Analizler ");
+                    System.out.println(" 4: Birimlerin Doluluk oranı ");
+
+                    String yapilmakIstenenIslem = userInput.next();
+                    switch (yapilmakIstenenIslem){
+                        case "1":
+                            YoneticiPaneli.muhasebeIslemleri();
+                            break;
+                        case "2":
+                            YoneticiPaneli.hastaFonksiyonlariYonetimi();
+                            break;
+                        case "3"://Değerlendirme katagorilerinin aldıkları değerlerin toplamı
+                            DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
+                            break;
+                        case "4"://Birimlerin doluluk oranlarını hesaplar
+                            YoneticiPaneli.birimHastaDolulukOrani();
+                            break;
+                        default:
+                            break;
+                    }
 
                     break;
                 case "4":
