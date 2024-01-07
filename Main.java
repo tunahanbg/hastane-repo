@@ -240,7 +240,7 @@ public class Main {
 
                     break;
                 case "4":
-                    System.out.println("\nÇıkış yapılıyor...\n");
+                    System.out.println("\nGeçmiş Olsun Efenim, İyi Günler Dileriz :)\n");
                     flag1 = false;
                     break;
                 default:
