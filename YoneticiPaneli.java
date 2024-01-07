@@ -81,36 +81,58 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
     //Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
     public static void muhasebeIslemleri() {
-        System.out.println("Muhasebe İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
-        System.out.println(" 1: Toplam Kâr");
-        System.out.println(" 2: Toplam Gelirler");
-        System.out.println(" 3: Toplam Giderler");
 
-        String secim=tarayici.next();
+        boolean flag = true;
 
-        switch (secim){
-            case "1":
-                Muhasebe.toplamKarHesapla();
-                break;
-            case "2":
-                Muhasebe.gelirleriHesapla();
-                break;
-            case "3":
-                Muhasebe.giderHesaplama();
-                break;
-            default:
-                System.out.println("Yanlış değer girdiniz , lütfen verilen seçeneklere uygun değer giriniz.");
-                break;
+        while(flag){
+            System.out.println("|——————————————————————————————————————————————|");
+            System.out.println("Yapmak istediğinizişlemi seçiniz :");
+            System.out.println(" 1: Toplam Kâr");
+            System.out.println(" 2: Toplam Gelirler");
+            System.out.println(" 3: Toplam Giderler");
+            System.out.println(" 4: Çıkış");
+            System.out.println("|——————————————————————————————————————————————|");
+
+            String secim = tarayici.next();
+            switch (secim){
+                case "1":
+                    Muhasebe.toplamKarHesapla();
+                    continue;
+                case "2":
+                    Muhasebe.gelirleriHesapla();
+                    continue;
+                case "3":
+                    Muhasebe.giderHesaplama();
+                    continue;
+                case "4":
+                    System.out.println("Çıkış yapılıyor...");
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("Yanlış değer girdiniz , lütfen verilen seçeneklere uygun değer giriniz.");
+                    break;
+            }
+
         }
+
     }
 
 
 
     //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
     public static void hastaninFormunuYazdirma () {
-
+        int degerlemesiIstenenHastaId = 0;
         System.out.println("Formunu görmek istediğiniz hastanın İd numarsını giriniz : ");
-        int degerlemesiIstenenHastaId = tarayici.nextInt();
+        while(true){
+            try{
+                degerlemesiIstenenHastaId = tarayici.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                tarayici.nextLine();
+                continue;
+            }
+            break;
+        }
 
 
         // Bu hastanın değerlendirme değerlerinin anahtarlarını(değerlendirme katagorisi"1,2,3,4,5") bir `Set` olarak alır.
@@ -122,7 +144,6 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         }
 
     }
-
 
 
     public static void birimHastaDolulukOrani(){
@@ -146,8 +167,6 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         }
 
     }
-
-
 
 
     @Override
@@ -185,10 +204,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
         }
     }
-
-
-
-    }
+}
 
 
 

@@ -179,28 +179,40 @@ public class Main {
                 // Yönetici Girişi  ---------DÜZELTİLMESİ GEREKİYOR------------
                 case "3":
                     Admin admin = new Admin();
-                    System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
-                    System.out.println(" 1: Maliye işlemleri");
-                    System.out.println(" 2: Hasta işlemleri");
-                    System.out.println(" 3: Analizler ");
-                    System.out.println(" 4: Birimlerin Doluluk oranı ");
+                    System.out.println("|——————————————————————————————————————————————|");
+                    System.out.println("Yönetici Şifresini Giriniz:");
+                    System.out.println("|——————————————————————————————————————————————|");
+                    String adminSifreKontrol = userInput.next();
 
-                    String yapilmakIstenenIslem = userInput.next();
-                    switch (yapilmakIstenenIslem){
-                        case "1":
-                            YoneticiPaneli.muhasebeIslemleri();
-                            break;
-                        case "2":
-                            YoneticiPaneli.hastaFonksiyonlariYonetimi();
-                            break;
-                        case "3"://Değerlendirme katagorilerinin aldıkları değerlerin toplamı
-                            DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
-                            break;
-                        case "4"://Birimlerin doluluk oranlarını hesaplar
-                            YoneticiPaneli.birimHastaDolulukOrani();
-                            break;
-                        default:
-                            break;
+                    if(admin.getAdminSifre().equals(adminSifreKontrol)){
+                        System.out.println("|——————————————————————————————————————————————|");
+                        System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
+                        System.out.println(" 1: Maliye işlemleri");
+                        System.out.println(" 2: Hasta işlemleri");
+                        System.out.println(" 3: Analizler ");
+                        System.out.println(" 4: Birimlerin Doluluk oranı ");
+                        System.out.println("|——————————————————————————————————————————————|");
+
+                        String yapilmakIstenenIslem = userInput.next();
+                        switch (yapilmakIstenenIslem){
+                            case "1":
+                                YoneticiPaneli.muhasebeIslemleri();
+                                break;
+                            case "2":
+                                YoneticiPaneli.hastaFonksiyonlariYonetimi();
+                                break;
+                            case "3"://Değerlendirme katagorilerinin aldıkları değerlerin toplamı
+                                DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
+                                break;
+                            case "4"://Birimlerin doluluk oranlarını hesaplar
+                                YoneticiPaneli.birimHastaDolulukOrani();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else {
+                        System.out.println("Hatalı şifre girdiniz.");
                     }
 
                     break;
