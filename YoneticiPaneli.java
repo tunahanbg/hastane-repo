@@ -5,25 +5,31 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
     static Scanner tarayici = new Scanner(System.in);
 
     public static void hastaFonksiyonlariYonetimi() {
+        boolean flag = true;
+        while(flag){
+            System.out.println("|——————————————————————————————————————————————|");
+            System.out.println("Hasta Yönetim İşlemlerine Hoşgeldiniz. Yapmak istediğiniz işlemi seçiniz :");
+            System.out.println("1-) Hasta Ekle");
+            System.out.println("2-) Hasta Sil");
+            System.out.println("3-) Hastanın Değerlendirme Formunu Yazdırma");
+            System.out.println("4-) Çıkış ");
+            System.out.println("|——————————————————————————————————————————————|");
 
+            String yapilmakIstenenI = tarayici.next();
+            switch (yapilmakIstenenI){
 
-        System.out.println("Hasta Yönetim İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
-        System.out.println(" 1: Hasta Ekle");
-        System.out.println(" 2: Hasta Sil");
-        System.out.println(" 3: Hastanın Değerlendirme Formunu Yazdırma");
-
-        String yapilmakIstenenI = tarayici.next();
-        switch (yapilmakIstenenI){
-            case "1":YoneticiPaneli.hastaEkle();
-                break;
-            case "2":YoneticiPaneli.hastaSil();
-                break;
-            case "3":YoneticiPaneli.hastaninFormunuYazdirma();
-                break;
-            default:
-                break;
+                case "1":
+                    YoneticiPaneli.hastaninFormunuYazdirma();
+                    break;
+                case "2":
+                    System.out.println("\nÇıkış yapılıyor...\n");
+                    flag = false;
+                    break;
+                default:
+                    System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
+                    break;
+            }
         }
-
     }
 
 
@@ -33,16 +39,16 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
         //Eklenmek istenen hastanın gerkli bilgileri girilir
         System.out.println("Eklemek istediğiniz hastanın gerekli hasta bilgilerini giriniz : ");
-        System.out.println(" Hasta ismi : ");
+        System.out.println("Hasta ismi: ");
         String isim = tarayici.nextLine();
 
-        System.out.println(" Hasta soyismi : ");
+        System.out.println("Hasta soyismi: ");
         String soyisim = tarayici.nextLine();
 
-        System.out.println(" Hasta Tc : ");
+        System.out.println("Hasta Tc: ");
         String tc = tarayici.nextLine();
 
-        System.out.println(" Hasta telefon numarası : ");
+        System.out.println("Hasta telefon numarası: ");
         String telefonNumarasi = tarayici.nextLine();
 
         //id numarası liste boyutuna göre belirlenir
@@ -70,15 +76,14 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
                 Hasta.hastaListesi.remove(Hasta.hastaListesi.get(i));
                 System.out.println(
                         Hasta.hastaListesi.get(i).isim + " isimli ve " +
-                                Hasta.hastaListesi.get(i).id + " İd numaralı Hasta silindi. ");
+                                Hasta.hastaListesi.get(i).id + "Id numaralı Hasta silindi. ");
                 flag = true;
             }
         }
-        if (!flag){System.out.println("Aradığınız kullanıcı bulunmamaktadır.");}
+        if (!flag){System.out.println("\nAradığınız kullanıcı bulunmamaktadır.\n");}
     }
 
-
-
+    
     //Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
     public static void muhasebeIslemleri() {
 
@@ -105,11 +110,11 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
                     Muhasebe.giderHesaplama();
                     continue;
                 case "4":
-                    System.out.println("Çıkış yapılıyor...");
+                    System.out.println("\nÇıkış yapılıyor...\n");
                     flag = false;
                     break;
                 default:
-                    System.out.println("Yanlış değer girdiniz , lütfen verilen seçeneklere uygun değer giriniz.");
+                    System.out.println("\nYanlış değer girdiniz. Lütfen verilen seçeneklere uygun değer giriniz.\n");
                     break;
             }
 
@@ -118,16 +123,15 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
     }
 
 
-
     //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
     public static void hastaninFormunuYazdirma () {
         int degerlemesiIstenenHastaId = 0;
-        System.out.println("Formunu görmek istediğiniz hastanın İd numarsını giriniz : ");
+        System.out.println("Formunu görmek istediğiniz hastanın Id numarsını giriniz : ");
         while(true){
             try{
                 degerlemesiIstenenHastaId = tarayici.nextInt();
             }catch (InputMismatchException e){
-                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                 tarayici.nextLine();
                 continue;
             }
@@ -140,7 +144,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
         //Alınan değerleri bir for döngüsü ile gezer.
         for (DegerlendirmeKatagori anahtar : anahtarlar) {
-            System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri : " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
+            System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri: " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
         }
 
     }
@@ -160,9 +164,9 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             // String.format kullanarak float değeri istenen formata çevirir
             String formatliDolulukOrani = String.format("%.2f", dolulukOrani);
 
-            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimListesi.get(i).birimeAitHastaListesi.size());
-            System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
-            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani+ "\n");
+            System.out.println(Birim.birimListesi.get(i).getIsim() + "\n\nBiriminin toplam randevu sayısı: " + Birim.birimListesi.get(i).birimeAitHastaListesi.size());
+            System.out.println("\n" +birimHastaKapasitesi + "Birimin hasta kapasitesi \n");
+            System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +"Doluluk oranı %" + formatliDolulukOrani+ "\n");
         }
     }
 
@@ -176,7 +180,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
                 System.out.print("Hastanın TC Kimlik Numarası:");
                 tcKimlik = tarayici.nextLine();
                 if(tcKimlik.length() != 11){
-                    System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                    System.out.println("\nTC Kimlik Numaranısı 11 haneden oluşmalı.\n");
                 }
                 else{
                     break;
@@ -187,13 +191,12 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             for(int i=0;i<Hasta.hastaListesi.size();i++){
                 if(Hasta.hastaListesi.get(i).TC.equals(tcKimlik)){
                     flag4=true;
+                    break;
                 }
             }
-            if(flag4){
-                System.out.println("Hastaya ait reçete bulundu.");
-            }
-            else{
-                System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla kayıtlı hasta bulunmamaktadır.");
+
+            if (!flag4){
+                System.out.println("\nGirmiş olduğunuz TC Kimlik Numarasıyla kayıtlı hasta bulunmamaktadır.\n");
                 continue;
             }
 
@@ -209,14 +212,16 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             try {
                 BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
                 String satir;
+                System.out.println("|——————————————————————————————————————————————|");
                 while((satir= okuyucu.readLine()) != null){
                     System.out.println(satir);
                 }
+                System.out.println("|——————————————————————————————————————————————|\n");
                 okuyucu.close();
                 receteBulunduMu = false;
             } catch (FileNotFoundException e) {
-                System.out.println("Hastaya ait reçete bulunmamaktadır.");
-                continue;
+                System.out.println("\nHastaya ait reçete bulunmamaktadır.\n");
+                break;
             }
             catch (IOException e){
                 e.printStackTrace();
@@ -226,9 +231,11 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
     @Override
     public void doktorGoruntule() {
+        System.out.println("|——————————————————————————————————————————————|");
         for (int i=0;i<Doktor.doktorListesi.size();i++){
             System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
         }
+        System.out.println("|——————————————————————————————————————————————|");
     }
 }
 

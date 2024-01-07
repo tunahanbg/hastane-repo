@@ -1,7 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-
 public class Hasta extends AbsractKisi implements GoruntulemeIslemleri{
 
     //Map değişkeni : Verileri ANAHTAR(derecelendirmenin katagorisi)--DEĞER(derecelendirmenin değeri)
@@ -17,7 +16,6 @@ public class Hasta extends AbsractKisi implements GoruntulemeIslemleri{
     public void setToplamKategoriDegerleri(int[] toplamKategoriDegerleri) {
         this.toplamKategoriDegerleri = toplamKategoriDegerleri;
     }
-
 
     static Scanner tarayici = new Scanner(System.in);
     public static ArrayList<Hasta> hastaListesi=new ArrayList<Hasta>();

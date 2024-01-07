@@ -55,7 +55,7 @@ public class Doktor extends AbsractKisi {
                 hastaID = tarayici.nextInt();
             }
             catch (InputMismatchException e){
-                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                 tarayici.nextLine();
                 continue;
             }
@@ -87,7 +87,7 @@ public class Doktor extends AbsractKisi {
             File dosya = new File(dosyaYolu);
             if(!dosya.exists()){
                 dosya.createNewFile();
-                System.out.println("Reçete oluşturuldu.");
+                System.out.println("\nReçete oluşturuldu.\n");
             }
         }
         catch (IOException e){
@@ -102,7 +102,7 @@ public class Doktor extends AbsractKisi {
             yazici.close();
         }
         catch (FileNotFoundException e){
-            System.out.println("Dosya oluşturulurken hata oluştu.");
+            System.out.println("\nDosya oluşturulurken hata oluştu.\n");
         }
         catch (IOException e){
             e.printStackTrace();
@@ -161,7 +161,7 @@ public class Doktor extends AbsractKisi {
                 userChoice = userInput.nextInt();
 
             } catch (InputMismatchException e) {
-                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                 userInput.nextLine();
                 continue;
             }
@@ -179,13 +179,13 @@ public class Doktor extends AbsractKisi {
 
                     if (Ilaclar.aKatagorisiIlaclariList.contains(ilacSecimi)){
                         aIlaciEkle(ilacSecimi);
-                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        System.out.println("\nİlaç reçeteye başarıyla eklenmiştir.\n");
                         flag = false;
                         break;
                     }
 
                     else {
-                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.\n");
                         continue;
                     }
 
@@ -196,13 +196,13 @@ public class Doktor extends AbsractKisi {
 
                     if (Ilaclar.bKatagorisiIlaclariList.contains(ilacSecimi1)){
                         bIlaciEkle(ilacSecimi1);
-                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        System.out.println("\nİlaç reçeteye başarıyla eklenmiştir.\n");
                         flag = false;
                         break;
                     }
 
                     else {
-                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.\n");
                         continue;
                     }
 
@@ -213,13 +213,13 @@ public class Doktor extends AbsractKisi {
 
                     if (Ilaclar.cKatagorisiIlaclariList.contains(ilacSecimi2)){
                         cIlaciEkle(ilacSecimi2);
-                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        System.out.println("\nİlaç reçeteye başarıyla eklenmiştir.\n");
                         flag = false;
                         break;
                     }
 
                     else {
-                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.\n");
                         continue;
                     }
 
@@ -230,18 +230,18 @@ public class Doktor extends AbsractKisi {
 
                     if (Ilaclar.dKatagorisiIlaclariList.contains(ilacSecimi3)){
                         dIlaciEkle(ilacSecimi3);
-                        System.out.println("İlaç reçeteye başarıyla eklenmiştir.");
+                        System.out.println("\nİlaç reçeteye başarıyla eklenmiştir.\n");
                         flag = false;
                         break;
                     }
 
                     else {
-                        System.out.println("Hatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı ilaç ismi girdiniz. Lütfen tekrar deneyiniz.\n");
                         continue;
                     }
 
                 default:
-                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyin.");
+                    System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyin.\n");
                     break;
             }
         }
@@ -254,18 +254,18 @@ public class Doktor extends AbsractKisi {
                     hasta.recetedekiIlaclar.remove(i);
                 }
             }
-            System.out.println("İlaç başarıyla silinmiştir.");
+            System.out.println("\nİlaç başarıyla silinmiştir.\n");
         }
 
         else {
-            System.out.println("Yazdığınız ilaç reçetede bulunmuyor.");
+            System.out.println("\nYazdığınız ilaç reçetede bulunmuyor.\n");
         }
     }
 
     public void recetedekiIlaclariGoruntule(){
 
         if (hasta.recetedekiIlaclar.isEmpty()){
-            System.out.println("Reçetede herhangi bir ilaç bulunmamaktadır.");
+            System.out.println("\nReçetede herhangi bir ilaç bulunmamaktadır.\n");
         }
 
         else {
@@ -301,7 +301,7 @@ public class Doktor extends AbsractKisi {
                 }
 
                 catch (InputMismatchException e) {
-                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                     userInput.nextLine();
                     continue;
                 }
@@ -340,7 +340,7 @@ public class Doktor extends AbsractKisi {
                     break;
 
                 default:
-                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                     break;
             }
         }
@@ -375,19 +375,19 @@ public class Doktor extends AbsractKisi {
         }
 
         if (sayacA != 0 && sayacB != 0){
-            System.out.println("A ve B ilaçları birlikte kullanılırsa ciltte kızarıklık yapabilir. ");
+            System.out.println("\nA ve B ilaçları birlikte kullanılırsa ciltte kızarıklık yapabilir.\n");
         }
 
         if (sayacA != 0 && sayacD != 0){
-            System.out.println("A ve D ilaçları birlikte kullanılırsa uyku düzeninizi kötü etkileyebilir. ");
+            System.out.println("\nA ve D ilaçları birlikte kullanılırsa uyku düzeninizi kötü etkileyebilir.\n");
         }
 
         if (sayacC != 0 && sayacD != 0){
-            System.out.println("C ve D ilaçları birlikte kullanılırsa mide bulantısı yapabilir. ");
+            System.out.println("\nC ve D ilaçları birlikte kullanılırsa mide bulantısı yapabilir.\n");
         }
 
         else {
-            System.out.println("Yan etki oluşturacak herhangi bir durum yoktur.");
+            System.out.println("\nYan etki oluşturacak herhangi bir durum yoktur.\n");
         }
     }
 }

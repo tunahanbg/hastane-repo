@@ -72,7 +72,7 @@ public class Randevu {
                 System.out.print("TC Kimlik Numaranızı giriniz:");
                 TCNO = tarayici.nextLine();
                 if(TCNO.length() != 11){
-                    System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                    System.out.println("\nTC Kimlik Numaranısı 11 haneden oluşmalı.\n");
                 }
                 else{
                     break;
@@ -90,11 +90,11 @@ public class Randevu {
                 }
             }
             if(flag4){
-                System.out.println("Randevuya atandınız.");
+                System.out.println("\nRandevuya atandınız.\n");
                 break;
             }
             else{
-                System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla kayıtlı hasta bulunmamaktadır.");
+                System.out.println("\nGirmiş olduğunuz TC Kimlik Numarasıyla kayıtlı hasta bulunmamaktadır.\n");
             }
         }
 
@@ -105,11 +105,12 @@ public class Randevu {
         while(flag){
             System.out.println("|——————————————————————————————————————————————|");
             System.out.println("Doktorları görüntüleme seçenekleri:");
-            System.out.println("1-Belirli Birime Ait Doktorları Görüntüle");
-            System.out.println("2-Tüm Doktorları Görüntüle");
+            System.out.println("1-) Belirli Birime Ait Doktorları Görüntüle");
+            System.out.println("2-) Tüm Doktorları Görüntüle");
             System.out.println("|——————————————————————————————————————————————|");
             System.out.print("Seçiminiz:");
             String secim = tarayici.next();
+
             switch (secim){
                 case "1":
                     System.out.println("|——————————————————————————————————————————————|");
@@ -117,8 +118,9 @@ public class Randevu {
                     System.out.println("1-Pediatri\n2-Üroloji\n3-Ortopedi\n4-Kardiyoloji\n5-Nöroloji\n6-Dahiliye\n7-Cerrahi");
                     System.out.println("|——————————————————————————————————————————————|");
 
+                    // Birim isiminin kontrolü için
                     boolean birimKontrolu = true;
-                    boolean birimIsimKontrolu = true;
+                    int birimIsimKontrolu = 0;
 
                     while(birimKontrolu){
                         System.out.print("Seçtiğiniz birimin ismi:");
@@ -126,21 +128,23 @@ public class Randevu {
 
                         for(int i = 0 ; i < Birim.birimListesi.size(); i++){
                             if(Birim.birimListesi.get(i).getIsim().equalsIgnoreCase(birimSecim)){
+                                System.out.println("\n————————————————————————————————————————————————");
                                 for(int j=0;j<Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size();j++){
                                     System.out.println(Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).id+" "+Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).isim+" "+Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).soyisim);
                                 }
+                                System.out.println("————————————————————————————————————————————————\n");
                                 birimKontrolu = false;
-                            }
-                            else {
-                                birimIsimKontrolu = false;
+                                birimIsimKontrolu++;
+                                break;
                             }
                         }
-                        if (!birimIsimKontrolu){
-                            System.out.println("Hatalı birim ismi girdiniz!");
+
+                        if (birimIsimKontrolu == 0){
+                            System.out.println("\nHatalı birim ismi girdiniz!\n");
                         }
                     }
 
-                    flag=false;
+                    flag = false;
                     break;
                 case "2":
                     for (int i=0;i<Doktor.doktorListesi.size();i++){
@@ -149,7 +153,7 @@ public class Randevu {
                     flag=false;
                     break;
                 default:
-                    System.out.println("Yanlış seçim yaptınız.");
+                    System.out.println("\nYanlış seçim yaptınız.\n");
                     break;
             }
         }
@@ -157,7 +161,9 @@ public class Randevu {
         boolean flag2=true;
         boolean flag3=false;//id'lerin eşleştiğini kontrol etmek için koyduğum flag
         while(flag2){
+            System.out.println("|——————————————————————————————————————————————|");
             System.out.println("Randevuyu almak istediğiniz doktorun ID bilgisini giriniz:");
+            System.out.println("|——————————————————————————————————————————————|");
 
             // Hatalı giriş kontrolü (Tuna)
             while (true){
@@ -165,7 +171,7 @@ public class Randevu {
                     doktorID = tarayici.nextInt();
 
                 } catch (InputMismatchException e) {
-                    System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                    System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                     tarayici.nextLine();
                     continue;
                 }
@@ -185,10 +191,10 @@ public class Randevu {
                 }
             }
             if(flag3){
-                System.out.println("Seçtiğiniz doktor randevuya atandı.");
+                System.out.println("\nSeçtiğiniz doktor randevuya atandı.\n");
             }
             else{
-                System.out.println("Girmiş olduğunuz ID herhangi bir doktorla eşleşmedi.");
+                System.out.println("\nGirmiş olduğunuz ID herhangi bir doktorla eşleşmedi.\n");
             }
         }
 
@@ -219,7 +225,7 @@ public class Randevu {
                     try{
                         gun= tarayici.nextInt();
                     } catch (InputMismatchException e) {
-                        System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                         tarayici.nextLine();
                         continue;
                     }
@@ -230,7 +236,7 @@ public class Randevu {
                     try{
                         ay= tarayici.nextInt();
                     } catch (InputMismatchException e) {
-                        System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                         tarayici.nextLine();
                         continue;
                     }
@@ -241,7 +247,7 @@ public class Randevu {
                     try{
                         yil= tarayici.nextInt();
                     } catch (InputMismatchException e) {
-                        System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                        System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                         tarayici.nextLine();
                         continue;
                     }
@@ -249,17 +255,20 @@ public class Randevu {
                 }
 
                 if(gun<1 || gun>31){
-                    System.out.println("Gün bilgisi 1-31 arasında olmalı.");
+                    System.out.println("\nGün bilgisi 1-31 arasında olmalı.\n");
                 }
                 else if(ay<0 || ay>12){
-                    System.out.println("Ay bilgisi 1-12 arasında olmalı.");
+                    System.out.println("\nAy bilgisi 1-12 arasında olmalı.\n");
                 }
                 else if(yil<bugun.getTime().getYear()+1900){
-                    System.out.println("Geçmişte bir tarihe randevu alamazsınız.");
+                    System.out.println("\nGeçmişte bir tarihe randevu alamazsınız.\n");
+                }
+                else if (yil > 2026){
+                    System.out.println("\n2026 yılından sonraki bir tarihte randevu alamazsınz.\n");
                 }
                 else{
                     tarih=(gun+" "+ay+" "+yil);
-                    formatDogruMu=false;
+                    formatDogruMu = false;
                 }
             }
 

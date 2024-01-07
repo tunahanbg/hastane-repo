@@ -2,7 +2,7 @@ public class Paneller {
 
     public static void girisPaneli(){
         System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("|——————————  ——————————|>");
+        System.out.println("<—————————————————— ANA MENÜ ——————————————————>");
         System.out.println("1-) Kullanıcı Girişi");
         System.out.println("2-) Doktor Girişi");
         System.out.println("3-) Yönetici Girişi");
