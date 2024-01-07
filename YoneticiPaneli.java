@@ -211,7 +211,8 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
     @Override
     public void receteGoruntule(){
         boolean receteBulunduMu = true;
-        String tcKimlik = "";
+        String tcKimlik;
+
         while(receteBulunduMu){
             while(true){
                 System.out.print("Hastanın TC Kimlik Numarası:");

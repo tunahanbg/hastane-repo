@@ -80,8 +80,8 @@ public class Doktor extends AbsractKisi {
         }
         recete=(recete + " —> " + "Yazılan İlaçlar: "+yazilanIlaclar);
 
-        //String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out" + metinDosyasiAdi;
-        String dosyaYolu = "/Users/tunahanbg/Documents/GitHub/hastane-repo/out" + metinDosyasiAdi;
+        String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out" + metinDosyasiAdi;
+        //String dosyaYolu = "/Users/tunahanbg/Documents/GitHub/hastane-repo/out" + metinDosyasiAdi;
 
         try{
             File dosya = new File(dosyaYolu);
@@ -146,6 +146,7 @@ public class Doktor extends AbsractKisi {
         }
     }
 
+    // Reçeteye İlaç Eklediğim Kısım (Tunahan)
     public void receteyeIlacYaz(){
         Scanner userInput = new Scanner(System.in);
 
@@ -275,6 +276,7 @@ public class Doktor extends AbsractKisi {
         }
     }
 
+    // REÇETEDEKİ İLAÇ İŞLEMLERİNİN YAPILDIĞI KISIM (Tunahan)
     public ArrayList<String> receteIslemleri(int hastaID){
         Scanner userInput = new Scanner(System.in);
 
