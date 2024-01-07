@@ -1,10 +1,12 @@
 public class Paneller {
 
     public static void girisPaneli(){
+        System.out.println("|——————————————————————————————————————————————|");
         System.out.println("1-) Kullanıcı Girişi");
         System.out.println("2-) Doktor Girişi");
         System.out.println("3-) Yönetici Girişi");
         System.out.println("4-) Çıkış");
+        System.out.println("|——————————————————————————————————————————————|");
     }
     public static void kullaniciPaneli(){
         System.out.println("|——————————————————————————————————————————————|");
@@ -17,7 +19,7 @@ public class Paneller {
     }
     public static void kullaniciGirisEkrani(){
         System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("TC Kimlik Numaranızı giriniz: ");
+        System.out.println("ID'nizi giriniz: ");
         System.out.println("|——————————————————————————————————————————————|");
     }
 
@@ -55,11 +57,5 @@ public class Paneller {
         System.out.println("|——————————————————————————————————————————————|");
     }
 
-    public static void adminHemsirePaneli(){
-        System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("1-) Hemşireleri Görüntüle");
-        System.out.println("1-) Hemşireleri Görüntüle");
-        System.out.println("1-) Hemşireleri Görüntüle");
-        System.out.println("|——————————————————————————————————————————————|");
-    }
+
 }

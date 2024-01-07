@@ -25,7 +25,7 @@ public class Doktor extends AbsractKisi {
 
     public void hastaGoruntule(){
         for(int i=0;i<Hasta.hastaListesi.size();i++){
-            System.out.println(Hasta.hastaListesi.get(i).id+"-"+" Hastanın İsmi:"+Hasta.hastaListesi.get(i).isim+" Hastanın Soyismi"+Hasta.hastaListesi.get(i).soyisim+" Hastanın TC'si:"+Hasta.hastaListesi.get(i).TC);
+            System.out.println(Hasta.hastaListesi.get(i).id+"-)"+" Hastanın İsmi: "+ Hasta.hastaListesi.get(i).isim + " | " + "Hastanın Soyismi " + Hasta.hastaListesi.get(i).soyisim + " | " + "Hastanın TC'si: " + Hasta.hastaListesi.get(i).TC);
         }
     }
 

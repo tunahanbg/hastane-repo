@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -33,31 +34,33 @@ public class Main {
         while(flag1){
             Paneller.girisPaneli();
             System.out.print("Seçiminizi giriniz:");
+
             String userChoice = userInput.next();
             switch (userChoice){
                 // Hasta/Kullanıcı Girişi
                 case "1":
+                    int kullaniciId = 0;
                     Paneller.kullaniciGirisEkrani();
-                    String tcNo;
                     while(true){
-                        tcNo=userInput.next();
-                        if(tcNo.length() != 11){
-                            System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                        try {
+                            kullaniciId = userInput.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                            userInput.nextLine();
+                            continue;
                         }
-                        else{
-                            break;
-                        }
+                        break;
                     }
 
                     boolean hastaBulunmuyor=true;
                     for(int i=0;i<Hasta.hastaListesi.size();i++){
-                        if(tcNo.equals(Hasta.hastaListesi.get(i).TC)){
+                        if(kullaniciId == Hasta.hastaListesi.get(i).id){
                             System.out.println("Sisteme giriş başarılı.Hoşgeldiniz Sayın"+" "+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+" .");
                             hastaBulunmuyor=false;
                         }
                     }
                     if (hastaBulunmuyor){
-                        System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla sisteme kayıtlı hasta bulunmamaktadır.");
+                        System.out.println("Girmiş olduğunuz ID ile sisteme kayıtlı hasta bulunmamaktadır.");
                         System.out.println("Tekrar Ana Menüye yönlendiriliyorsunuz.");
                         break;
                     }
@@ -66,7 +69,8 @@ public class Main {
                     while(kullaniciPaneliKontrol){
                         Paneller.kullaniciPaneli();
                         System.out.println("Seçiminiz:");
-                        String kullaniciPaneliSecim=userInput.next();
+                        String kullaniciPaneliSecim = userInput.next();
+
                         switch (kullaniciPaneliSecim){
                             case "1":
                                 for(int i=0;i<Birim.birimListesi.size();i++){
@@ -80,10 +84,11 @@ public class Main {
                                 break;
                             case "3":
                                 Randevu.randevuOlustur();
-                                DegerlendirmeFormu.hastaDegerlendirmeFormu();
                                 break;
                             case "4":
                                 //BURASI GERİ DÖNÜŞ BİLDİR KISMI
+
+                                DegerlendirmeFormu.hastaDegerlendirmeFormu();
                                 break;
                             case"5":
                                 System.out.println("Kullanıcı panelinden çıkış yapılıyor...");
@@ -171,28 +176,36 @@ public class Main {
                 // Yönetici Girişi  ---------DÜZELTİLMESİ GEREKİYOR------------
                 case "3":
                     Admin admin = new Admin();
-                    System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
-                    System.out.println(" 1: Maliye işlemleri");
-                    System.out.println(" 2: Hasta işlemleri");
-                    System.out.println(" 3: Analizler ");
-                    System.out.println(" 4: Birimlerin Doluluk oranı ");
+                    System.out.println("Şifrenizi giriniz:");
+                    String adminSifreKontrol = userInput.next();
 
-                    String yapilmakIstenenIslem = userInput.next();
-                    switch (yapilmakIstenenIslem){
-                        case "1":
-                            YoneticiPaneli.muhasebeIslemleri();
-                            break;
-                        case "2":
-                            YoneticiPaneli.hastaFonksiyonlariYonetimi();
-                            break;
-                        case "3"://Değerlendirme katagorilerinin aldıkları değerlerin toplamı
-                            DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
-                            break;
-                        case "4"://Birimlerin doluluk oranlarını hesaplar
-                            YoneticiPaneli.birimHastaDolulukOrani();
-                            break;
-                        default:
-                            break;
+                    if(admin.getAdminSifre().equals(adminSifreKontrol)){
+                        System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğinizişlemi seçiniz :");
+                        System.out.println(" 1: Maliye işlemleri");
+                        System.out.println(" 2: Hasta işlemleri");
+                        System.out.println(" 3: Analizler ");
+                        System.out.println(" 4: Birimlerin Doluluk oranı ");
+
+                        String yapilmakIstenenIslem = userInput.next();
+                        switch (yapilmakIstenenIslem){
+                            case "1":
+                                YoneticiPaneli.muhasebeIslemleri();
+                                break;
+                            case "2":
+                                YoneticiPaneli.hastaFonksiyonlariYonetimi();
+                                break;
+                            case "3"://Değerlendirme katagorilerinin aldıkları değerlerin toplamı
+                                DegerlendirmeFormu.katagoriOrtalamaDegerlendirmeleri();
+                                break;
+                            case "4"://Birimlerin doluluk oranlarını hesaplar
+                                YoneticiPaneli.birimHastaDolulukOrani();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else {
+                        System.out.println("Şifre Hatalı!");
                     }
 
                     break;

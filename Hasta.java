@@ -24,6 +24,8 @@ public class Hasta extends AbsractKisi implements GoruntulemeIslemleri{
 
     public ArrayList <String> recetedekiIlaclar = new ArrayList<>();
 
+    public int randevuSayisi;
+
     public Hasta(){}
 
     public static int farkliID=1;
@@ -33,6 +35,7 @@ public class Hasta extends AbsractKisi implements GoruntulemeIslemleri{
         this.TC=TC;
         this.id=farkliID++;
         this.telefonNo=telefonNo;
+        randevuSayisi = 0;
         hastaListesi.add(this);
     }
 
