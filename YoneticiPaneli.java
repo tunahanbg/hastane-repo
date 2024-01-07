@@ -65,6 +65,8 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
 
         String dosyaYolu="C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\HastaListesi.txt";
+//        String dosyaYolu = "/Users/tunahanbg/Documents/GitHub/hastane-repo/HemsireListesi.txt";
+
         String yeniHasta=(isim+","+soyisim+","+tc+","+telefonNumarasi);
         try{
             File dosya = new File(dosyaYolu);
@@ -125,10 +127,10 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         while(flag){
             System.out.println("|——————————————————————————————————————————————|");
             System.out.println("Yapmak istediğinizişlemi seçiniz :");
-            System.out.println(" 1: Toplam Kâr");
-            System.out.println(" 2: Toplam Gelirler");
-            System.out.println(" 3: Toplam Giderler");
-            System.out.println(" 4: Çıkış");
+            System.out.println("1-) Toplam Kâr");
+            System.out.println("2-) Toplam Gelirler");
+            System.out.println("3-) Toplam Giderler");
+            System.out.println("4-) Çıkış");
             System.out.println("|——————————————————————————————————————————————|");
 
             String secim = tarayici.next();

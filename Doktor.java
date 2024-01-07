@@ -356,7 +356,6 @@ public class Doktor extends AbsractKisi {
 
         for (int j = 1; j < 16; j++){
 
-            // A ve B varsa yan etki kontrolü
             if (hasta.recetedekiIlaclar.contains("aIlaci" + j)){
                 sayacA++;
             }
@@ -374,20 +373,27 @@ public class Doktor extends AbsractKisi {
             }
         }
 
+        boolean yanEtkiKontrolu = true;
+
+
         if (sayacA != 0 && sayacB != 0){
             System.out.println("\nA ve B ilaçları birlikte kullanılırsa ciltte kızarıklık yapabilir.\n");
+            yanEtkiKontrolu = false;
         }
 
         if (sayacA != 0 && sayacD != 0){
             System.out.println("\nA ve D ilaçları birlikte kullanılırsa uyku düzeninizi kötü etkileyebilir.\n");
+            yanEtkiKontrolu = false;
         }
 
         if (sayacC != 0 && sayacD != 0){
             System.out.println("\nC ve D ilaçları birlikte kullanılırsa mide bulantısı yapabilir.\n");
+            yanEtkiKontrolu = false;
         }
 
-        else {
+        if (yanEtkiKontrolu){
             System.out.println("\nYan etki oluşturacak herhangi bir durum yoktur.\n");
         }
+
     }
 }

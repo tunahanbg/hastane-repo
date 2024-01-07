@@ -27,7 +27,7 @@ public class Ilaclar {
                 userChoice = userInput.nextInt();
 
             }catch (InputMismatchException e){
-                System.out.println("Hatalı giriş yaptınız. Lütfen tekrar deneyiniz.");
+                System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
                 userInput.nextLine();
                 continue;
             }
@@ -80,7 +80,7 @@ public class Ilaclar {
                     break;
 
                 default:
-                    System.out.println("Hatalı giriş yaptınız.");
+                    System.out.println("\nHatalı giriş yaptınız.\n");
                     break;
             }
         }

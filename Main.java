@@ -193,13 +193,13 @@ public class Main {
                         while(yoneticiFlag){
                             System.out.println("|——————————————————————————————————————————————|");
                             System.out.println("Yönetici İşlemlerine Hoşgeldiniz. Yapmak istediğiniz işlemi seçiniz :");
-                            System.out.println(" 1: Maliye işlemleri");
-                            System.out.println(" 2: Hasta işlemleri");
-                            System.out.println(" 3: Analizler ");
-                            System.out.println(" 4: Birimlerin Doluluk oranı ");
-                            System.out.println(" 5: Reçete Görüntüle ");
-                            System.out.println(" 6: Doktorları Görüntüle ");
-                            System.out.println(" 7: Çıkış ");
+                            System.out.println("1-) Maliye işlemleri");
+                            System.out.println("2-) Hasta işlemleri");
+                            System.out.println("3-) Analizler ");
+                            System.out.println("4-) Birimlerin Doluluk oranı ");
+                            System.out.println("5-) Reçete Görüntüle ");
+                            System.out.println("6-) Doktorları Görüntüle ");
+                            System.out.println("7-) Çıkış ");
                             System.out.println("|——————————————————————————————————————————————|");
 
                             String yapilmakIstenenIslem = userInput.next();
