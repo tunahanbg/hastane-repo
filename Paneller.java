@@ -2,6 +2,7 @@ public class Paneller {
 
     public static void girisPaneli(){
         System.out.println("|——————————————————————————————————————————————|");
+        System.out.println("|——————————  ——————————|>");
         System.out.println("1-) Kullanıcı Girişi");
         System.out.println("2-) Doktor Girişi");
         System.out.println("3-) Yönetici Girişi");
@@ -23,14 +24,22 @@ public class Paneller {
         System.out.println("|——————————————————————————————————————————————|");
     }
 
-    public static void kullaniciGeriDonusPaneli(){
+    public static void birimleriGorntule(){
         System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("Geri Dönüş Yapmak İstediğiniz Birimi Seçiniz:");
-        System.out.println("1-) Hastane Hakkında");
-        System.out.println("2-) Doktor Hakkında");
-        System.out.println("3-) Hemşire Hakkında");
+        for(int i=0;i<Birim.birimListesi.size();i++){
+            System.out.println(Birim.birimListesi.get(i).getIsim());
+        }
         System.out.println("|——————————————————————————————————————————————|");
     }
+
+    public static void doktorlariGoruntule(){
+        System.out.println("|——————————————————————————————————————————————|");
+        for (int i=0;i<Doktor.doktorListesi.size();i++){
+            System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
+        }
+        System.out.println("|——————————————————————————————————————————————|");
+    }
+
     public static void doktorPaneli(){
         System.out.println("|——————————————————————————————————————————————|");
         System.out.println("Yapmak İstediğiniz İşlemi Seçiniz:");
@@ -40,29 +49,5 @@ public class Paneller {
         System.out.println("4-) Çıkış");
         System.out.println("|——————————————————————————————————————————————|");
     }
-    public static void adminPaneli(){
-        System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("Yapmak İstediğiniz İşlemi Seçiniz:");
-        System.out.println("1-) Doktorları Görüntüle");
-        System.out.println("2-) Hemşireleri Görüntüle");
-        System.out.println("3-) Hastaları Görüntüle");
-        System.out.println("4-) Personelleri Görüntüle");
-        System.out.println("|——————————————————————————————————————————————|");
-    }
 
-    public static void adminDoktorPaneli(){
-        System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("1-) Doktorları Görüntüle");
-        System.out.println("2-) Doktor Ekle");
-        System.out.println("3-) Doktor Çıkar");
-        System.out.println("|——————————————————————————————————————————————|");
-    }
-
-    public static void adminHemsirePaneli(){
-        System.out.println("|——————————————————————————————————————————————|");
-        System.out.println("1-) Hemşireleri Görüntüle");
-        System.out.println("1-) Hemşireleri Görüntüle");
-        System.out.println("1-) Hemşireleri Görüntüle");
-        System.out.println("|——————————————————————————————————————————————|");
-    }
 }

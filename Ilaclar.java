@@ -8,6 +8,8 @@ public class Ilaclar {
     public static ArrayList <String> bKatagorisiIlaclariList = new ArrayList<>();
     public static ArrayList <String> cKatagorisiIlaclariList = new ArrayList<>();
     public static ArrayList <String> dKatagorisiIlaclariList = new ArrayList<>();
+
+    // Bu diziyi dosyadan ilaç verilerini çekerken kullanıyorum. (Tunahan)
     public static ArrayList[] tumKatagorilerIlaclariList = {aKatagorisiIlaclariList, bKatagorisiIlaclariList, cKatagorisiIlaclariList, dKatagorisiIlaclariList};
 
     public  static void ilaclariGoruntule(){
@@ -16,8 +18,10 @@ public class Ilaclar {
         int userChoice;
 
         while(true){
+            System.out.println("|——————————————————————————————————————————————|");
             System.out.println("Hangi Katagorideki İlaçları Görüntülemek İstersiniz?");
             System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+            System.out.println("|——————————————————————————————————————————————|");
 
             try {
                 userChoice = userInput.nextInt();
@@ -79,22 +83,6 @@ public class Ilaclar {
                     System.out.println("Hatalı giriş yaptınız.");
                     break;
             }
-        }
-    }
-
-
-    public static void ilaclariOlustur(){
-        for (int i = 0; i < 10 ; i++){
-            aKatagorisiIlaclariList.add("aIlaci" + (i+1));
-            cKatagorisiIlaclariList.add("cIlaci" + (i+1));
-        }
-
-        for (int i = 0; i < 15 ; i++){
-            bKatagorisiIlaclariList.add("bIlaci" + (i+1));
-        }
-
-        for (int i = 0; i < 5 ; i++){
-            dKatagorisiIlaclariList.add("dIlaci" + (i+1));
         }
     }
 }

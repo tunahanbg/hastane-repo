@@ -56,14 +56,6 @@ public class Randevu {
         return hasta;
     }
 
-    /*public void setBirimAdi(String birimAdi) {
-        this.birimAdi = birimAdi;
-    }
-
-    public String getBirimAdi() {
-        return birimAdi;
-    }*/
-
     public void setHasta(Hasta hasta) {
         this.hasta = hasta;
     }
@@ -90,10 +82,10 @@ public class Randevu {
             boolean flag4=false;
             for(int i=0;i<Hasta.hastaListesi.size();i++){
                 if(Hasta.hastaListesi.get(i).TC.equals(TCNO)){
-                    //Randevu randevu = new Randevu();
-                    //randevu.setBirimAdi(birimAdi);
-                    //Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size()
                     yeniRandevu.setHasta(Hasta.hastaListesi.get(i));
+
+                    // Hastanın Katagori Değerlendirme Yapabilmesi İçin Randevuya Atanınca randevuSayisini arttırdık.
+                    Hasta.hastaListesi.get(i).randevuSayisi++;
                     flag4=true;
                 }
             }
@@ -111,25 +103,43 @@ public class Randevu {
         String birimSecim="";
         boolean flag=true;
         while(flag){
+            System.out.println("|——————————————————————————————————————————————|");
             System.out.println("Doktorları görüntüleme seçenekleri:");
-            System.out.println("1-Belirli birime ait doktorları görüntüle");
-            System.out.println("2-Tüm doktorları görüntüle");
+            System.out.println("1-Belirli Birime Ait Doktorları Görüntüle");
+            System.out.println("2-Tüm Doktorları Görüntüle");
+            System.out.println("|——————————————————————————————————————————————|");
             System.out.print("Seçiminiz:");
             String secim = tarayici.next();
             switch (secim){
                 case "1":
+                    System.out.println("|——————————————————————————————————————————————|");
                     System.out.println("Birimler:");
                     System.out.println("1-Pediatri\n2-Üroloji\n3-Ortopedi\n4-Kardiyoloji\n5-Nöroloji\n6-Dahiliye\n7-Cerrahi");
-                    System.out.print("Seçtiğiniz birimin ismi:");
-                    birimSecim=tarayici.next();
-                    for(int i=0;i<Birim.birimListesi.size();i++){
-                        if(Birim.birimListesi.get(i).getIsim().equals(birimSecim)){
-                            for(int j=0;j<Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size();j++){
-                                System.out.println(Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).id+" "+Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).isim+" "+Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).soyisim);
+                    System.out.println("|——————————————————————————————————————————————|");
+
+                    boolean birimKontrolu = true;
+                    boolean birimIsimKontrolu = true;
+
+                    while(birimKontrolu){
+                        System.out.print("Seçtiğiniz birimin ismi:");
+                        birimSecim = tarayici.next();
+
+                        for(int i = 0 ; i < Birim.birimListesi.size(); i++){
+                            if(Birim.birimListesi.get(i).getIsim().equalsIgnoreCase(birimSecim)){
+                                for(int j=0;j<Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.size();j++){
+                                    System.out.println(Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).id+" "+Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).isim+" "+Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.get(j).soyisim);
+                                }
+                                birimKontrolu = false;
                             }
-                            break;
+                            else {
+                                birimIsimKontrolu = false;
+                            }
+                        }
+                        if (!birimIsimKontrolu){
+                            System.out.println("Hatalı birim ismi girdiniz!");
                         }
                     }
+
                     flag=false;
                     break;
                 case "2":

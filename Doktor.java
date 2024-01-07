@@ -4,7 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Doktor extends AbsractKisi {
-    Scanner tarayici=new Scanner(System.in);
+    Scanner tarayici = new Scanner(System.in);
     Hasta hasta = new Hasta();
     public static int farkliID = 0;
 
@@ -23,19 +23,18 @@ public class Doktor extends AbsractKisi {
     }
 
     //Reçete yazma işlemlerinde TC ile eşleşen doktoru atamak için bu constructorı kurdum.Diğer constructor kullanılırsa aynı doktoru listeye tekrar ekler.(MBB)
-    public Doktor(){
-
-    }
+    public Doktor(){}
 
 
     public void hastaGoruntule(){
+        System.out.println("|——————————————————————————————————————————————|");
         for(int i=0;i<Hasta.hastaListesi.size();i++){
-            System.out.println(Hasta.hastaListesi.get(i).id+"-"+" Hastanın İsmi:"+Hasta.hastaListesi.get(i).isim+" Hastanın Soyismi"+Hasta.hastaListesi.get(i).soyisim+" Hastanın TC'si:"+Hasta.hastaListesi.get(i).TC);
+            System.out.println(Hasta.hastaListesi.get(i).id+"-) " + "Hastanın İsmi: " + Hasta.hastaListesi.get(i).isim + " | " + "Hastanın Soyismi: " + Hasta.hastaListesi.get(i).soyisim + " | " + "Hastanın TC'si:" + Hasta.hastaListesi.get(i).TC);
         }
+        System.out.println("|——————————————————————————————————————————————|");
     }
 
     public void hastaSecimIslemi(int hastaID){
-
         for(int i = 0; i < Hasta.hastaListesi.size(); i++){
             if(Hasta.hastaListesi.get(i).id == hastaID){
                 this.hasta = Hasta.hastaListesi.get(i);
@@ -63,8 +62,8 @@ public class Doktor extends AbsractKisi {
             break;
         }
 
-        System.out.print("Reçete:");
-        tarayici.next();
+        System.out.print("Reçete: ");
+        tarayici.nextLine();
         String recete = tarayici.nextLine();
         String metinDosyasiAdi = "";
 
@@ -79,9 +78,10 @@ public class Doktor extends AbsractKisi {
         for (int i=0;i<hastaninIlaclari.size();i++){
             yazilanIlaclar=(yazilanIlaclar+" "+hastaninIlaclari.get(i)+" ");
         }
-        recete=(recete+" Yazılan İlaçlar: "+yazilanIlaclar);
+        recete=(recete + " —> " + "Yazılan İlaçlar: "+yazilanIlaclar);
 
-        String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out" + metinDosyasiAdi;
+        //String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out" + metinDosyasiAdi;
+        String dosyaYolu = "/Users/tunahanbg/Documents/GitHub/hastane-repo/out" + metinDosyasiAdi;
 
         try{
             File dosya = new File(dosyaYolu);
@@ -152,9 +152,10 @@ public class Doktor extends AbsractKisi {
         int userChoice;
 
         while (true){
-
+            System.out.println("|——————————————————————————————————————————————|");
             System.out.println("Hangi Katagorideki İlaçdan Seçim Yapmak istersiniz?");
             System.out.println("1-) A Katagorisi\n2-) B Katagorisi\n3-) C Katagorisi\n4-) D Katagorisi");
+            System.out.println("|——————————————————————————————————————————————|");
 
             try {
                 userChoice = userInput.nextInt();

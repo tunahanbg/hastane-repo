@@ -163,38 +163,40 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimListesi.get(i).birimeAitHastaListesi.size());
             System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
             System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani+ "\n");
-
         }
-
     }
 
 
     @Override
     public void receteGoruntule(){
-        System.out.print("Hastanın TC Kimlik Numarası:");
-        String tcKimlik=tarayici.nextLine();
+        boolean receteBulunduMu = true;
+        while(true){
+            System.out.print("Hastanın TC Kimlik Numarası:");
+            String tcKimlik = tarayici.nextLine();
 
-        String dosyaIsmi="";
-        for (int i=0;i<Hasta.hastaListesi.size();i++){
-            if(Hasta.hastaListesi.get(i).TC.equals(tcKimlik)){
-                dosyaIsmi=(Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+".txt");
+            String dosyaIsmi="";
+            for (int i = 0 ; i < Hasta.hastaListesi.size(); i++){
+                if(Hasta.hastaListesi.get(i).TC.equals(tcKimlik)){
+                    dosyaIsmi=("out"+Hasta.hastaListesi.get(i).isim+" "+Hasta.hastaListesi.get(i).soyisim+".txt");
+                }
             }
-        }
 
-        File dosya = new File(dosyaIsmi);
-        String dosyaYolu=dosya.getAbsolutePath();
-        try {
-            BufferedReader okuyucu=new BufferedReader(new FileReader(dosyaYolu));
-            String satir;
-            while((satir= okuyucu.readLine()) != null){
-                System.out.println(satir);
+            File dosya = new File(dosyaIsmi);
+            String dosyaYolu=dosya.getAbsolutePath();
+            try {
+                BufferedReader okuyucu = new BufferedReader(new FileReader(dosyaYolu));
+                String satir;
+                while((satir= okuyucu.readLine()) != null){
+                    System.out.println(satir);
+                }
+                okuyucu.close();
+            } catch (FileNotFoundException e) {
+                System.out.println("Hastaya ait reçete bulunmamaktadır.");
+                continue;
             }
-            okuyucu.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        catch (IOException e){
-            e.printStackTrace();
+            catch (IOException e){
+                e.printStackTrace();
+            }
         }
     }
 

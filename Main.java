@@ -4,13 +4,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
 
-        Birim birim1=new Birim("Pediatri", 5);
-        Birim birim2=new Birim("Üroloji",6);
-        Birim birim3=new Birim("Ortopedi",7);
-        Birim birim4=new Birim("Kardiyoloji", 6);
-        Birim birim5=new Birim("Nöroloji", 5);
-        Birim birim6=new Birim("Dahiliye", 8);
-        Birim birim7=new Birim("Cerrahi", 5);
+        Birim birim1 = new Birim("Pediatri", 5);
+        Birim birim2 = new Birim("Üroloji",6);
+        Birim birim3 = new Birim("Ortopedi",7);
+        Birim birim4 = new Birim("Kardiyoloji", 6);
+        Birim birim5 = new Birim("Nöroloji", 5);
+        Birim birim6 = new Birim("Dahiliye", 8);
+        Birim birim7 = new Birim("Cerrahi", 5);
 
         //Doktorların txt dosyasından alınması (MBB):
         VeriOkumaIslemleri.doktorVerileriniCekme();
@@ -68,14 +68,10 @@ public class Main {
                         String kullaniciPaneliSecim=userInput.next();
                         switch (kullaniciPaneliSecim){
                             case "1":
-                                for(int i=0;i<Birim.birimListesi.size();i++){
-                                    System.out.println(Birim.birimListesi.get(i).getIsim());
-                                }
+                                Paneller.birimleriGorntule();
                                 break;
                             case "2":
-                                for (int i=0;i<Doktor.doktorListesi.size();i++){
-                                    System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
-                                }
+                                Paneller.doktorlariGoruntule();
                                 break;
                             case "3":
                                 Randevu.randevuOlustur();
@@ -115,7 +111,7 @@ public class Main {
                     boolean doktorBulunmuyor=true;
                     for(int i=0;i<Doktor.doktorListesi.size();i++){
                         if(tcNoDoktor.equals(Doktor.doktorListesi.get(i).TC)){
-                            System.out.println("Sisteme giriş başarılı.Hoşgeldiniz Sayın"+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim+" .");
+                            System.out.println("Sisteme giriş başarılı. Hoşgeldiniz Sayın" + " " + Doktor.doktorListesi.get(i).isim + " " + Doktor.doktorListesi.get(i).soyisim + " .");
                             doktorBulunmuyor=false;
                         }
                     }
@@ -133,7 +129,7 @@ public class Main {
                         switch (doktorPaneliSecimi){
                             case "1":
                                 if(Randevu.randevuListesi.isEmpty()){
-                                    System.out.println("Şuanda herhangi bir doktora atanmış randevu bulunmamaktadır.");
+                                    System.out.println("Şu anda herhangi bir doktora atanmış randevu bulunmamaktadır.");
                                     break;
                                 }
                                 boolean randevuVarMi=true;
@@ -177,12 +173,14 @@ public class Main {
                     break;
 
 
-                // Yönetici Girişi  ---------DÜZELTİLMESİ GEREKİYOR------------
+                // Yönetici Girişi
                 case "3":
                     Admin admin = new Admin();
+
                     System.out.println("|——————————————————————————————————————————————|");
                     System.out.println("Yönetici Şifresini Giriniz:");
                     System.out.println("|——————————————————————————————————————————————|");
+
                     String adminSifreKontrol = userInput.next();
 
                     if(admin.getAdminSifre().equals(adminSifreKontrol)){
@@ -192,6 +190,7 @@ public class Main {
                         System.out.println(" 2: Hasta işlemleri");
                         System.out.println(" 3: Analizler ");
                         System.out.println(" 4: Birimlerin Doluluk oranı ");
+                        System.out.println(" 5: Reçete Görüntüle ");
                         System.out.println("|——————————————————————————————————————————————|");
 
                         String yapilmakIstenenIslem = userInput.next();
@@ -207,6 +206,12 @@ public class Main {
                                 break;
                             case "4"://Birimlerin doluluk oranlarını hesaplar
                                 YoneticiPaneli.birimHastaDolulukOrani();
+                                break;
+                            case "5":
+                                admin.receteGoruntule();
+                                break;
+                            case "6":
+                                admin.doktorGoruntule();
                                 break;
                             default:
                                 break;
