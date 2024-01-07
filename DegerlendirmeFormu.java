@@ -32,16 +32,38 @@ public class DegerlendirmeFormu {
 
         DegerlendirmeFormu form = new DegerlendirmeFormu();
         System.out.println("Değerlendirme için lütfen İD numaranızı giriniz : ");
-        int degerlendiriciId = tarayici.nextInt();
-        degerledirmeyeKatilanHastaSayisi++;
-        form.hastaninDerelecelendirmesiniDoldur(Hasta.hastaListesi.get(degerlendiriciId));
 
-        //Değerlendiren hastalrın id'si eklenir
-        degerlendirenHastalarId.add(degerlendiriciId);
-        System.out.println("Değerlendirmeniz alındı. \n İyi günler dileriz :) ");
+        int degerlendiriciId = 0;
+        while (true){
+            try{
+                degerlendiriciId = tarayici.nextInt();
 
-        //değerlendiriciID kullanabilmek için çağırıldı aslında direk gerekli değil çünkü her hasta formu kaydolurken ortalama hesaplar kısa bir çözüm bu sadece
-        //katagoriOrtalamaDegerlendirmeleri();
+            } catch (InputMismatchException e) {
+                System.out.println("Hatalı giriş yaptınız.Lütfen tekrar deneyiniz.");
+                tarayici.nextLine();
+                continue;
+            }
+            break;
+        }
+
+        for (int i = 0; i < Hasta.hastaListesi.size(); i++){
+            if (degerlendiriciId == Hasta.hastaListesi.get(i).id){
+                if (Hasta.hastaListesi.get(i).randevuSayisi != 0){
+                    degerledirmeyeKatilanHastaSayisi++;
+                    form.hastaninDerelecelendirmesiniDoldur(Hasta.hastaListesi.get(degerlendiriciId));
+
+                    //Değerlendiren hastalrın id'si eklenir
+                    degerlendirenHastalarId.add(degerlendiriciId);
+                    System.out.println("Değerlendirmeniz alındı. \n İyi günler dileriz :) ");
+
+                    //değerlendiriciID kullanabilmek için çağırıldı aslında direk gerekli değil çünkü her hasta formu kaydolurken ortalama hesaplar kısa bir çözüm bu sadece
+                    //katagoriOrtalamaDegerlendirmeleri();
+
+                }
+                else
+                    System.out.println("Herhangi bir randevu almadığınız için değerlendirme yapamazsınız.");
+            }
+        }
 
     }
 

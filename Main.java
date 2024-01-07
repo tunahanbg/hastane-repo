@@ -79,10 +79,11 @@ public class Main {
                                 break;
                             case "3":
                                 Randevu.randevuOlustur();
-                                DegerlendirmeFormu.hastaDegerlendirmeFormu();
+
                                 break;
                             case "4":
                                 //BURASI GERİ DÖNÜŞ BİLDİR KISMI
+                                DegerlendirmeFormu.hastaDegerlendirmeFormu();
                                 break;
                             case"5":
                                 System.out.println("Kullanıcı panelinden çıkış yapılıyor...");
