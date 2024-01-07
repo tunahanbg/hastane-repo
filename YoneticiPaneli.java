@@ -115,22 +115,6 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         }
         if (!flag){System.out.println("\nAradığınız kullanıcı bulunmamaktadır.\n");}
 
-
-        // Hastanın text dosyasından silinmesini sağlayın
-        File file = new File("HemsireListesi.txt");
-        FileWriter writer = new FileWriter(file);
-
-        String satir;
-        try (Scanner scanner2 = new Scanner(file)) {
-            while (scanner2.hasNextLine()) {
-                satir = scanner2.nextLine();
-                if (!satir.contains(String.valueOf(silinenHastaId))) {
-                    writer.write(satir + "\n");
-                }
-            }
-        }
-
-        writer.close();
     }
 
 
