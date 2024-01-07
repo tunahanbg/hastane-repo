@@ -239,11 +239,11 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
     @Override
     public void doktorGoruntule() {
-        System.out.println("|——————————————————————————————————————————————|");
+        System.out.println("\n————————————————————————————————————————————————");
         for (int i=0;i<Doktor.doktorListesi.size();i++){
             System.out.println(Doktor.doktorListesi.get(i).id+" "+Doktor.doktorListesi.get(i).isim+" "+Doktor.doktorListesi.get(i).soyisim);
         }
-        System.out.println("|——————————————————————————————————————————————|");
+        System.out.println("————————————————————————————————————————————————\n");
     }
 }
 
