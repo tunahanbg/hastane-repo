@@ -62,7 +62,7 @@ public class Randevu {
 
 
     public static void randevuOlustur(){
-        Randevu yeniRandevu=new Randevu();
+        Randevu yeniRandevu = new Randevu();
         int doktorID = 0;
 
         //Randevuya hastanın atanması:
@@ -70,7 +70,7 @@ public class Randevu {
         while(true){
             while(true){
                 System.out.print("TC Kimlik Numaranızı giriniz:");
-                TCNO=tarayici.nextLine();
+                TCNO = tarayici.nextLine();
                 if(TCNO.length() != 11){
                     System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
                 }

@@ -170,9 +170,32 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
     @Override
     public void receteGoruntule(){
         boolean receteBulunduMu = true;
-        while(true){
-            System.out.print("Hastanın TC Kimlik Numarası:");
-            String tcKimlik = tarayici.nextLine();
+        String tcKimlik = "";
+        while(receteBulunduMu){
+            while(true){
+                System.out.print("Hastanın TC Kimlik Numarası:");
+                tcKimlik = tarayici.nextLine();
+                if(tcKimlik.length() != 11){
+                    System.out.println("TC Kimlik Numaranısı 11 haneden oluşmalı.");
+                }
+                else{
+                    break;
+                }
+            }
+
+            boolean flag4 = false;
+            for(int i=0;i<Hasta.hastaListesi.size();i++){
+                if(Hasta.hastaListesi.get(i).TC.equals(tcKimlik)){
+                    flag4=true;
+                }
+            }
+            if(flag4){
+                System.out.println("Hastaya ait reçete bulundu.");
+            }
+            else{
+                System.out.println("Girmiş olduğunuz TC Kimlik Numarasıyla kayıtlı hasta bulunmamaktadır.");
+                continue;
+            }
 
             String dosyaIsmi="";
             for (int i = 0 ; i < Hasta.hastaListesi.size(); i++){
@@ -190,6 +213,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
                     System.out.println(satir);
                 }
                 okuyucu.close();
+                receteBulunduMu = false;
             } catch (FileNotFoundException e) {
                 System.out.println("Hastaya ait reçete bulunmamaktadır.");
                 continue;
