@@ -90,6 +90,34 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
     }
 
 
+
+    //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
+    public static void hastaninFormunuYazdirma () {
+        int degerlemesiIstenenHastaId = 0;
+        System.out.println("Formunu görmek istediğiniz hastanın Id numarsını giriniz : ");
+        while(true){
+            try{
+                degerlemesiIstenenHastaId = tarayici.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
+                tarayici.nextLine();
+                continue;
+            }
+            break;
+        }
+
+
+        // Bu hastanın değerlendirme değerlerinin anahtarlarını(değerlendirme katagorisi"1,2,3,4,5") bir `Set` olarak alır.
+        Set<DegerlendirmeKatagori> anahtarlar = Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.keySet();
+
+        //Alınan değerleri bir for döngüsü ile gezer.
+        for (DegerlendirmeKatagori anahtar : anahtarlar) {
+            System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri: " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
+        }
+
+    }
+
+
     //Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
     public static void muhasebeIslemleri() {
 
@@ -97,7 +125,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
         while(flag){
             System.out.println("|——————————————————————————————————————————————|");
-            System.out.println("Yapmak istediğinizişlemi seçiniz :");
+            System.out.println("Yapmak istediğiniz işlemi seçiniz :");
             System.out.println(" 1: Toplam Kâr");
             System.out.println(" 2: Toplam Gelirler");
             System.out.println(" 3: Toplam Giderler");
@@ -124,33 +152,6 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
                     break;
             }
 
-        }
-
-    }
-
-
-    //Değerleme formunu dolduran hastanın form girdilerini yazdırma:
-    public static void hastaninFormunuYazdirma () {
-        int degerlemesiIstenenHastaId = 0;
-        System.out.println("Formunu görmek istediğiniz hastanın Id numarsını giriniz : ");
-        while(true){
-            try{
-                degerlemesiIstenenHastaId = tarayici.nextInt();
-            }catch (InputMismatchException e){
-                System.out.println("\nHatalı giriş yaptınız. Lütfen tekrar deneyiniz.\n");
-                tarayici.nextLine();
-                continue;
-            }
-            break;
-        }
-
-
-        // Bu hastanın değerlendirme değerlerinin anahtarlarını(değerlendirme katagorisi"1,2,3,4,5") bir `Set` olarak alır.
-        Set<DegerlendirmeKatagori> anahtarlar = Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.keySet();
-
-        //Alınan değerleri bir for döngüsü ile gezer.
-        for (DegerlendirmeKatagori anahtar : anahtarlar) {
-            System.out.println("Katagori : " + anahtar + ", Verilen Skala değerleri: " + Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.get(anahtar));
         }
 
     }
