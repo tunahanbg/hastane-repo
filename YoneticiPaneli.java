@@ -46,16 +46,16 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         //Eklenmek istenen hastanın gerkli bilgileri girilir
         System.out.println("Eklemek istediğiniz hastanın gerekli hasta bilgilerini giriniz : ");
         System.out.println("Hasta ismi: ");
-        String isim = tarayici.nextLine();
+        String isim = tarayici.next();
 
         System.out.println("Hasta soyismi: ");
-        String soyisim = tarayici.nextLine();
+        String soyisim = tarayici.next();
 
         System.out.println("Hasta Tc: ");
-        String tc = tarayici.nextLine();
+        String tc = tarayici.next();
 
         System.out.println("Hasta telefon numarası: ");
-        String telefonNumarasi = tarayici.nextLine();
+        String telefonNumarasi = tarayici.next();
 
         //id numarası liste boyutuna göre belirlenir
         int id = Hasta.hastaListesi.size();
@@ -63,12 +63,39 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
 
         // Yapıcı metot listeye ekler
         Hasta h = new Hasta(isim,soyisim,tc,telefonNumarasi);
+
+        String dosyaYolu="C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\HastaListesi.txt";
+        String yeniHasta=(isim+","+soyisim+","+tc+","+telefonNumarasi);
+        try{
+            File dosya = new File(dosyaYolu);
+            if(!dosya.exists()){
+                dosya.createNewFile();
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+
+        PrintWriter yazici = null;
+
+        try{
+            yazici = new PrintWriter(new FileWriter(dosyaYolu,true));
+            yazici.println(yeniHasta);
+            yazici.close();
+            System.out.println("Hasta sisteme eklendi.");
+        }
+        catch (FileNotFoundException e){
+            System.out.println("Dosya oluşturulurken hata oluştu.");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
 
     // Hasta silme fonksiyonu
-    public static void hastaSil(){
+    public static void hastaSil() throws IOException{
 
         System.out.println("Silmek istenen hastanın İD'sini giriniz ");
         int silinenHastaId = tarayici.nextInt();
@@ -87,6 +114,23 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             }
         }
         if (!flag){System.out.println("\nAradığınız kullanıcı bulunmamaktadır.\n");}
+
+
+        // Hastanın text dosyasından silinmesini sağlayın
+        File file = new File("HemsireListesi.txt");
+        FileWriter writer = new FileWriter(file);
+
+        String satir;
+        try (Scanner scanner2 = new Scanner(file)) {
+            while (scanner2.hasNextLine()) {
+                satir = scanner2.nextLine();
+                if (!satir.contains(String.valueOf(silinenHastaId))) {
+                    writer.write(satir + "\n");
+                }
+            }
+        }
+
+        writer.close();
     }
 
 
