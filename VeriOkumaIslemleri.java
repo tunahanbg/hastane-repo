@@ -29,15 +29,17 @@ public class VeriOkumaIslemleri {
         }
 
         //Hastaların birimlere atanması
-        int sayac = 0;
+        int sayac=0;
+        int k=0;
         for (int i=0;i<Birim.birimListesi.size();i++){
-            for(int k=0;k<Hasta.hastaListesi.size();k++){
+            for(   ; k<Hasta.hastaListesi.size() ;k++){
                 Birim.birimListesi.get(i).birimeAitHastaListesi.add(Hasta.hastaListesi.get(k));
                 sayac++;
-                if(sayac % 3 == 0){
+                if(sayac%3==0){
                     break;
                 }
             }
+            k++;
         }
     }
 
@@ -79,6 +81,21 @@ public class VeriOkumaIslemleri {
         catch (IOException e){
             e.printStackTrace();
         }
+
+        //Birimlere doktor atanması(MBB):
+        int sayac2=0;
+        int k2=0;
+        for (int i=0;i<Birim.birimListesi.size();i++){
+            for(   ; k2<Doktor.doktorListesi.size() ;k2++){
+                Birim.birimListesi.get(i).birimdekiDoktorlarinListesi.add(Doktor.doktorListesi.get(k2));
+                sayac2++;
+                if(sayac2%3==0){
+                    break;
+                }
+            }
+            k2++;
+        }
+
     }
 
 

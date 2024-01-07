@@ -134,12 +134,12 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             int birimHastaKapasitesi = Birim.birimListesi.get(i).getHastaKapasite();
 
             // Yüzdelik çevirme işlemi yapılır
-            float dolulukOrani = ((float) Birim.birimeAitHastaListesi.size() / birimHastaKapasitesi) * 100;
+            float dolulukOrani = ((float) Birim.birimListesi.get(i).birimeAitHastaListesi.size() / birimHastaKapasitesi) * 100;
 
             // String.format kullanarak float değeri istenen formata çevirir
             String formatliDolulukOrani = String.format("%.2f", dolulukOrani);
 
-            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimeAitHastaListesi.size());
+            System.out.println(Birim.birimListesi.get(i).getIsim() + " \n\nbiriminin toplam randevu sayısı: " + Birim.birimListesi.get(i).birimeAitHastaListesi.size());
             System.out.println("\n" +birimHastaKapasitesi + "birimin hasta kapasitesi \n");
             System.out.println("\n" + Birim.birimListesi.get(i).getIsim() + " - " +" Doluluk oranı %" + formatliDolulukOrani+ "\n");
 

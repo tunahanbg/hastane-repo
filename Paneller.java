@@ -34,7 +34,8 @@ public class Paneller {
         System.out.println("Yapmak İstediğiniz İşlemi Seçiniz:");
         System.out.println("1-) Randevu Takvimini Görüntüle");
         System.out.println("2-) Hasta Görüntüle");
-        System.out.println("3-) Çıkış");
+        System.out.println("3-) Reçete İşlemleri");
+        System.out.println("4-) Çıkış");
         System.out.println("|——————————————————————————————————————————————|");
     }
     public static void adminPaneli(){

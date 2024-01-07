@@ -4,6 +4,14 @@ public class Main {
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
 
+        Birim birim1=new Birim("Pediatri", 1);
+        Birim birim2=new Birim("Üroloji",2);
+        Birim birim3=new Birim("Ortopedi",2);
+        Birim birim4=new Birim("Kardiyoloji", 0);
+        Birim birim5=new Birim("Nöroloji", 0);
+        Birim birim6=new Birim("Dahiliye", 0);
+        Birim birim7=new Birim("Cerrahi", 0);
+
         //Doktorların txt dosyasından alınması (MBB):
         VeriOkumaIslemleri.doktorVerileriniCekme();
 
@@ -15,15 +23,6 @@ public class Main {
 
         //Hemşirelerin txt dosyasından çekilmesi
         VeriOkumaIslemleri.hemsireVerileriniCekme();
-
-        Birim birim1=new Birim("Pediatri", 1);
-        Birim birim2=new Birim("Üroloji",2);
-        Birim birim3=new Birim("Ortopedi",2);
-        Birim birim4=new Birim("Kardiyoloji", 0);
-        Birim birim5=new Birim("Nöroloji", 0);
-        Birim birim6=new Birim("Dahiliye", 0);
-        Birim birim7=new Birim("Cerrahi", 0);
-
 
 
 
@@ -160,6 +159,15 @@ public class Main {
                                 }
                                 break;
                             case "3":
+                                Doktor doktor=new Doktor();
+                                for (int i=0;i<Doktor.doktorListesi.size();i++){
+                                    if (Doktor.doktorListesi.get(i).TC.equals(tcNoDoktor)){
+                                          doktor=Doktor.doktorListesi.get(i);
+                                    }
+                                }
+                                doktor.receteYaz();
+                                break;
+                            case "4":
                                 System.out.println("Doktor Panelinden çıkış yapılıyor.");
                                 doktorPaneliKontrol=false;
                                 break;

@@ -22,6 +22,11 @@ public class Doktor extends AbsractKisi {
         doktorListesi.add(this);
     }
 
+    //Reçete yazma işlemlerinde TC ile eşleşen doktoru atamak için bu constructorı kurdum.Diğer constructor kullanılırsa aynı doktoru listeye tekrar ekler.(MBB)
+    public Doktor(){
+
+    }
+
 
     public void hastaGoruntule(){
         for(int i=0;i<Hasta.hastaListesi.size();i++){
@@ -59,6 +64,7 @@ public class Doktor extends AbsractKisi {
         }
 
         System.out.print("Reçete:");
+        tarayici.next();
         String recete = tarayici.nextLine();
         String metinDosyasiAdi = "";
 
@@ -75,12 +81,13 @@ public class Doktor extends AbsractKisi {
         }
         recete=(recete+" Yazılan İlaçlar: "+yazilanIlaclar);
 
-        String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out\\" + metinDosyasiAdi;
+        String dosyaYolu = "C:\\Users\\mahfu\\IdeaProjects\\hastane-repo\\out" + metinDosyasiAdi;
 
         try{
             File dosya = new File(dosyaYolu);
             if(!dosya.exists()){
                 dosya.createNewFile();
+                System.out.println("Reçete oluşturuldu.");
             }
         }
         catch (IOException e){

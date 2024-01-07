@@ -6,7 +6,7 @@ public class Birim {
     //Protected olan değer public olarak değiştirildi çünkü yönetici panlinde kullanılacak--TNG
     public ArrayList<Doktor> birimdekiDoktorlarinListesi=new ArrayList<Doktor>();
     public static ArrayList<Birim> birimListesi=new ArrayList<Birim>();
-    public static ArrayList<Hasta> birimeAitHastaListesi=new ArrayList<Hasta>();
+    public ArrayList<Hasta> birimeAitHastaListesi=new ArrayList<Hasta>();
 
     public Birim(String isim,int hastaKapasite) {
         this.isim = isim;
