@@ -275,7 +275,7 @@ public class Randevu {
             boolean ayniTarihVarMi=false;
             for(int i=0;i<randevuListesi.size();i++){
                 if(randevuListesi.get(i).randevuTarihi.equals(tarih)){
-                    System.out.println("Aynı tarihte zaten bir randevu tanımlanmış, lütfen başka bir tarihe randevu alınız.");
+                    System.out.println("\nAynı tarihte zaten bir randevu tanımlanmış, lütfen başka bir tarihe randevu alınız.\n");
                     ayniTarihVarMi=true;
                     formatDogruMu=true;
                 }
@@ -283,7 +283,7 @@ public class Randevu {
 
             if (!ayniTarihVarMi){
                 yeniRandevu.setRandevuTarihi(tarih);
-                System.out.println("Tarih ataması yapıldı.");
+                System.out.println("\nTarih ataması yapıldı.\n");
                 randevuListesi.add(yeniRandevu);
                 tarihDogruMu=false;
             }
