@@ -19,9 +19,15 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
             switch (yapilmakIstenenI){
 
                 case "1":
-                    YoneticiPaneli.hastaninFormunuYazdirma();
+                    YoneticiPaneli.hastaEkle();
                     break;
                 case "2":
+                    YoneticiPaneli.hastaSil();
+                    break;
+                case "3":
+                    YoneticiPaneli.hastaninFormunuYazdirma();
+                    break;
+                case "4":
                     System.out.println("\nÇıkış yapılıyor...\n");
                     flag = false;
                     break;
@@ -83,7 +89,7 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         if (!flag){System.out.println("\nAradığınız kullanıcı bulunmamaktadır.\n");}
     }
 
-    
+
     //Muhasebe işlmelerinin kontrol edilmesini sağlayan fonksiyon
     public static void muhasebeIslemleri() {
 
