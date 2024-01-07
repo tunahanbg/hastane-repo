@@ -46,6 +46,8 @@ public class DegerlendirmeFormu {
             break;
         }
 
+
+
         for (int i = 0; i < Hasta.hastaListesi.size(); i++){
             if (degerlendiriciId == Hasta.hastaListesi.get(i).id){
                 if (Hasta.hastaListesi.get(i).randevuSayisi != 0){

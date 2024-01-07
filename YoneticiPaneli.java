@@ -145,6 +145,8 @@ public class YoneticiPaneli implements GoruntulemeIslemleri{
         }
 
 
+
+
         // Bu hastanın değerlendirme değerlerinin anahtarlarını(değerlendirme katagorisi"1,2,3,4,5") bir `Set` olarak alır.
         Set<DegerlendirmeKatagori> anahtarlar = Hasta.hastaListesi.get(degerlemesiIstenenHastaId).degerler.keySet();
 
